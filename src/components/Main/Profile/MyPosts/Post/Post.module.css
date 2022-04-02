@@ -16,6 +16,5 @@
 .post span {
     grid-area: message;
     position: relative;
-    margin-left: 20px;
-    vertical-align: center;
+    margin: auto 20px;
 }

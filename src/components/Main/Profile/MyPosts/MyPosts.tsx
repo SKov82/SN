@@ -15,8 +15,8 @@ export function MyPosts() {
                 </button>
             </div>
 
-            <Post />
-            <Post />
+            <Post message={"Всем привет! Начал изучать React. А что учите вы?"} />
+            <Post message={"Привет. Это мой первый пост."} />
         </div>
     );
 }
