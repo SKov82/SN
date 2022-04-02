@@ -16,6 +16,9 @@ export function Body() {
             </aside>
 
             <div className="content">
+                <h1 className="text-3xl font-bold underline">
+                    Hello world!
+                </h1>
                 <ul>
                     <li>HTML</li>
                     <li>CSS/SASS</li>
