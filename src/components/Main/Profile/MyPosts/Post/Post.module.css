@@ -3,18 +3,31 @@
     width: 90%;
     height: 50px;
     margin: 10px auto;
-    grid-template: [start] "avatar message" [row-end] / 80px 1fr;
+    grid-template: [start] "avatar message like" [row-end] / 80px 1fr 80px;
 }
 
 .post img {
     grid-area: avatar;
-    position: relative;
     width: 40px;
     margin: auto auto;
 }
 
-.post span {
+.message {
     grid-area: message;
-    position: relative;
     margin: auto 20px;
+}
+
+.like {
+    display: grid;
+    grid-template: "heart count" / 1fr 1fr;
+    grid-area: like;
+}
+
+.like img {
+    grid-area: heart;
+    height: 30px;
+}
+.like span {
+    grid-area: count;
+    margin: auto 5px;
 }
