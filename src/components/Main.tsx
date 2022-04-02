@@ -1,10 +1,10 @@
 import React from 'react';
-import './Main.css';
+import classes from './Main.module.css';
 
 export function Main() {
     return (
-        <div className="container">
-            <aside className="sidebar">
+        <div className={classes.container}>
+            <aside className={classes.sidebar}>
                 <nav>
                     <ul>
                         <li><a href="#">Профиль</a></li>
@@ -16,7 +16,7 @@ export function Main() {
                 </nav>
             </aside>
 
-            <div className="content">
+            <div className={classes.content}>
                 <h1 className="text-3xl font-bold underline">
                     Hello world!
                 </h1>
