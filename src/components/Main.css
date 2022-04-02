@@ -1,0 +1,19 @@
+
+.container {
+    display: grid;
+    height: 100vh;
+    grid-gap: 15px;
+    grid-area: c;
+    grid-template-columns: 2fr 10fr;
+    grid-template-rows: 1fr;
+    grid-template-areas: "aside content";
+}
+
+.sidebar {
+    grid-area: aside;
+    background-color: lightgray;
+}
+.content {
+    grid-area: content;
+    background-color: lightgray;
+}

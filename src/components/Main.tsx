@@ -1,6 +1,7 @@
 import React from 'react';
+import './Main.css';
 
-export function Body() {
+export function Main() {
     return (
         <div className="container">
             <aside className="sidebar">
