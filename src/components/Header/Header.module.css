@@ -1,0 +1,38 @@
+.header {
+    display: grid;
+    grid-area: h;
+    background: rgb(2,0,36);
+    background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,0.711922268907563) 1%, rgba(0,212,255,1) 92%);
+    width: 100%;
+    grid-template: [start] "logo nav" [row-end] / 2fr 10fr;
+}
+
+.app_logo {
+    height: 50px;
+    pointer-events: none;
+    margin: 10px auto;
+    grid-area: logo;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .app_logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(-360deg);
+    }
+}
+
+.header nav {
+    grid-area: nav;
+    position: relative;
+    top: 25%;
+    font-size: 20px;
+
+}

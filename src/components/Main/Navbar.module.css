@@ -1,0 +1,6 @@
+
+.sidebar {
+    grid-area: aside;
+    background: rgb(2,0,36);
+    background: linear-gradient(328deg, rgba(2,0,36,1) 5%, rgba(9,9,121,0.711922268907563) 29%, rgba(0,202,255,0.8491771708683473) 59%);
+}
