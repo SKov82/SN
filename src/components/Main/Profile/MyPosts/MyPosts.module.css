@@ -1,0 +1,17 @@
+.post_title {
+    display: grid;
+    text-align: center;
+    /*position: relative;*/
+    margin: 25px 0;
+    font-size: 22px;
+}
+
+.new_post {
+    display: grid;
+    width: 70%;
+    margin: 0 auto;
+}
+
+.new_post button {
+    margin: 15px auto;
+}

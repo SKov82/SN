@@ -1,0 +1,21 @@
+.post {
+    display: grid;
+    width: 90%;
+    height: 50px;
+    margin: 10px auto;
+    grid-template: [start] "avatar message" [row-end] / 80px 1fr;
+}
+
+.post img {
+    grid-area: avatar;
+    position: relative;
+    width: 40px;
+    margin: auto auto;
+}
+
+.post span {
+    grid-area: message;
+    position: relative;
+    margin-left: 20px;
+    vertical-align: center;
+}
