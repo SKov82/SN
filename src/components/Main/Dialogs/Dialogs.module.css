@@ -1,8 +1,11 @@
 .content {
+    display: grid;
     grid-area: content;
     width: 100%;
     height: 100%;
     position: relative;
+    grid-template: "chats messages" / 1fr 3fr;
+    grid-gap: 20px;
 }
 
 .content::after{
@@ -16,4 +19,30 @@
     position: absolute;
     z-index: -1;
     border-radius: 15px;
+}
+
+.chats {
+    grid-area: chats;
+    padding: 30px 20px 20px 30px;
+}
+
+.chats div {
+    font-size: 16px;
+}
+
+.chats ul {
+    padding-top: 20px;
+}
+
+.chats ul li {
+    padding-top: 20px;
+}
+
+.messages {
+    grid-area: messages;
+    padding: 30px 20px 20px 30px;
+}
+
+.message {
+    padding-top: 20px;
 }

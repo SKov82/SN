@@ -16,7 +16,7 @@ export function Main() {
                 </h1>
             </div>
 
-            <Route path={'/'} />
+            <Route path={'/main'} />
             <Route path={'/news'} />
             <Route path={'/about'} />
             <Route path={'/profile'} component={Profile}/>

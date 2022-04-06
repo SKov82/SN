@@ -48,5 +48,8 @@
     position: relative;
     top: 25%;
     font-size: 18px;
+}
 
+.active {
+    color: goldenrod;
 }
