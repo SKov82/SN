@@ -2,6 +2,7 @@ import React from 'react';
 import classes from './Main.module.css';
 import {Navbar} from './Navbar';
 import {Profile} from './Profile/Profile';
+import {Dialogs} from './Dialogs/Dialogs';
 
 export function Main() {
     return (
@@ -15,6 +16,7 @@ export function Main() {
             </div>
 
             <Profile />
+            <Dialogs />
         </div>
     );
 }

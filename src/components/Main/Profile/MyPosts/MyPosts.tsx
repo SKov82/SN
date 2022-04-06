@@ -16,7 +16,7 @@ export function MyPosts() {
             </div>
 
             <Post message={"Всем привет! Начал изучать React. А что учите вы?"} likes_count={12} />
-            <Post message={"Привет. Это мой первый пост."} likes_count={199}/>
+            <Post message={"Привет. Это мой первый пост."} likes_count={9199}/>
         </div>
     );
 }

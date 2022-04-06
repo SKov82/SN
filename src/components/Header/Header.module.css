@@ -1,14 +1,28 @@
 .header {
     display: grid;
     grid-area: h;
+    position: relative;
+    width: 100%;
+    grid-template: "logo nav" / 2fr 10fr;
+    margin-top: 5px;
+}
+
+.header::after {
+    content: "";
     background: rgb(2,0,36);
     background: linear-gradient(0deg, rgba(2,0,36,1) 0%, rgba(9,9,121,0.711922268907563) 1%, rgba(0,212,255,1) 92%);
-    width: 100%;
-    grid-template: [start] "logo nav" [row-end] / 2fr 10fr;
+    opacity: .65;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;
+    border-radius: 15px;
 }
 
 .app_logo {
-    height: 60px;
+    height: 55px;
     pointer-events: none;
     margin: 5px auto;
     grid-area: logo;
@@ -33,6 +47,6 @@
     grid-area: nav;
     position: relative;
     top: 25%;
-    font-size: 20px;
+    font-size: 18px;
 
 }

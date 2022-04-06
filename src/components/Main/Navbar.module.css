@@ -1,5 +1,19 @@
 .sidebar {
     grid-area: aside;
+    position: relative;
+
+}
+
+.sidebar::after {
+    content: "";
     background: rgb(2,0,36);
     background: linear-gradient(328deg, rgba(2,0,36,1) 5%, rgba(9,9,121,0.711922268907563) 29%, rgba(0,202,255,0.8491771708683473) 59%);
+    opacity: .65;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+    border-radius: 15px;
 }

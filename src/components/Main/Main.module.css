@@ -11,7 +11,20 @@
 
 .bg {
     grid-area: bg;
+    position: relative;
+}
+
+.bg::after {
+    content: "";
     background: url(https://kartinkin.net/uploads/posts/2020-07/1593659774_24-p-foni-s-kosmosom-42.jpg) 0 0/cover no-repeat fixed;
+    opacity: .75;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+    border-radius: 15px;
 }
 
 .bg h1 {

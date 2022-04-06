@@ -7,7 +7,7 @@
 
 .content::after{
     content: "";
-    background: url("https://w-dog.ru/wallpapers/2/16/423668644260651/krasivye-vid-planet-v-kosmose.jpg") 0 0/cover no-repeat fixed;
+    background: url("https://images.nrc.nl/-eUPNG6ZBVRsMk0wRloqo5pms0Q=/1920x/filters:no_upscale()/s3/static.nrc.nl/spoetnik/files/2015/02/brieven.jpg") 0 0/cover no-repeat fixed;
     opacity: .35;
     top: 0;
     left: 0;
@@ -16,11 +16,4 @@
     position: absolute;
     z-index: -1;
     border-radius: 15px;
-}
-
-.content img {
-    width: 120px;
-    margin-top: 40px;
-    margin-left: 40px;
-    border-radius: 50%;
 }
