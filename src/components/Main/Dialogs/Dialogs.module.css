@@ -27,15 +27,26 @@
 }
 
 .chats div {
-    font-size: 16px;
+    font-size: 18px;
+    font-weight: 700;
 }
 
-.chats ul {
-    padding-top: 20px;
-}
+.active {
+    color: lightskyblue;
+    font-weight: 700;
+    position: relative;
 
-.chats ul li {
-    padding-top: 20px;
+}
+.active::after {
+    content: "";
+    background: url("https://www.downloadclipart.net/large/66-eyes-file-clipart.png") 0 0/cover no-repeat no-repeat;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    bottom: 0;
+    margin-left: -30px;
 }
 
 .messages {
