@@ -37,17 +37,14 @@ export function Dialogs() {
         {id: 3, name: 'Вова'},
         {id: 4, name: 'Миша'},
     ]
-    
+
     return (
         <div className={classes.content}>
             <div className={classes.chats}>
                 <div>Чаты</div>
 
                 <nav className="grid grid-cols-1 gap-4 pl-7 pt-7">
-                    <Dialog id={1} name={'Ирина'}/>
-                    <Dialog id={2} name={'Юля'}/>
-                    <Dialog id={3} name={'Вова'}/>
-                    <Dialog id={4} name={'Миша'}/>
+                    {dialogs.map(el => <Dialog id={el.id} name={el.name}/>)}
                 </nav>
             </div>
 
