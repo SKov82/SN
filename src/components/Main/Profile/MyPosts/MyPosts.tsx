@@ -3,6 +3,10 @@ import classes from './MyPosts.module.css';
 import {Post} from './Post/Post';
 
 export function MyPosts() {
+    let posts = [
+        {id: 2, message: "Всем привет! Начал изучать React. А что учите вы?", likes_count: 12},
+        {id: 1, message: "Привет. Это мой первый пост.", likes_count: 9199},
+    ]
     return (
         <div>
             <div className={classes.post_title}>Мои посты</div>
@@ -15,8 +19,7 @@ export function MyPosts() {
                 </button>
             </div>
 
-            <Post message={"Всем привет! Начал изучать React. А что учите вы?"} likes_count={12} />
-            <Post message={"Привет. Это мой первый пост."} likes_count={9199}/>
+            {posts.map(el => <Post id={el.id} message={el.message} likes_count={el.likes_count}/>)}
         </div>
     );
 }
