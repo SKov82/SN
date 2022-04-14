@@ -1,10 +1,10 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import s from './Navbar.module.css';
+import css from './Navbar.module.css';
 
 export function Navbar() {
     return (
-        <aside className={s.sidebar}>
+        <aside className={css.sidebar}>
             <nav className="grid grid-cols-1 gap-4 pl-7 pt-10">
                 <NavLink to={'/profile'} className="font-semibold hover:scale-110 hover:skew-y-3">
                     Профиль

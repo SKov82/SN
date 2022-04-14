@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Dialogs.module.css';
+import css from './Dialogs.module.css';
 import {NavLink} from 'react-router-dom';
 
 type DialogType = {
@@ -16,7 +16,7 @@ function Dialog(props: DialogType) {
     return (
         <NavLink to={`/dialogs/${props.id}`}
                  className="font-semibold hover:scale-105 hover:skew-y-2"
-                 activeClassName={s.active}>
+                 activeClassName={css.active}>
             {props.name}
         </NavLink>
     )
@@ -24,7 +24,7 @@ function Dialog(props: DialogType) {
 
 function Message(props: MessageType) {
     return (
-        <div className={s.message}>
+        <div className={css.message}>
             {props.text}
         </div>
     )
@@ -47,8 +47,8 @@ export function Dialogs() {
     let messagesElements = messages.map(el => <Message id={el.id} text={el.text}/>)
 
     return (
-        <div className={s.content}>
-            <div className={s.chats}>
+        <div className={css.content}>
+            <div className={css.chats}>
                 <div>Чаты</div>
 
                 <nav className="grid grid-cols-1 gap-4 pl-7 pt-7">
@@ -56,7 +56,7 @@ export function Dialogs() {
                 </nav>
             </div>
 
-            <div className={s.messages}>
+            <div className={css.messages}>
                 {messagesElements}
             </div>
         </div>

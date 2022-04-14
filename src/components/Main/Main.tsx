@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Main.module.css';
+import css from './Main.module.css';
 import {Navbar} from './Navbar';
 import {Profile} from './Profile/Profile';
 import {Dialogs} from './Dialogs/Dialogs';
@@ -7,10 +7,10 @@ import {Route} from 'react-router-dom';
 
 export function Main() {
     return (
-        <div className={s.container}>
+        <div className={css.container}>
             <Navbar/>
 
-            <div className={s.bg}>
+            <div className={css.bg}>
                 <h1 className="text-3xl font-bold text-center">
                     Привет, User
                 </h1>
