@@ -31,6 +31,13 @@ function Message(props: MessageType) {
 }
 
 export function Dialogs() {
+    let dialogs = [
+        {id: 1, name: 'Ирина'},
+        {id: 2, name: 'Юля'},
+        {id: 3, name: 'Вова'},
+        {id: 4, name: 'Миша'},
+    ]
+    
     return (
         <div className={classes.content}>
             <div className={classes.chats}>
