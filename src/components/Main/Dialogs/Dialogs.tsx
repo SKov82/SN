@@ -38,6 +38,12 @@ export function Dialogs() {
         {id: 4, name: 'Миша'},
     ]
 
+    let messages = [
+        {id: 1, text: 'Привет'},
+        {id: 2, text: 'Ты дома?'},
+        {id: 3, text: 'Привет. Да, только пришел'},
+    ]
+
     return (
         <div className={classes.content}>
             <div className={classes.chats}>
@@ -49,9 +55,7 @@ export function Dialogs() {
             </div>
 
             <div className={classes.messages}>
-                <Message id={1} text={'Привет'}/>
-                <Message id={2} text={'Ты дома?'}/>
-                <Message id={3} text={'Привет. Да, только пришел'}/>
+                {messages.map(el => <Message id={el.id} text={el.text}/>)}
             </div>
         </div>
     )
