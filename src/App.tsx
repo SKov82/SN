@@ -12,9 +12,6 @@ function App(props: any) {
                 <Header/>
                 <Main
                     state={props.state}
-                    // posts={props.posts}
-                    // dialogs={props.dialogs}
-                    // messages={props.messages}
                 />
                 <Footer/>
             </div>
