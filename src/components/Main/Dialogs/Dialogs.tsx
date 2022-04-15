@@ -3,7 +3,7 @@ import css from './Dialogs.module.css';
 import {NavLink} from 'react-router-dom';
 import {Messages} from './Messages';
 
-type DialogType = {
+export type DialogType = {
     id: number
     name: string
 }
@@ -18,14 +18,8 @@ function Dialog(props: DialogType) {
     )
 }
 
-export function Dialogs() {
-    let dialogs: Array<DialogType> = [
-        {id: 1, name: 'Ирина'},
-        {id: 2, name: 'Юля'},
-        {id: 3, name: 'Вова'},
-        {id: 4, name: 'Миша'},
-    ]
-    let dialogsElements = dialogs.map(el => <Dialog id={el.id} name={el.name}/>)
+export function Dialogs(props: any) {
+    let dialogsElements = props.dialogs.map((el: DialogType) => <Dialog key={el.id} id={el.id} name={el.name}/>)
 
     return (
         <div className={css.content}>
@@ -38,7 +32,7 @@ export function Dialogs() {
             </div>
 
             <div className={css.messages}>
-                <Messages/>
+                <Messages messages={props.messages}/>
             </div>
         </div>
     )

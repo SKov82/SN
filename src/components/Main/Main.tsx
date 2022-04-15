@@ -5,7 +5,7 @@ import {Profile} from './Profile/Profile';
 import {Dialogs} from './Dialogs/Dialogs';
 import {Route} from 'react-router-dom';
 
-export function Main() {
+export function Main(props: any) {
     return (
         <div className={css.container}>
             <Navbar/>
@@ -19,8 +19,10 @@ export function Main() {
             <Route path={'/main'} />
             <Route path={'/news'} />
             <Route path={'/about'} />
-            <Route path={'/profile'} component={Profile}/>
-            <Route path={'/dialogs'} component={Dialogs}/>
+            {/*<Route path={'/profile'} component={Profile}/>*/}
+            <Route path={'/profile'} render={ () => <Profile posts={props.posts}/> }/>
+            {/*<Route path={'/dialogs'} component={Dialogs}/>*/}
+            <Route path={'/dialogs'} render={ () => <Dialogs dialogs={props.dialogs} messages={props.messages}/> }/>
             <Route path={'/friends'} />
             <Route path={'/groups'} />
             <Route path={'/settings'} />

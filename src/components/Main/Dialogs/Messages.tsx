@@ -1,7 +1,7 @@
 import css from './Messages.module.css';
 import React from 'react';
 
-type MessageType = {
+export type MessageType = {
     id: number
     text: string
 }
@@ -14,13 +14,9 @@ function Message(props: MessageType) {
     )
 }
 
-export function Messages() {
-    let messages: Array<MessageType> = [
-        {id: 1, text: 'Привет'},
-        {id: 2, text: 'Ты дома?'},
-        {id: 3, text: 'Привет. Да, только пришел'},
-    ]
-
-    return <>{messages.map(el => <Message id={el.id} text={el.text}/>)}</>
+export function Messages(props: any) {
+    return <>
+        {props.messages.map((el: MessageType) => <Message key={el.id} id={el.id} text={el.text}/>)}
+    </>
 }
 
