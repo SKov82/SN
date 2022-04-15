@@ -9,7 +9,7 @@ export function Profile(props: any) {
 
             <div>Что-то о чем-то как-то и где-то</div>
 
-            <MyPosts posts={props.posts} />
+            <MyPosts posts={props.profileData.posts} />
         </div>
     );
 }

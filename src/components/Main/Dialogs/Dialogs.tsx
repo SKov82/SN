@@ -19,7 +19,7 @@ function Dialog(props: DialogType) {
 }
 
 export function Dialogs(props: any) {
-    let dialogsElements = props.dialogs.map((el: DialogType) => <Dialog key={el.id} id={el.id} name={el.name}/>)
+    let dialogsElements = props.dialogsData.dialogs.map((el: DialogType) => <Dialog key={el.id} id={el.id} name={el.name}/>)
 
     return (
         <div className={css.content}>
@@ -32,7 +32,7 @@ export function Dialogs(props: any) {
             </div>
 
             <div className={css.messages}>
-                <Messages messages={props.messages}/>
+                <Messages messages={props.dialogsData.messages}/>
             </div>
         </div>
     )

@@ -19,10 +19,10 @@ export function Main(props: any) {
             <Route path={'/main'} />
             <Route path={'/news'} />
             <Route path={'/about'} />
-            {/*<Route path={'/profile'} component={Profile}/>*/}
-            <Route path={'/profile'} render={ () => <Profile posts={props.posts}/> }/>
-            {/*<Route path={'/dialogs'} component={Dialogs}/>*/}
-            <Route path={'/dialogs'} render={ () => <Dialogs dialogs={props.dialogs} messages={props.messages}/> }/>
+            {/*<Route path={'/profile'} render={ () => <Profile posts={props.posts}/> }/>*/}
+            <Route path={'/profile'} render={ () => <Profile profileData={props.state.profileData}/> }/>
+            {/*<Route path={'/dialogs'} render={ () => <Dialogs dialogs={props.dialogs} messages={props.messages}/> }/>*/}
+            <Route path={'/dialogs'} render={ () => <Dialogs dialogsData={props.state.dialogsData}/> }/>
             <Route path={'/friends'} />
             <Route path={'/groups'} />
             <Route path={'/settings'} />

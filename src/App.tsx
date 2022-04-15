@@ -11,9 +11,10 @@ function App(props: any) {
             <div className="App">
                 <Header/>
                 <Main
-                    posts={props.posts}
-                    dialogs={props.dialogs}
-                    messages={props.messages}
+                    state={props.state}
+                    // posts={props.posts}
+                    // dialogs={props.dialogs}
+                    // messages={props.messages}
                 />
                 <Footer/>
             </div>
