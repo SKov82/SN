@@ -53,3 +53,11 @@
     grid-area: messages;
     padding: 30px 20px 20px 30px;
 }
+
+.separator {
+    position: absolute;
+    left: 25%;
+    top: 5%;
+    border: 1px solid lightgray;
+    height: 90%;
+}

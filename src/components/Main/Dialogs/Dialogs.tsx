@@ -31,6 +31,8 @@ export function Dialogs({dialogsData}: any) {
                 </nav>
             </div>
 
+            <div className={css.separator}/>
+
             <div className={css.messages}>
                 <Messages messages={dialogsData.messages}/>
             </div>
