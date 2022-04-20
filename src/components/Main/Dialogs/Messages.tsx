@@ -6,17 +6,17 @@ export type MessageType = {
     text: string
 }
 
-function Message(props: MessageType) {
+function Message({text}: MessageType) {
     return (
         <div className={css.message}>
-            {props.text}
+            {text}
         </div>
     )
 }
 
-export function Messages(props: any) {
+export function Messages({messages}: any) {
     return <>
-        {props.messages.map((el: MessageType) => <Message key={el.id} id={el.id} text={el.text}/>)}
+        {messages.map((el: MessageType) => <Message key={el.id} id={el.id} text={el.text}/>)}
     </>
 }
 

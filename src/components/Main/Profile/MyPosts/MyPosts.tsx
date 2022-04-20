@@ -2,8 +2,8 @@ import React from 'react';
 import css from './MyPosts.module.css';
 import {Post, PostType} from './Post/Post';
 
-export function MyPosts(props: any) {
-    let postsElements = props.posts.map((el: PostType) => <Post key={el.id} id={el.id} message={el.message} likes_count={el.likes_count}/>)
+export function MyPosts({posts}: any) {
+    let postsElements = posts.map((el: PostType) => <Post key={el.id} id={el.id} message={el.message} likes_count={el.likes_count}/>)
 
     return (
         <div>

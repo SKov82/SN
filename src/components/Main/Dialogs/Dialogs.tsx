@@ -8,18 +8,18 @@ export type DialogType = {
     name: string
 }
 
-function Dialog(props: DialogType) {
+function Dialog({id, name}: DialogType) {
     return (
-        <NavLink to={`/dialogs/${props.id}`}
+        <NavLink to={`/dialogs/${id}`}
                  className="font-semibold hover:scale-105 hover:skew-y-2"
                  activeClassName={css.active}>
-            {props.name}
+            {name}
         </NavLink>
     )
 }
 
-export function Dialogs(props: any) {
-    let dialogsElements = props.dialogsData.dialogs.map((el: DialogType) => <Dialog key={el.id} id={el.id} name={el.name}/>)
+export function Dialogs({dialogsData}: any) {
+    let dialogsElements = dialogsData.dialogs.map((el: DialogType) => <Dialog key={el.id} id={el.id} name={el.name}/>)
 
     return (
         <div className={css.content}>
@@ -32,7 +32,7 @@ export function Dialogs(props: any) {
             </div>
 
             <div className={css.messages}>
-                <Messages messages={props.dialogsData.messages}/>
+                <Messages messages={dialogsData.messages}/>
             </div>
         </div>
     )
