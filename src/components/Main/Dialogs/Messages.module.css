@@ -1,3 +1,16 @@
 .message {
     padding-top: 20px;
 }
+
+.new_message {
+    display: grid;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 100px;
+    left: 35%;
+    right: 10%;
+}
+
+.new_message button {
+    margin: 15px auto;
+}
