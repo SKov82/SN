@@ -9,7 +9,7 @@ export function Profile({profileData}: any) {
 
             <div>Что-то о чем-то как-то и где-то</div>
 
-            <MyPosts posts={profileData.posts} />
+            <MyPosts profileData={profileData} />
         </div>
     );
 }

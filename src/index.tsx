@@ -1,12 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import {state} from './state';
+import {renderAll} from './render';
 
-ReactDOM.render((
-    <App
-        state={state}
-    />),
-  document.getElementById('root')
-);
+renderAll(state)
