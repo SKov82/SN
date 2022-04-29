@@ -9,9 +9,7 @@ export function MyPosts({profileData}: any) {
     let newPostElement = React.createRef<HTMLTextAreaElement>()
     const newPostHandler = () => {
         if (newPostElement.current && newPostElement.current.value.trim()) {
-            profileData.addPost(newPostElement.current.value)
-            // newPostElement.current.value = ''
-            profileData.updateNewPostText('')
+            profileData.addPost()
         }
     }
     const onChangeNewPostHandler = () => {

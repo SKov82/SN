@@ -9,7 +9,7 @@ export type PostType = {
 export type ProfileDataType = {
     posts: Array<PostType>
     newPostText: string
-    addPost: (post: string) => void
+    addPost: () => void
     updateNewPostText: (post: string) => void
 }
 
@@ -40,13 +40,13 @@ export let state: StateType = {
             {id: 1, message: "Привет. Это мой первый пост.", likesCount: 9199},
         ],
         newPostText: '',
-        addPost(post: string) {
+        addPost() {
             state.profileData.posts.unshift({
                 id: state.profileData.posts.length + 1,
-                message: post,
+                message: state.profileData.newPostText,
                 likesCount: 0
             })
-            renderAll(state)
+            state.profileData.updateNewPostText('')
         },
         updateNewPostText(post: string) {
             state.profileData.newPostText = post
@@ -68,3 +68,6 @@ export let state: StateType = {
         ]
     },
 }
+
+// @ts-ignore
+window.state = state
