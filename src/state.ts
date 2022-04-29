@@ -1,4 +1,8 @@
-import {renderAll} from './render';
+let renderAll = () => {}
+
+export const subscribe = (observer: any) => {
+    renderAll = observer
+}
 
 export type PostType = {
     id: number
@@ -50,7 +54,7 @@ export let state: StateType = {
         },
         updateNewPostText(post: string) {
             state.profileData.newPostText = post
-            renderAll(state)
+            renderAll()
         }
     },
 

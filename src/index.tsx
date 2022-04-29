@@ -1,4 +1,18 @@
-import {state} from './state';
-import {renderAll} from './render';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+import App from './App';
+import {state, subscribe} from './state';
 
-renderAll(state)
+let renderAll = () => {
+    ReactDOM.render((
+            <App
+                state={state}
+            />),
+        document.getElementById('root')
+    );
+}
+
+renderAll()
+
+subscribe(renderAll)
