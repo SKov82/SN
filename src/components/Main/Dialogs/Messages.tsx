@@ -1,10 +1,6 @@
 import css from './Messages.module.css';
 import React from 'react';
-
-export type MessageType = {
-    id: number
-    text: string
-}
+import {MessageType} from '../../../state';
 
 function Message({text}: MessageType) {
     return (
@@ -19,7 +15,7 @@ export function Messages({messages}: any) {
         {messages.map((el: MessageType) => <Message key={el.id} id={el.id} text={el.text}/>)}
 
         <div className={css.new_message}>
-            <textarea name="new_message" id="new_message" rows={3}></textarea>
+            <textarea name="new_message" id="new_message" rows={3} />
 
             <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
                     onClick={ () => {} }

@@ -2,11 +2,7 @@ import React from 'react';
 import css from './Dialogs.module.css';
 import {NavLink} from 'react-router-dom';
 import {Messages} from './Messages';
-
-export type DialogType = {
-    id: number
-    name: string
-}
+import {DialogType} from '../../../state';
 
 function Dialog({id, name}: DialogType) {
     return (
