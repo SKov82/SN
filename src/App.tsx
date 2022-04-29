@@ -5,7 +5,7 @@ import {Main} from './components/Main/Main';
 import {Footer} from './components/Footer';
 import {BrowserRouter} from 'react-router-dom';
 
-function App({state}:any) {
+function App({state}: any) {
     return (
         <BrowserRouter>
             <div className="App">

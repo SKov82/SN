@@ -50,6 +50,7 @@ export let state: StateType = {
         },
         updateNewPostText(post: string) {
             state.profileData.newPostText = post
+            renderAll(state)
         }
     },
 

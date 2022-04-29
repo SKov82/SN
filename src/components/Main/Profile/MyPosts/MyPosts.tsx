@@ -10,7 +10,8 @@ export function MyPosts({profileData}: any) {
     const newPostHandler = () => {
         if (newPostElement.current && newPostElement.current.value.trim()) {
             profileData.addPost(newPostElement.current.value)
-            newPostElement.current.value = ''
+            // newPostElement.current.value = ''
+            profileData.updateNewPostText('')
         }
     }
     const onChangeNewPostHandler = () => {
@@ -31,7 +32,7 @@ export function MyPosts({profileData}: any) {
                 />
 
                 <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                        onClick={ newPostHandler }
+                        onClick={newPostHandler}
                 >
                     Запостить
                 </button>
