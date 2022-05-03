@@ -2,7 +2,7 @@ import React from 'react';
 import css from './Dialogs.module.css';
 import {NavLink} from 'react-router-dom';
 import {Messages} from './Messages';
-import {DialogType} from '../../../state';
+import {DialogsDataType, DialogType} from '../../../state';
 
 function Dialog({id, name}: DialogType) {
     return (
@@ -14,8 +14,10 @@ function Dialog({id, name}: DialogType) {
     )
 }
 
-export function Dialogs({dialogsData}: any) {
-    let dialogsElements = dialogsData.dialogs.map((el: DialogType) => <Dialog key={el.id} id={el.id} name={el.name}/>)
+type DialogsPropsType = DialogsDataType
+
+export function Dialogs({dialogs, messages}: DialogsPropsType) {
+    let dialogsElements = dialogs.map((el: DialogType) => <Dialog key={el.id} id={el.id} name={el.name}/>)
 
     return (
         <div className={css.content}>
@@ -30,7 +32,7 @@ export function Dialogs({dialogsData}: any) {
             <div className={css.separator}/>
 
             <div className={css.messages}>
-                <Messages messages={dialogsData.messages}/>
+                <Messages messages={messages}/>
             </div>
         </div>
     )

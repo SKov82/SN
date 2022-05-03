@@ -10,7 +10,11 @@ function Message({text}: MessageType) {
     )
 }
 
-export function Messages({messages}: any) {
+type MessagesPropsType = {
+    messages: Array<MessageType>
+}
+
+export function Messages({messages}: MessagesPropsType) {
     return <>
         {messages.map((el: MessageType) => <Message key={el.id} id={el.id} text={el.text}/>)}
 
@@ -25,4 +29,3 @@ export function Messages({messages}: any) {
         </div>
     </>
 }
-

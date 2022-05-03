@@ -2,18 +2,19 @@ import React from 'react';
 import css from './MyPosts.module.css';
 import {Post} from './Post/Post';
 import {PostType} from '../../../../state';
+import {ProfilePropsType} from '../Profile';
 
-export function MyPosts({profileData}: any) {
+export function MyPosts({profileData, addPost, updateNewPostText}: ProfilePropsType) {
     let postsElements = profileData.posts.map((el: PostType) => <Post key={el.id} id={el.id} message={el.message} likesCount={el.likesCount}/>)
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
     const newPostHandler = () => {
         if (newPostElement.current && newPostElement.current.value.trim()) {
-            profileData.addPost()
+            addPost()
         }
     }
     const onChangeNewPostHandler = () => {
-        profileData.updateNewPostText(newPostElement.current?.value)
+        if (newPostElement.current) updateNewPostText(newPostElement.current.value)
     }
 
     return (
@@ -24,6 +25,7 @@ export function MyPosts({profileData}: any) {
                 <textarea ref={newPostElement}
                           value={profileData.newPostText}
                           onChange={onChangeNewPostHandler}
+                          onKeyDown={ (e) => {if (e.key === 'Enter') newPostHandler()} }
                           name="new_post"
                           id="new_post"
                           rows={3}

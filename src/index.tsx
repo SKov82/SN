@@ -2,12 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import {state, subscribe} from './state';
+import {store} from './state';
 
 let renderAll = () => {
     ReactDOM.render((
             <App
-                state={state}
+                state={store.getState()}
+                addPost={store.addPost}
+                updateNewPostText={store.updateNewPostText}
             />),
         document.getElementById('root')
     );
@@ -15,4 +17,4 @@ let renderAll = () => {
 
 renderAll()
 
-subscribe(renderAll)
+store.subscribe(renderAll)

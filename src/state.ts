@@ -31,6 +31,7 @@ export type StateType = {
 
 export type StoreType = {
     _state: StateType
+    getState: () => StateType
     addPost: () => void
     updateNewPostText: (post: string) => void
     renderAll: () => void
@@ -60,21 +61,24 @@ export let store: StoreType = {
             ]
         },
     },
+    getState() {
+        return store._state
+    },
     addPost() {
-        this._state.profileData.posts.unshift({
-            id: this._state.profileData.posts.length + 1,
-            message: this._state.profileData.newPostText,
+        store._state.profileData.posts.unshift({
+            id: store._state.profileData.posts.length + 1,
+            message: store._state.profileData.newPostText,
             likesCount: 0
         })
-        this.updateNewPostText('')
+        store.updateNewPostText('')
     },
     updateNewPostText(post: string) {
-        this._state.profileData.newPostText = post
-        this.renderAll()
+        store._state.profileData.newPostText = post
+        store.renderAll()
     },
     renderAll() {},
     subscribe(observer: () => void) {
-        this.renderAll = observer
+        store.renderAll = observer
     },
 }
 
