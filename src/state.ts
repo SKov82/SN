@@ -32,10 +32,11 @@ export type StateType = {
 export type StoreType = {
     _state: StateType
     getState: () => StateType
-    addPost: () => void
-    updateNewPostText: (post: string) => void
-    renderAll: () => void
+    // addPost: () => void
+    // updateNewPostText: (post: string) => void
+    _renderAll: () => void
     subscribe: ( callback: () => void ) => void
+    dispatch: (action: any) => void
 }
 
 export let store: StoreType = {
@@ -64,22 +65,37 @@ export let store: StoreType = {
     getState() {
         return this._state
     },
-    addPost() {
-        this._state.profileData.posts.unshift({
-            id: this._state.profileData.posts.length + 1,
-            message: this._state.profileData.newPostText,
-            likesCount: 0
-        })
-        store.updateNewPostText('')
-    },
-    updateNewPostText(post: string) {
-        this._state.profileData.newPostText = post
-        this.renderAll()
-    },
-    renderAll() {},
+
+    _renderAll() {},
     subscribe(observer) {
-        this.renderAll = observer
+        this._renderAll = observer
     },
+
+    // addPost() {
+    //     this._state.profileData.posts.unshift({
+    //         id: this._state.profileData.posts.length + 1,
+    //         message: this._state.profileData.newPostText,
+    //         likesCount: 0
+    //     })
+    //     this.updateNewPostText('')
+    // },
+    // updateNewPostText(post: string) {
+    //     this._state.profileData.newPostText = post
+    //     this._renderAll()
+    // },
+    dispatch(action) {
+        if (action.type === 'addPost') {
+            this._state.profileData.posts.unshift({
+                id: this._state.profileData.posts.length + 1,
+                message: this._state.profileData.newPostText,
+                likesCount: 0
+            })
+            this.dispatch( {type: 'updateNewPostText', post: ''} )
+        } else if (action.type === 'updateNewPostText') {
+            this._state.profileData.newPostText = action.post
+            this._renderAll()
+        }
+    }
 }
 
 // @ts-ignore

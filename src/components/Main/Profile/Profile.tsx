@@ -5,11 +5,10 @@ import {ProfileDataType} from '../../../state';
 
 export type ProfilePropsType ={
     profileData: ProfileDataType
-    addPost: () => void
-    updateNewPostText: (post: string) => void
+    dispatch: (action: any) => void
 }
 
-export function Profile({profileData, addPost, updateNewPostText}: ProfilePropsType) {
+export function Profile({profileData, dispatch}: ProfilePropsType) {
     return (
         <div className={css.content}>
             <img src="https://secure.gravatar.com/avatar/d65ba582994efa3515a7936eb7c337ef?s=96&d=retro" alt="avatar"/>
@@ -17,8 +16,7 @@ export function Profile({profileData, addPost, updateNewPostText}: ProfilePropsT
             <div>Что-то о чем-то как-то и где-то</div>
 
             <MyPosts profileData={profileData}
-                     addPost={addPost}
-                     updateNewPostText={updateNewPostText}
+                     dispatch={dispatch}
             />
         </div>
     );

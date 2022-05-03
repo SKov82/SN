@@ -8,19 +8,17 @@ import {StateType} from './state';
 
 export type AppPropsType ={
     state: StateType
-    addPost: () => void
-    updateNewPostText: (post: string) => void
+    dispatch: (action: any) => void
 }
 
-function App({state, addPost, updateNewPostText}: AppPropsType) {
+function App({state, dispatch}: AppPropsType) {
     return (
         <BrowserRouter>
             <div className="App">
                 <Header/>
                 <Main
                     state={state}
-                    addPost={addPost}
-                    updateNewPostText={updateNewPostText}
+                    dispatch={dispatch}
                 />
                 <Footer/>
             </div>

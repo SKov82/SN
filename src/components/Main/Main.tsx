@@ -6,7 +6,7 @@ import {Dialogs} from './Dialogs/Dialogs';
 import {Route} from 'react-router-dom';
 import {AppPropsType} from '../../App';
 
-export function Main({state, addPost, updateNewPostText}: AppPropsType) {
+export function Main({state, dispatch}: AppPropsType) {
     return (
         <div className={css.container}>
             <Navbar/>
@@ -21,8 +21,7 @@ export function Main({state, addPost, updateNewPostText}: AppPropsType) {
             <Route path={'/news'} />
             <Route path={'/about'} />
             <Route path={'/profile'} render={ () => <Profile profileData={state.profileData}
-                                                             addPost={addPost}
-                                                             updateNewPostText={updateNewPostText}
+                                                             dispatch={dispatch}
                                                     /> }
             />
             <Route path={'/dialogs'} render={ () => <Dialogs dialogs={state.dialogsData.dialogs}

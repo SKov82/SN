@@ -4,17 +4,17 @@ import {Post} from './Post/Post';
 import {PostType} from '../../../../state';
 import {ProfilePropsType} from '../Profile';
 
-export function MyPosts({profileData, addPost, updateNewPostText}: ProfilePropsType) {
+export function MyPosts({profileData, dispatch}: ProfilePropsType) {
     let postsElements = profileData.posts.map((el: PostType) => <Post key={el.id} id={el.id} message={el.message} likesCount={el.likesCount}/>)
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
     const newPostHandler = () => {
         if (newPostElement.current && newPostElement.current.value.trim()) {
-            addPost()
+            dispatch( {type: 'addPost'} )
         }
     }
     const onChangeNewPostHandler = () => {
-        if (newPostElement.current) updateNewPostText(newPostElement.current.value)
+        if (newPostElement.current) dispatch({type: 'updateNewPostText', post: newPostElement.current.value} )
     }
 
     return (
