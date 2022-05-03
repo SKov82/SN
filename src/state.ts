@@ -71,29 +71,20 @@ export let store: StoreType = {
         this._renderAll = observer
     },
 
-    // addPost() {
-    //     this._state.profileData.posts.unshift({
-    //         id: this._state.profileData.posts.length + 1,
-    //         message: this._state.profileData.newPostText,
-    //         likesCount: 0
-    //     })
-    //     this.updateNewPostText('')
-    // },
-    // updateNewPostText(post: string) {
-    //     this._state.profileData.newPostText = post
-    //     this._renderAll()
-    // },
     dispatch(action) {
-        if (action.type === 'addPost') {
-            this._state.profileData.posts.unshift({
-                id: this._state.profileData.posts.length + 1,
-                message: this._state.profileData.newPostText,
-                likesCount: 0
-            })
-            this.dispatch( {type: 'updateNewPostText', post: ''} )
-        } else if (action.type === 'updateNewPostText') {
-            this._state.profileData.newPostText = action.post
-            this._renderAll()
+        switch (action.type) {
+            case ('ADD-POST'):
+                this._state.profileData.posts.unshift({
+                    id: this._state.profileData.posts.length + 1,
+                    message: this._state.profileData.newPostText,
+                    likesCount: 0
+                })
+                this.dispatch( {type: 'UPDATE-NEW-POST-TEXT', post: ''} )
+                break
+            case ('UPDATE-NEW-POST-TEXT'):
+                this._state.profileData.newPostText = action.post
+                this._renderAll()
+                break
         }
     }
 }

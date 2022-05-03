@@ -10,11 +10,11 @@ export function MyPosts({profileData, dispatch}: ProfilePropsType) {
     let newPostElement = React.createRef<HTMLTextAreaElement>()
     const newPostHandler = () => {
         if (newPostElement.current && newPostElement.current.value.trim()) {
-            dispatch( {type: 'addPost'} )
+            dispatch( {type: 'ADD-POST'} )
         }
     }
     const onChangeNewPostHandler = () => {
-        if (newPostElement.current) dispatch({type: 'updateNewPostText', post: newPostElement.current.value} )
+        if (newPostElement.current) dispatch({type: 'UPDATE-NEW-POST-TEXT', post: newPostElement.current.value} )
     }
 
     return (
