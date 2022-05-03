@@ -20,7 +20,6 @@ type MessagesPropsType = {
 }
 
 export function Messages({messages, newMessageText, dispatch}: MessagesPropsType) {
-    // let newMessageElement = React.createRef<HTMLTextAreaElement>()
     const addMessageHandler = () => {
         if (newMessageText && newMessageText.trim()) {
             dispatch( addMessageActionCreator() )
@@ -35,7 +34,6 @@ export function Messages({messages, newMessageText, dispatch}: MessagesPropsType
 
         <div className={css.new_message}>
             <textarea value={newMessageText}
-                      // ref={newMessageElement}
                       onChange={ (e) => {onChangeMessageHandler(e)} }
                       onKeyDown={ (e) => {if (e.key === 'Enter') addMessageHandler()} }
                       name="new_message"
