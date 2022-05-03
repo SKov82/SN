@@ -4,11 +4,11 @@ import {Header} from './components/Header/Header';
 import {Main} from './components/Main/Main';
 import {Footer} from './components/Footer';
 import {BrowserRouter} from 'react-router-dom';
-import {StateType} from './state';
+import {DispatchActionType, StateType} from './state';
 
 export type AppPropsType ={
     state: StateType
-    dispatch: (action: any) => void
+    dispatch: (action: DispatchActionType) => void
 }
 
 function App({state, dispatch}: AppPropsType) {

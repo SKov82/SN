@@ -1,11 +1,11 @@
 import React from 'react';
 import css from './Profile.module.css';
 import {MyPosts} from './MyPosts/MyPosts';
-import {ProfileDataType} from '../../../state';
+import {DispatchActionType, ProfileDataType} from '../../../state';
 
 export type ProfilePropsType ={
     profileData: ProfileDataType
-    dispatch: (action: any) => void
+    dispatch: (action: DispatchActionType) => void
 }
 
 export function Profile({profileData, dispatch}: ProfilePropsType) {

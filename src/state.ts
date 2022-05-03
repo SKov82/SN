@@ -29,14 +29,17 @@ export type StateType = {
     dialogsData: DialogsDataType
 }
 
+export type DispatchActionType = {
+    type: 'ADD-POST' | 'UPDATE-NEW-POST-TEXT'
+    post?: string
+}
+
 export type StoreType = {
     _state: StateType
     getState: () => StateType
-    // addPost: () => void
-    // updateNewPostText: (post: string) => void
     _renderAll: () => void
     subscribe: ( callback: () => void ) => void
-    dispatch: (action: any) => void
+    dispatch: (action: DispatchActionType) => void
 }
 
 export let store: StoreType = {
@@ -82,7 +85,7 @@ export let store: StoreType = {
                 this.dispatch( {type: 'UPDATE-NEW-POST-TEXT', post: ''} )
                 break
             case ('UPDATE-NEW-POST-TEXT'):
-                this._state.profileData.newPostText = action.post
+                this._state.profileData.newPostText = action.post || ''
                 this._renderAll()
                 break
         }
