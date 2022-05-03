@@ -1,3 +1,5 @@
+const [ADD_POST, UPDATE_NEW_POST_TEXT] = ['ADD-POST', 'UPDATE-NEW-POST-TEXT']
+
 export type PostType = {
     id: number
     message: string
@@ -30,7 +32,7 @@ export type StateType = {
 }
 
 export type DispatchActionType = {
-    type: 'ADD-POST' | 'UPDATE-NEW-POST-TEXT'
+    type: typeof ADD_POST | typeof UPDATE_NEW_POST_TEXT
     post?: string
 }
 
@@ -76,20 +78,28 @@ export let store: StoreType = {
 
     dispatch(action) {
         switch (action.type) {
-            case ('ADD-POST'):
+            case (ADD_POST):
                 this._state.profileData.posts.unshift({
                     id: this._state.profileData.posts.length + 1,
                     message: this._state.profileData.newPostText,
                     likesCount: 0
                 })
-                this.dispatch( {type: 'UPDATE-NEW-POST-TEXT', post: ''} )
+                this.dispatch( {type: UPDATE_NEW_POST_TEXT, post: ''} )
                 break
-            case ('UPDATE-NEW-POST-TEXT'):
+            case (UPDATE_NEW_POST_TEXT):
                 this._state.profileData.newPostText = action.post || ''
                 this._renderAll()
                 break
         }
     }
+}
+
+export const addNewPostActionCreator = (): DispatchActionType => {
+    return {type: ADD_POST}
+}
+
+export const updateNewPostActionCreator = (post: string): DispatchActionType => {
+    return {type: UPDATE_NEW_POST_TEXT, post: post}
 }
 
 // @ts-ignore

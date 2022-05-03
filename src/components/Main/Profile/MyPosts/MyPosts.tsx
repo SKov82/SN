@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './MyPosts.module.css';
 import {Post} from './Post/Post';
-import {PostType} from '../../../../state';
+import {addNewPostActionCreator, PostType, updateNewPostActionCreator} from '../../../../state';
 import {ProfilePropsType} from '../Profile';
 
 export function MyPosts({profileData, dispatch}: ProfilePropsType) {
@@ -10,11 +10,11 @@ export function MyPosts({profileData, dispatch}: ProfilePropsType) {
     let newPostElement = React.createRef<HTMLTextAreaElement>()
     const newPostHandler = () => {
         if (newPostElement.current && newPostElement.current.value.trim()) {
-            dispatch( {type: 'ADD-POST'} )
+            dispatch( addNewPostActionCreator() )
         }
     }
     const onChangeNewPostHandler = () => {
-        if (newPostElement.current) dispatch({type: 'UPDATE-NEW-POST-TEXT', post: newPostElement.current.value} )
+        if (newPostElement.current) dispatch( updateNewPostActionCreator(newPostElement.current.value) )
     }
 
     return (
