@@ -24,8 +24,8 @@ export function Main({state, dispatch}: AppPropsType) {
                                                              dispatch={dispatch}
                                                     /> }
             />
-            <Route path={'/dialogs'} render={ () => <Dialogs dialogs={state.dialogsData.dialogs}
-                                                             messages={state.dialogsData.messages}
+            <Route path={'/dialogs'} render={ () => <Dialogs dialogsData={state.dialogsData}
+                                                             dispatch={dispatch}
                                                     /> }
             />
             <Route path={'/friends'} />

@@ -1,6 +1,6 @@
 import css from './Messages.module.css';
 import React from 'react';
-import {MessageType} from '../../../state';
+import {DispatchActionType, MessageType} from '../../../state';
 
 function Message({text}: MessageType) {
     return (
@@ -12,14 +12,20 @@ function Message({text}: MessageType) {
 
 type MessagesPropsType = {
     messages: Array<MessageType>
+    newMessageText: string
+    dispatch: (action: DispatchActionType) => void
 }
 
-export function Messages({messages}: MessagesPropsType) {
+export function Messages({messages, newMessageText, dispatch}: MessagesPropsType) {
     return <>
         {messages.map((el: MessageType) => <Message key={el.id} id={el.id} text={el.text}/>)}
 
         <div className={css.new_message}>
-            <textarea name="new_message" id="new_message" rows={3} />
+            <textarea value={newMessageText}
+                      name="new_message"
+                      id="new_message"
+                      rows={3}
+            />
 
             <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
                     onClick={ () => {} }

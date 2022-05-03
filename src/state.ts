@@ -1,4 +1,14 @@
-const [ADD_POST, UPDATE_NEW_POST_TEXT] = ['ADD-POST', 'UPDATE-NEW-POST-TEXT']
+const [
+    ADD_POST,
+    UPDATE_NEW_POST_TEXT,
+    UPDATE_NEW_MESSAGE,
+    ADD_MESSAGE,
+] = [
+    'ADD-POST',
+    'UPDATE-NEW-POST-TEXT',
+    'UPDATE-NEW-MESSAGE',
+    'ADD-MESSAGE',
+]
 
 export type PostType = {
     id: number
@@ -24,6 +34,7 @@ export type MessageType = {
 export type DialogsDataType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
+    newMessageText: string
 }
 
 export type StateType = {
@@ -32,8 +43,11 @@ export type StateType = {
 }
 
 export type DispatchActionType = {
-    type: typeof ADD_POST | typeof UPDATE_NEW_POST_TEXT
-    post?: string
+    type: typeof ADD_POST
+        | typeof UPDATE_NEW_POST_TEXT
+        | typeof UPDATE_NEW_MESSAGE
+        | typeof ADD_MESSAGE
+    text?: string
 }
 
 export type StoreType = {
@@ -64,7 +78,8 @@ export let store: StoreType = {
                 {id: 1, text: 'Привет'},
                 {id: 2, text: 'Ты дома?'},
                 {id: 3, text: 'Привет. Да, только пришел'},
-            ]
+            ],
+            newMessageText: '',
         },
     },
     getState() {
@@ -84,23 +99,38 @@ export let store: StoreType = {
                     message: this._state.profileData.newPostText,
                     likesCount: 0
                 })
-                this.dispatch( {type: UPDATE_NEW_POST_TEXT, post: ''} )
+                this.dispatch( {type: UPDATE_NEW_POST_TEXT, text: ''} )
                 break
             case (UPDATE_NEW_POST_TEXT):
-                this._state.profileData.newPostText = action.post || ''
+                this._state.profileData.newPostText = action.text || ''
                 this._renderAll()
+                break
+            case (UPDATE_NEW_MESSAGE):
+                this._state.dialogsData.newMessageText = action.text || ''
+                this._renderAll()
+                break
+            case (ADD_MESSAGE):
+                this._state.dialogsData.messages.push({
+                    id: this._state.dialogsData.messages.length + 1,
+                    text: this._state.dialogsData.newMessageText
+                })
+                this.dispatch( {type: UPDATE_NEW_MESSAGE, text: ''} )
                 break
         }
     }
 }
 
-export const addNewPostActionCreator = (): DispatchActionType => {
-    return {type: ADD_POST}
-}
+export const addNewPostActionCreator = (): DispatchActionType => ( {type: ADD_POST} )
 
 export const updateNewPostActionCreator = (post: string): DispatchActionType => {
-    return {type: UPDATE_NEW_POST_TEXT, post: post}
+    return {type: UPDATE_NEW_POST_TEXT, text: post}
 }
+
+export const updateNewMessageActionCreator = (message: string): DispatchActionType => {
+    return {type: UPDATE_NEW_MESSAGE, text: message}
+}
+
+export const addMessageActionCreator = (): DispatchActionType => ( {type: ADD_MESSAGE} )
 
 // @ts-ignore
 window.store = store
