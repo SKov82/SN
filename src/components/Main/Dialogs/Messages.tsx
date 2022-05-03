@@ -1,5 +1,5 @@
 import css from './Messages.module.css';
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import {
     addMessageActionCreator, DispatchActionType,
     MessageType, updateNewMessageActionCreator,
@@ -20,14 +20,14 @@ type MessagesPropsType = {
 }
 
 export function Messages({messages, newMessageText, dispatch}: MessagesPropsType) {
-    let newMessageElement = React.createRef<HTMLTextAreaElement>()
+    // let newMessageElement = React.createRef<HTMLTextAreaElement>()
     const addMessageHandler = () => {
-        if (newMessageElement.current && newMessageElement.current.value.trim()) {
+        if (newMessageText && newMessageText.trim()) {
             dispatch( addMessageActionCreator() )
         }
     }
-    const onChangeMessageHandler = () => {
-        if (newMessageElement.current) dispatch( updateNewMessageActionCreator(newMessageElement.current.value) )
+    const onChangeMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        if (e.target) dispatch( updateNewMessageActionCreator(e.target.value) )
     }
 
     return <>
@@ -35,8 +35,8 @@ export function Messages({messages, newMessageText, dispatch}: MessagesPropsType
 
         <div className={css.new_message}>
             <textarea value={newMessageText}
-                      ref={newMessageElement}
-                      onChange={onChangeMessageHandler}
+                      // ref={newMessageElement}
+                      onChange={ (e) => {onChangeMessageHandler(e)} }
                       onKeyDown={ (e) => {if (e.key === 'Enter') addMessageHandler()} }
                       name="new_message"
                       id="new_message"
