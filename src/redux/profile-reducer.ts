@@ -1,6 +1,6 @@
 import {DispatchActionType, ProfileDataType} from './state';
 
-const [
+export const [
     ADD_POST,
     UPDATE_NEW_POST_TEXT,
 ] = [
@@ -25,4 +25,9 @@ export const profileReducer = (state: ProfileDataType, action: DispatchActionTyp
     }
 
     return state
+}
+
+export const addNewPostActionCreator = (): DispatchActionType => ({type: ADD_POST})
+export const updateNewPostActionCreator = (post: string): DispatchActionType => {
+    return {type: UPDATE_NEW_POST_TEXT, text: post}
 }

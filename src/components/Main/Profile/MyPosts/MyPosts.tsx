@@ -1,8 +1,9 @@
 import React from 'react';
 import css from './MyPosts.module.css';
 import {Post} from './Post/Post';
-import {addNewPostActionCreator, PostType, updateNewPostActionCreator} from '../../../../redux/state';
+import {PostType} from '../../../../redux/state';
 import {ProfilePropsType} from '../Profile';
+import {addNewPostActionCreator, updateNewPostActionCreator} from '../../../../redux/profile-reducer';
 
 export function MyPosts({profileData, dispatch}: ProfilePropsType) {
     let postsElements = profileData.posts.map((el: PostType) => <Post key={el.id} id={el.id} message={el.message} likesCount={el.likesCount}/>)

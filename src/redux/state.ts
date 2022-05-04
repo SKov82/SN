@@ -1,17 +1,5 @@
-import {profileReducer} from './profile-reducer';
-import {dialogsReducer} from './dialogs-reducer';
-
-const [
-    ADD_POST,
-    UPDATE_NEW_POST_TEXT,
-    UPDATE_NEW_MESSAGE,
-    ADD_MESSAGE,
-] = [
-    'ADD-POST',
-    'UPDATE-NEW-POST-TEXT',
-    'UPDATE-NEW-MESSAGE',
-    'ADD-MESSAGE',
-]
+import {ADD_POST, profileReducer, UPDATE_NEW_POST_TEXT} from './profile-reducer';
+import {ADD_MESSAGE, dialogsReducer, UPDATE_NEW_MESSAGE} from './dialogs-reducer';
 
 export type PostType = {
     id: number
@@ -100,18 +88,6 @@ export let store: StoreType = {
         this._renderAll()
     }
 }
-
-export const addNewPostActionCreator = (): DispatchActionType => ( {type: ADD_POST} )
-
-export const updateNewPostActionCreator = (post: string): DispatchActionType => {
-    return {type: UPDATE_NEW_POST_TEXT, text: post}
-}
-
-export const updateNewMessageActionCreator = (message: string): DispatchActionType => {
-    return {type: UPDATE_NEW_MESSAGE, text: message}
-}
-
-export const addMessageActionCreator = (): DispatchActionType => ( {type: ADD_MESSAGE} )
 
 // @ts-ignore
 window.store = store

@@ -1,6 +1,6 @@
 import {DialogsDataType, DispatchActionType} from './state';
 
-const [
+export const [
     UPDATE_NEW_MESSAGE,
     ADD_MESSAGE,
 ] = [
@@ -25,3 +25,8 @@ export const dialogsReducer = (state: DialogsDataType, action: DispatchActionTyp
 
     return state
 }
+
+export const updateNewMessageActionCreator = (message: string): DispatchActionType => {
+    return {type: UPDATE_NEW_MESSAGE, text: message}
+}
+export const addMessageActionCreator = (): DispatchActionType => ({type: ADD_MESSAGE})
