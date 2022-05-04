@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './MyPosts.module.css';
 import {Post} from './Post/Post';
-import {addNewPostActionCreator, PostType, updateNewPostActionCreator} from '../../../../state';
+import {addNewPostActionCreator, PostType, updateNewPostActionCreator} from '../../../../redux/state';
 import {ProfilePropsType} from '../Profile';
 
 export function MyPosts({profileData, dispatch}: ProfilePropsType) {

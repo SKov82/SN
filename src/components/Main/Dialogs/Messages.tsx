@@ -3,7 +3,7 @@ import React, {ChangeEvent} from 'react';
 import {
     addMessageActionCreator, DispatchActionType,
     MessageType, updateNewMessageActionCreator,
-} from '../../../state';
+} from '../../../redux/state';
 
 function Message({text}: MessageType) {
     return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import css from './Post.module.css';
-import {PostType} from '../../../../../state';
+import {PostType} from '../../../../../redux/state';
 
 export function Post({message, likesCount}: PostType) {
     return (
