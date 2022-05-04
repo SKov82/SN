@@ -1,3 +1,6 @@
+import {profileReducer} from './profile-reducer';
+import {dialogsReducer} from './dialogs-reducer';
+
 const [
     ADD_POST,
     UPDATE_NEW_POST_TEXT,
@@ -92,31 +95,9 @@ export let store: StoreType = {
     },
 
     dispatch(action) {
-        switch (action.type) {
-            case (ADD_POST):
-                this._state.profileData.posts.unshift({
-                    id: this._state.profileData.posts.length + 1,
-                    message: this._state.profileData.newPostText,
-                    likesCount: 0
-                })
-                this.dispatch( {type: UPDATE_NEW_POST_TEXT, text: ''} )
-                break
-            case (UPDATE_NEW_POST_TEXT):
-                this._state.profileData.newPostText = action.text || ''
-                this._renderAll()
-                break
-            case (UPDATE_NEW_MESSAGE):
-                this._state.dialogsData.newMessageText = action.text || ''
-                this._renderAll()
-                break
-            case (ADD_MESSAGE):
-                this._state.dialogsData.messages.push({
-                    id: this._state.dialogsData.messages.length + 1,
-                    text: this._state.dialogsData.newMessageText
-                })
-                this.dispatch( {type: UPDATE_NEW_MESSAGE, text: ''} )
-                break
-        }
+        this._state.profileData = profileReducer(this._state.profileData, action)
+        this._state.dialogsData = dialogsReducer(this._state.dialogsData, action)
+        this._renderAll()
     }
 }
 
