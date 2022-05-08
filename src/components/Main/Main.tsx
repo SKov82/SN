@@ -2,11 +2,10 @@ import React from 'react';
 import css from './Main.module.css';
 import {Navbar} from './Navbar';
 import {Profile} from './Profile/Profile';
-import {Dialogs} from './Dialogs/Dialogs';
+import {DialogsContainer} from './Dialogs/DialogsContainer';
 import {Route} from 'react-router-dom';
-import {AppPropsType} from '../../App';
 
-export function Main({state, dispatch}: AppPropsType) {
+export function Main() {
     return (
         <div className={css.container}>
             <Navbar/>
@@ -20,14 +19,8 @@ export function Main({state, dispatch}: AppPropsType) {
             <Route path={'/main'} />
             <Route path={'/news'} />
             <Route path={'/about'} />
-            <Route path={'/profile'} render={ () => <Profile profileData={state.profileData}
-                                                             dispatch={dispatch}
-                                                    /> }
-            />
-            <Route path={'/dialogs'} render={ () => <Dialogs dialogsData={state.dialogsData}
-                                                             dispatch={dispatch}
-                                                    /> }
-            />
+            <Route path={'/profile'} render={ () => <Profile /> } />
+            <Route path={'/dialogs'} render={ () => <DialogsContainer /> } />
             <Route path={'/friends'} />
             <Route path={'/groups'} />
             <Route path={'/settings'} />

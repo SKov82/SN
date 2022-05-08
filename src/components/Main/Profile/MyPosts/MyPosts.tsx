@@ -1,21 +1,34 @@
 import React from 'react';
 import css from './MyPosts.module.css';
 import {Post} from './Post/Post';
-import {PostType} from '../../../../redux/store';
-import {ProfilePropsType} from '../Profile';
-import {addNewPostActionCreator, updateNewPostActionCreator} from '../../../../redux/profile-reducer';
+import {PostType, ProfileDataType} from '../../../../redux/store';
 
-export function MyPosts({profileData, dispatch}: ProfilePropsType) {
-    let postsElements = profileData.posts.map((el: PostType) => <Post key={el.id} id={el.id} message={el.message} likesCount={el.likesCount}/>)
+type MyPostsType = {
+    profileData: ProfileDataType
+    updatePost: (text: string) => void
+    addPost: () => void
+}
+
+export function MyPosts({profileData, updatePost, addPost}: MyPostsType) {
+    let postsElements = profileData.posts.map((el: PostType) => {
+        return <Post key={el.id}
+                     id={el.id}
+                     message={el.message}
+                     likesCount={el.likesCount}
+        />
+    })
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
+
     const newPostHandler = () => {
         if (newPostElement.current && newPostElement.current.value.trim()) {
-            dispatch( addNewPostActionCreator() )
+            addPost()
         }
     }
     const onChangeNewPostHandler = () => {
-        if (newPostElement.current) dispatch( updateNewPostActionCreator(newPostElement.current.value) )
+        if (newPostElement.current && newPostElement.current.value !== '\n') {
+            updatePost(newPostElement.current.value)
+        }
     }
 
     return (

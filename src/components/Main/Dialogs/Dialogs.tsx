@@ -2,25 +2,32 @@ import React from 'react';
 import css from './Dialogs.module.css';
 import {NavLink} from 'react-router-dom';
 import {Messages} from './Messages';
-import {DialogsDataType, DialogType, DispatchActionType} from '../../../redux/store';
+import {DialogsDataType, DialogType} from '../../../redux/store';
 
 function Dialog({id, name}: DialogType) {
     return (
         <NavLink to={`/dialogs/${id}`}
                  className="font-semibold hover:scale-105 hover:skew-y-2"
-                 activeClassName={css.active}>
+                 activeClassName={css.active}
+        >
             {name}
         </NavLink>
     )
 }
 
-type DialogsPropsType = {
+type DialogsType = {
     dialogsData: DialogsDataType
-    dispatch: (action: DispatchActionType) => void
+    updateMessage: (text: string) => void
+    addMessage: () => void
 }
 
-export function Dialogs({dialogsData, dispatch}: DialogsPropsType) {
-    let dialogsElements = dialogsData.dialogs.map((el: DialogType) => <Dialog key={el.id} id={el.id} name={el.name}/>)
+export function Dialogs({dialogsData, updateMessage, addMessage}: DialogsType) {
+    let dialogsElements = dialogsData.dialogs.map((el: DialogType) => {
+        return <Dialog key={el.id}
+                       id={el.id}
+                       name={el.name}
+        />
+    })
 
     return (
         <div className={css.content}>
@@ -37,7 +44,8 @@ export function Dialogs({dialogsData, dispatch}: DialogsPropsType) {
             <div className={css.messages}>
                 <Messages messages={dialogsData.messages}
                           newMessageText={dialogsData.newMessageText}
-                          dispatch={dispatch}
+                          updateMessage={updateMessage}
+                          addMessage={addMessage}
                 />
             </div>
         </div>

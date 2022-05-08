@@ -1,7 +1,6 @@
 import css from './Messages.module.css';
 import React, {ChangeEvent} from 'react';
-import {DispatchActionType, MessageType} from '../../../redux/store';
-import {addMessageActionCreator, updateNewMessageActionCreator} from '../../../redux/dialogs-reducer';
+import {MessageType} from '../../../redux/store';
 
 function Message({text}: MessageType) {
     return (
@@ -11,24 +10,28 @@ function Message({text}: MessageType) {
     )
 }
 
-type MessagesPropsType = {
+type MessagesType = {
     messages: Array<MessageType>
     newMessageText: string
-    dispatch: (action: DispatchActionType) => void
+    updateMessage: (text: string) => void
+    addMessage: () => void
 }
 
-export function Messages({messages, newMessageText, dispatch}: MessagesPropsType) {
+export function Messages({messages, newMessageText, updateMessage, addMessage}: MessagesType) {
     const addMessageHandler = () => {
-        if (newMessageText && newMessageText.trim()) {
-            dispatch( addMessageActionCreator() )
-        }
+        if (newMessageText && newMessageText.trim()) addMessage()
     }
     const onChangeMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        if (e.target) dispatch( updateNewMessageActionCreator(e.target.value) )
+        if (e.target && e.target.value !== '\n') updateMessage(e.target.value)
     }
 
     return <>
-        {messages.map((el: MessageType) => <Message key={el.id} id={el.id} text={el.text}/>)}
+        {messages.map((el: MessageType) => {
+            return <Message key={el.id}
+                     id={el.id}
+                     text={el.text}
+            />
+        })}
 
         <div className={css.new_message}>
             <textarea value={newMessageText}

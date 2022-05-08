@@ -3,26 +3,14 @@ import './App.css';
 import {Header} from './components/Header/Header';
 import {Main} from './components/Main/Main';
 import {Footer} from './components/Footer';
-import {BrowserRouter} from 'react-router-dom';
-import {DispatchActionType, StateType} from './redux/store';
 
-export type AppPropsType ={
-    state: StateType
-    dispatch: (action: DispatchActionType) => void
-}
-
-function App({state, dispatch}: AppPropsType) {
+function App() {
     return (
-        <BrowserRouter>
-            <div className="App">
-                <Header/>
-                <Main
-                    state={state}
-                    dispatch={dispatch}
-                />
-                <Footer/>
-            </div>
-        </BrowserRouter>
+        <div className="App">
+            <Header />
+            <Main />
+            <Footer />
+        </div>
     );
 }
 
