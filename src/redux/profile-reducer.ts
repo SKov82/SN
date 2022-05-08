@@ -8,7 +8,15 @@ export const [
     'UPDATE-NEW-POST-TEXT',
 ]
 
-export const profileReducer = (state: ProfileDataType, action: DispatchActionType) => {
+let initialState = {
+    posts: [
+        {id: 2, message: "Всем привет! Начал изучать React. А что учите вы?", likesCount: 12},
+        {id: 1, message: "Привет. Это мой первый пост.", likesCount: 9199},
+    ],
+    newPostText: '',
+}
+
+export const profileReducer = (state: ProfileDataType = initialState, action: DispatchActionType) => {
 
     switch (action.type) {
         case (ADD_POST):

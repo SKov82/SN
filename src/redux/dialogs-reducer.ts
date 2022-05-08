@@ -8,7 +8,22 @@ export const [
     'ADD-MESSAGE',
 ]
 
-export const dialogsReducer = (state: DialogsDataType, action: DispatchActionType) => {
+let initialState = {
+    dialogs: [
+        {id: 1, name: 'Ирина'},
+        {id: 2, name: 'Юля'},
+        {id: 3, name: 'Вова'},
+        {id: 4, name: 'Миша'},
+    ],
+    messages: [
+        {id: 1, text: 'Привет'},
+        {id: 2, text: 'Ты дома?'},
+        {id: 3, text: 'Привет. Да, только пришел'},
+    ],
+    newMessageText: '',
+}
+
+export const dialogsReducer = (state: DialogsDataType = initialState, action: DispatchActionType) => {
 
     switch (action.type) {
         case (UPDATE_NEW_MESSAGE):
