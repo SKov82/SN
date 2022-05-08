@@ -2,7 +2,7 @@ import React from 'react';
 import css from './Dialogs.module.css';
 import {NavLink} from 'react-router-dom';
 import {Messages} from './Messages';
-import {DialogsDataType, DialogType, DispatchActionType} from '../../../redux/state';
+import {DialogsDataType, DialogType, DispatchActionType} from '../../../redux/store';
 
 function Dialog({id, name}: DialogType) {
     return (

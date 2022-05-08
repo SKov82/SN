@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './Profile.module.css';
 import {MyPosts} from './MyPosts/MyPosts';
-import {DispatchActionType, ProfileDataType} from '../../../redux/state';
+import {DispatchActionType, ProfileDataType} from '../../../redux/store';
 
 export type ProfilePropsType ={
     profileData: ProfileDataType

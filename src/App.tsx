@@ -4,7 +4,7 @@ import {Header} from './components/Header/Header';
 import {Main} from './components/Main/Main';
 import {Footer} from './components/Footer';
 import {BrowserRouter} from 'react-router-dom';
-import {DispatchActionType, StateType} from './redux/state';
+import {DispatchActionType, StateType} from './redux/store';
 
 export type AppPropsType ={
     state: StateType

@@ -1,6 +1,6 @@
 import css from './Messages.module.css';
 import React, {ChangeEvent} from 'react';
-import {DispatchActionType, MessageType} from '../../../redux/state';
+import {DispatchActionType, MessageType} from '../../../redux/store';
 import {addMessageActionCreator, updateNewMessageActionCreator} from '../../../redux/dialogs-reducer';
 
 function Message({text}: MessageType) {

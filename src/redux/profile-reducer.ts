@@ -1,4 +1,4 @@
-import {DispatchActionType, ProfileDataType} from './state';
+import {DispatchActionType, ProfileDataType} from './store';
 
 export const [
     ADD_POST,

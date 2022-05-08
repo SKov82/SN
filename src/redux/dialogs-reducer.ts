@@ -1,4 +1,4 @@
-import {DialogsDataType, DispatchActionType} from './state';
+import {DialogsDataType, DispatchActionType} from './store';
 
 export const [
     UPDATE_NEW_MESSAGE,
