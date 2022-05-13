@@ -1,7 +1,7 @@
 import React from 'react';
 import css from './MyPosts.module.css';
 import {Post} from './Post/Post';
-import {PostType, ProfileDataType} from '../../../../redux/store';
+import {PostType, ProfileDataType} from '../../../../redux/profile-reducer';
 
 type MyPostsType = {
     profileData: ProfileDataType

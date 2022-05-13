@@ -1,28 +1,28 @@
 import {ADD_POST, profileReducer, UPDATE_NEW_POST_TEXT} from './profile-reducer';
 import {ADD_MESSAGE, dialogsReducer, UPDATE_NEW_MESSAGE} from './dialogs-reducer';
 
-export type PostType = {
+type PostType = {
     id: number
     message: string
     likesCount: number
 }
 
-export type ProfileDataType = {
+type ProfileDataType = {
     posts: Array<PostType>
     newPostText: string
 }
 
-export type DialogType = {
+type DialogType = {
     id: number
     name: string
 }
 
-export type MessageType = {
+type MessageType = {
     id: number
     text: string
 }
 
-export type DialogsDataType = {
+type DialogsDataType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
     newMessageText: string

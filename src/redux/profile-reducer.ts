@@ -13,7 +13,6 @@ export type PostType = {
     message: string
     likesCount: number
 }
-
 export type ProfileDataType = {
     posts: Array<PostType>
     newPostText: string
@@ -29,22 +28,21 @@ let initialState: ProfileDataType = {
 
 export const profileReducer = (state: ProfileDataType = initialState, action: DispatchActionType): ProfileDataType => {
     switch (action.type) {
-        case (ADD_POST):
-            state.posts.unshift({
-                id: state.posts.length + 1,
-                message: state.newPostText,
-                likesCount: 0
-            })
-            state.newPostText = ''
-            break
-        case (UPDATE_NEW_POST_TEXT):
-            state.newPostText = action.text || ''
-            break
+        case ('ADD-POST'):
+            return {...state,
+                posts: [
+                    { id: state.posts.length + 1, message: state.newPostText, likesCount: 0 }, ...state.posts
+                ],
+                newPostText: ''
+            }
+        case ('UPDATE-NEW-POST-TEXT'):
+            return {...state, newPostText: action.text || ''}
+        default:
+            return state
     }
-    return state
 }
 
-export const addNewPostActionCreator = (): DispatchActionType => ({type: ADD_POST})
-export const updateNewPostActionCreator = (post: string): DispatchActionType => {
-    return {type: UPDATE_NEW_POST_TEXT, text: post}
+export const addNewPostAC = (): DispatchActionType => ( { type: 'ADD-POST' } as const )
+export const updateNewPostAC = (post: string): DispatchActionType => {
+    return { type: UPDATE_NEW_POST_TEXT, text: post } as const
 }

@@ -1,6 +1,6 @@
 import css from './Messages.module.css';
 import React, {ChangeEvent} from 'react';
-import {MessageType} from '../../../redux/store';
+import {MessageType} from '../../../redux/dialogs-reducer';
 
 function Message({text}: MessageType) {
     return (
