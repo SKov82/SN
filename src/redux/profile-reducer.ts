@@ -1,4 +1,4 @@
-import {DispatchActionType, ProfileDataType} from './store';
+import {DispatchActionType} from './store';
 
 export const [
     ADD_POST,
@@ -8,7 +8,18 @@ export const [
     'UPDATE-NEW-POST-TEXT',
 ]
 
-let initialState = {
+export type PostType = {
+    id: number
+    message: string
+    likesCount: number
+}
+
+export type ProfileDataType = {
+    posts: Array<PostType>
+    newPostText: string
+}
+
+let initialState: ProfileDataType = {
     posts: [
         {id: 2, message: "Всем привет! Начал изучать React. А что учите вы?", likesCount: 12},
         {id: 1, message: "Привет. Это мой первый пост.", likesCount: 9199},
@@ -16,8 +27,7 @@ let initialState = {
     newPostText: '',
 }
 
-export const profileReducer = (state: ProfileDataType = initialState, action: DispatchActionType) => {
-
+export const profileReducer = (state: ProfileDataType = initialState, action: DispatchActionType): ProfileDataType => {
     switch (action.type) {
         case (ADD_POST):
             state.posts.unshift({
@@ -31,7 +41,6 @@ export const profileReducer = (state: ProfileDataType = initialState, action: Di
             state.newPostText = action.text || ''
             break
     }
-
     return state
 }
 
