@@ -1,7 +1,7 @@
 const [
-    FOLLOW,
+    CHANGE_FOLLOW,
 ] = [
-    'FOLLOW',
+    'CHANGE-FOLLOW',
 ]
 
 export type UserType = {
@@ -28,7 +28,7 @@ let initialState: UsersDataType = {
 
 export const usersReducer = (state: UsersDataType = initialState, action: ActionType): UsersDataType => {
     switch (action.type) {
-        case FOLLOW:
+        case CHANGE_FOLLOW:
             return {...state, users: state.users.map(
                 user => user.id === action.payload.userID ? {...user, follow: !user.follow} : user
             )}
@@ -37,7 +37,7 @@ export const usersReducer = (state: UsersDataType = initialState, action: Action
     }
 }
 
-type ActionType = followACType
+type ActionType = changeFollowACType
 
-type followACType = ReturnType<typeof followAC>
-export const followAC = (userID: number) => ( { type: FOLLOW, payload: {userID} } as const )
+type changeFollowACType = ReturnType<typeof changeFollowAC>
+export const changeFollowAC = (userID: number) => ( { type: CHANGE_FOLLOW, payload: {userID} } as const )
