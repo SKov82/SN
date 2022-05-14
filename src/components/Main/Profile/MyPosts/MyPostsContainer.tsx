@@ -7,7 +7,6 @@ import {Dispatch} from 'redux';
 type MapStateToPropsType = {
     profileData: ProfileDataType
 }
-
 type MapDispatchToPropsType = {
     updatePost: (text: string) => void
     addPost: () => void

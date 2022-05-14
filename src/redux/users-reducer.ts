@@ -1,8 +1,4 @@
-const [
-    CHANGE_FOLLOW,
-] = [
-    'CHANGE-FOLLOW',
-]
+const CHANGE_FOLLOW = 'CHANGE-FOLLOW'
 
 export type UserType = {
     id: number
@@ -15,6 +11,7 @@ export type UserType = {
 export type UsersDataType = {
     users: Array<UserType>
 }
+type ActionType = changeFollowACType
 
 let initialState: UsersDataType = {
     users: [
@@ -37,7 +34,5 @@ export const usersReducer = (state: UsersDataType = initialState, action: Action
     }
 }
 
-type ActionType = changeFollowACType
-
 type changeFollowACType = ReturnType<typeof changeFollowAC>
-export const changeFollowAC = (userID: number) => ( { type: CHANGE_FOLLOW, payload: {userID} } as const )
+export const changeFollowAC = (userID: number) => ({ type: CHANGE_FOLLOW, payload: {userID} }) as const

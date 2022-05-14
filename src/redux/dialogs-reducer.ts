@@ -39,9 +39,9 @@ let initialState = {
 
 export const dialogsReducer = (state: DialogsDataType = initialState, action: DispatchActionType): DialogsDataType => {
     switch (action.type) {
-        case ('UPDATE-NEW-MESSAGE'):
+        case UPDATE_NEW_MESSAGE:
             return {...state, newMessageText: action.text || ''}
-        case ('ADD-MESSAGE'):
+        case ADD_MESSAGE:
             return {...state,
                 messages: [
                     ...state.messages, { id: state.messages.length + 1, text: state.newMessageText }
@@ -54,6 +54,6 @@ export const dialogsReducer = (state: DialogsDataType = initialState, action: Di
 }
 
 export const updateNewMessageAC = (message: string): DispatchActionType => {
-    return {type: UPDATE_NEW_MESSAGE, text: message}
+    return { type: UPDATE_NEW_MESSAGE, text: message } as const
 }
-export const addMessageAC = (): DispatchActionType => ({type: ADD_MESSAGE})
+export const addMessageAC = (): DispatchActionType => ({ type: ADD_MESSAGE }) as const
