@@ -7,7 +7,6 @@ import {Dispatch} from 'redux';
 type MapStateToPropsType = {
     dialogsData: DialogsDataType
 }
-
 type MapDispatchToPropsType = {
     updateMessage: (text: string) => void
     addMessage: () => void

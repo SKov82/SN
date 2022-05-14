@@ -15,8 +15,8 @@ export function Navbar() {
                 <NavLink to={'/friends'} className="font-semibold hover:scale-110 hover:skew-y-3">
                     Друзья
                 </NavLink>
-                <NavLink to={'/groups'} className="font-semibold hover:scale-110 hover:skew-y-3">
-                    Группы
+                <NavLink to={'/users'} className="font-semibold hover:scale-110 hover:skew-y-3">
+                    Пользователи
                 </NavLink>
                 <NavLink to={'/settings'} className="font-semibold pt-7 hover:scale-110 hover:skew-y-3">
                     Настройки

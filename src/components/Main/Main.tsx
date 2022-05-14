@@ -4,6 +4,7 @@ import {Navbar} from './Navbar';
 import {Profile} from './Profile/Profile';
 import {DialogsContainer} from './Dialogs/DialogsContainer';
 import {Route} from 'react-router-dom';
+import {UsersContainer} from './Users/UsersContainer';
 
 export function Main() {
     return (
@@ -16,14 +17,14 @@ export function Main() {
                 </h1>
             </div>
 
-            <Route path={'/main'} />
-            <Route path={'/news'} />
-            <Route path={'/about'} />
-            <Route path={'/profile'} render={ () => <Profile /> } />
-            <Route path={'/dialogs'} render={ () => <DialogsContainer /> } />
-            <Route path={'/friends'} />
-            <Route path={'/groups'} />
-            <Route path={'/settings'} />
+            <Route path={'/main'}/>
+            <Route path={'/news'}/>
+            <Route path={'/about'}/>
+            <Route path={'/profile'} render={() => <Profile/>}/>
+            <Route path={'/dialogs'} render={() => <DialogsContainer/>}/>
+            <Route path={'/friends'}/>
+            <Route path={'/users'} render={() => <UsersContainer/>}/>
+            <Route path={'/settings'}/>
         </div>
     );
 }
