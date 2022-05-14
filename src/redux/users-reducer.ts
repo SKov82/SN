@@ -27,14 +27,12 @@ export const usersReducer = (state: UsersDataType = initialState, action: Action
                 user => user.id === action.payload.userID ? {...user, follow: !user.follow} : user
             )}
         case 'SHOW-MORE-USERS':
-            let newState = {...state, users: [
-                    ...state.users,
-                    {id: 5, firstName: 'Стас', lastName: 'Грицко', follow: true, city: 'Луцк', country: 'Украина'},
-                    {id: 6, firstName: 'Олег', lastName: 'Бреус', follow: true, city: 'Минск', country: 'Беларусь'},
-                    {id: 7, firstName: 'Жан', lastName: 'Вальжан', follow: false, city: 'Париж', country: 'Франция'},
-                ]}
-            console.log(newState)
-            return newState
+            return {...state, users: [
+                ...state.users,
+                {id: 5, firstName: 'Стас', lastName: 'Грицко', follow: true, city: 'Луцк', country: 'Украина'},
+                {id: 6, firstName: 'Олег', lastName: 'Бреус', follow: true, city: 'Минск', country: 'Беларусь'},
+                {id: 7, firstName: 'Жан', lastName: 'Вальжан', follow: false, city: 'Париж', country: 'Франция'},
+            ]}
         default:
             return state
     }

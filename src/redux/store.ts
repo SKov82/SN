@@ -32,7 +32,7 @@ type DialogsDataType = {
 export type StateType = {
     profileData: ProfileDataType
     dialogsData: DialogsDataType
-    usersData: UsersDataType
+    // usersData: UsersDataType
 }
 
 export type DispatchActionType = {
@@ -40,7 +40,7 @@ export type DispatchActionType = {
         | typeof UPDATE_NEW_POST_TEXT
         | typeof UPDATE_NEW_MESSAGE
         | typeof ADD_MESSAGE
-        | any
+        // | any
     text?: string
 }
 
@@ -75,14 +75,14 @@ export let store: StoreType = {
             ],
             newMessageText: '',
         },
-        usersData: {
-            users: [
-                {id: 1, firstName: 'John', lastName: 'Doe', follow: false, city: 'New York', country: 'USA'},
-                {id: 2, firstName: 'Jane', lastName: 'Doe', follow: true, city: 'London', country: 'UK'},
-                {id: 3, firstName: 'Иван', lastName: 'Иванов', follow: true, city: 'Москва', country: 'Россия'},
-                {id: 4, firstName: 'Ольга', lastName: 'Петрова', follow: false, city: 'Казань', country: 'Россия'},
-            ],
-        },
+        // usersData: {
+        //     users: [
+        //         {id: 1, firstName: 'John', lastName: 'Doe', follow: false, city: 'New York', country: 'USA'},
+        //         {id: 2, firstName: 'Jane', lastName: 'Doe', follow: true, city: 'London', country: 'UK'},
+        //         {id: 3, firstName: 'Иван', lastName: 'Иванов', follow: true, city: 'Москва', country: 'Россия'},
+        //         {id: 4, firstName: 'Ольга', lastName: 'Петрова', follow: false, city: 'Казань', country: 'Россия'},
+        //     ],
+        // },
     },
     getState() {
         return this._state
@@ -96,7 +96,7 @@ export let store: StoreType = {
     dispatch(action) {
         this._state.profileData = profileReducer(this._state.profileData, action)
         this._state.dialogsData = dialogsReducer(this._state.dialogsData, action)
-        this._state.usersData = usersReducer(this._state.usersData, action)
+        // this._state.usersData = usersReducer(this._state.usersData, action)
         this._renderAll()
     }
 }
