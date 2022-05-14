@@ -1,11 +1,9 @@
 import {DispatchActionType} from './store';
 
 export const [
-    ADD_POST,
-    UPDATE_NEW_POST_TEXT,
+    ADD_POST, UPDATE_NEW_POST_TEXT,
 ] = [
-    'ADD-POST',
-    'UPDATE-NEW-POST-TEXT',
+    'ADD-POST', 'UPDATE-NEW-POST-TEXT',
 ]
 
 export type PostType = {

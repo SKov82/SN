@@ -1,11 +1,9 @@
 import {DispatchActionType} from './store';
 
 export const [
-    UPDATE_NEW_MESSAGE,
-    ADD_MESSAGE,
+    UPDATE_NEW_MESSAGE, ADD_MESSAGE,
 ] = [
-    'UPDATE-NEW-MESSAGE',
-    'ADD-MESSAGE',
+    'UPDATE-NEW-MESSAGE', 'ADD-MESSAGE',
 ]
 
 export type DialogType = {

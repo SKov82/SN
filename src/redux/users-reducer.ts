@@ -1,5 +1,3 @@
-const CHANGE_FOLLOW = 'CHANGE-FOLLOW'
-
 export type UserType = {
     id: number
     firstName: string
@@ -11,7 +9,7 @@ export type UserType = {
 export type UsersDataType = {
     users: Array<UserType>
 }
-type ActionType = changeFollowACType
+export type ActionType = ChangeFollowACType | ShowMoreUsersACType
 
 let initialState: UsersDataType = {
     users: [
@@ -19,20 +17,30 @@ let initialState: UsersDataType = {
         {id: 2, firstName: 'Jane', lastName: 'Doe', follow: true, city: 'London', country: 'UK'},
         {id: 3, firstName: 'Иван', lastName: 'Иванов', follow: true, city: 'Москва', country: 'Россия'},
         {id: 4, firstName: 'Ольга', lastName: 'Петрова', follow: false, city: 'Казань', country: 'Россия'},
-        {id: 5, firstName: 'Стас', lastName: 'Грицко', follow: true, city: 'Луцк', country: 'Украина'},
     ]
 }
 
 export const usersReducer = (state: UsersDataType = initialState, action: ActionType): UsersDataType => {
     switch (action.type) {
-        case CHANGE_FOLLOW:
+        case 'CHANGE-FOLLOW':
             return {...state, users: state.users.map(
                 user => user.id === action.payload.userID ? {...user, follow: !user.follow} : user
             )}
+        case 'SHOW-MORE-USERS':
+            let newState = {...state, users: [
+                    ...state.users,
+                    {id: 5, firstName: 'Стас', lastName: 'Грицко', follow: true, city: 'Луцк', country: 'Украина'},
+                    {id: 6, firstName: 'Олег', lastName: 'Бреус', follow: true, city: 'Минск', country: 'Беларусь'},
+                    {id: 7, firstName: 'Жан', lastName: 'Вальжан', follow: false, city: 'Париж', country: 'Франция'},
+                ]}
+            console.log(newState)
+            return newState
         default:
             return state
     }
 }
 
-type changeFollowACType = ReturnType<typeof changeFollowAC>
-export const changeFollowAC = (userID: number) => ({ type: CHANGE_FOLLOW, payload: {userID} }) as const
+type ChangeFollowACType = ReturnType<typeof changeFollowAC>
+export const changeFollowAC = (userID: number) => ({ type: 'CHANGE-FOLLOW', payload: {userID} } as const)
+type ShowMoreUsersACType = ReturnType<typeof showMoreUsersAC>
+export const showMoreUsersAC = () => ({ type: 'SHOW-MORE-USERS' } as const)
