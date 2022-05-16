@@ -13,7 +13,12 @@ export class Users extends React.Component<any, any> {
     constructor(props: any) {
         super(props);
         this.props.usersData.cUsers = []
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
+    }
+
+    componentDidMount() {
+        axios.get(
+            'https://social-network.samuraijs.com/api/1.0/users?count=50'
+        ).then(response => {
             this.props.usersData.cUsers = response.data.items
         })
     }
@@ -29,19 +34,19 @@ export class Users extends React.Component<any, any> {
                     </div>
                 })}
 
+                <button onClick={ this.props.showMoreUsers }>
+                    Показать еще
+                </button>
+
                 {this.props.usersData.cUsers.map((user: any) => {
                     return <div key={user.id}>
                         <div>
-                            {user.photos.small ? user.photos.small : <img className={css.ava} src="https://cdn.pixabay.com/photo/2017/10/24/07/12/hacker-2883630_1280.jpg" alt="ava" />}
+                            <img className={css.ava} src={user.photos.small ? user.photos.small : "https://cdn.pixabay.com/photo/2017/10/24/07/12/hacker-2883630_1280.jpg"} alt="ava" />
                             {user.name} - {`${user.followed ? 'Подписан' : 'Подписаться'}`}
                         </div>
                         <div>{user.status}</div>
                     </div>
                 })}
-
-                <button onClick={ this.props.showMoreUsers }>
-                    Показать еще
-                </button>
             </div>
         )
     }
