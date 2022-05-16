@@ -23,7 +23,10 @@ export function Main() {
             <Route path={'/profile'} render={() => <Profile/>}/>
             <Route path={'/dialogs'} render={() => <DialogsContainer/>}/>
             <Route path={'/friends'}/>
-            <Route path={'/users'} render={() => <UsersContainer/>}/>
+            <Route path={'/users'} render={() => {
+                // @ts-ignore
+                return <UsersContainer/>
+            }}/>
             <Route path={'/settings'}/>
         </div>
     );
