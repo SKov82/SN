@@ -8,6 +8,7 @@ type UsersType = {
     changeFollow: (userID: number) => void
     showMoreUsers: () => void
     setCurrentPage: (currentPage: number) => void
+    setTotalCount: (totalCount: number) => void
 }
 
 export class Users extends React.Component<any, any> {
@@ -23,7 +24,7 @@ export class Users extends React.Component<any, any> {
             `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${count}`
         ).then(response => {
             this.props.usersData.cUsers = response.data.items
-            this.props.usersData.totalCount = response.data.totalCount
+            this.props.setTotalCount(response.data.totalCount)
         })
     }
 
