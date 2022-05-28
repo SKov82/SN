@@ -2,8 +2,8 @@ import {AppStateType} from '../../../redux/redux-store';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import {
-    changeFollowAC, setCurrentPageAC, setTotalCountAC, showMoreUsersAC,
-    UsersDataType
+    changeFollowAC, setCurrentPageAC, setTotalCountAC, showUsersAC,
+    UsersDataType, UserType
 } from '../../../redux/users-reducer';
 import {Users} from './Users';
 
@@ -12,7 +12,7 @@ type MapStateToPropsType = {
 }
 type MapDispatchToPropsType = {
     changeFollow: (userID: number) => void
-    showMoreUsers: () => void
+    showUsers: (users: UserType[]) => void
     setCurrentPage: (currentPage: number) => void
     setTotalCount: (totalCount: number) => void
 }
@@ -25,8 +25,8 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
         changeFollow: (userID) => {
             dispatch( changeFollowAC(userID) )
         },
-        showMoreUsers: () => {
-            dispatch( showMoreUsersAC() )
+        showUsers: (users) => {
+            dispatch( showUsersAC(users) )
         },
         setCurrentPage: (currentPage) => {
             dispatch( setCurrentPageAC(currentPage) )

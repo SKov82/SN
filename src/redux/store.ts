@@ -1,6 +1,5 @@
 import {ADD_POST, profileReducer, UPDATE_NEW_POST_TEXT} from './profile-reducer';
 import {ADD_MESSAGE, dialogsReducer, UPDATE_NEW_MESSAGE} from './dialogs-reducer';
-import {UsersDataType, usersReducer} from './users-reducer';
 
 type PostType = {
     id: number
@@ -32,7 +31,6 @@ type DialogsDataType = {
 export type StateType = {
     profileData: ProfileDataType
     dialogsData: DialogsDataType
-    // usersData: UsersDataType
 }
 
 export type DispatchActionType = {
@@ -40,7 +38,6 @@ export type DispatchActionType = {
         | typeof UPDATE_NEW_POST_TEXT
         | typeof UPDATE_NEW_MESSAGE
         | typeof ADD_MESSAGE
-        // | any
     text?: string
 }
 
@@ -75,14 +72,6 @@ export let store: StoreType = {
             ],
             newMessageText: '',
         },
-        // usersData: {
-        //     users: [
-        //         {id: 1, firstName: 'John', lastName: 'Doe', follow: false, city: 'New York', country: 'USA'},
-        //         {id: 2, firstName: 'Jane', lastName: 'Doe', follow: true, city: 'London', country: 'UK'},
-        //         {id: 3, firstName: 'Иван', lastName: 'Иванов', follow: true, city: 'Москва', country: 'Россия'},
-        //         {id: 4, firstName: 'Ольга', lastName: 'Петрова', follow: false, city: 'Казань', country: 'Россия'},
-        //     ],
-        // },
     },
     getState() {
         return this._state
@@ -96,7 +85,6 @@ export let store: StoreType = {
     dispatch(action) {
         this._state.profileData = profileReducer(this._state.profileData, action)
         this._state.dialogsData = dialogsReducer(this._state.dialogsData, action)
-        // this._state.usersData = usersReducer(this._state.usersData, action)
         this._renderAll()
     }
 }
