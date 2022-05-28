@@ -11,11 +11,7 @@ type UsersType = {
     setTotalCount: (totalCount: number) => void
 }
 
-export class Users extends React.Component<any, any> {
-    constructor(props: UsersType) {
-        super(props);
-    }
-
+export class Users extends React.Component<UsersType> {
     componentDidMount() {
         let page = this.props.usersData.currentPage
         let count = this.props.usersData.pageSize
