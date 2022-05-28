@@ -7,10 +7,11 @@ type UsersType = {
     usersData: UsersDataType
     changeFollow: (userID: number) => void
     showMoreUsers: () => void
+    setCurrentPage: (currentPage: number) => void
 }
 
 export class Users extends React.Component<any, any> {
-    constructor(props: UserType) {
+    constructor(props: UsersType) {
         super(props);
         this.props.usersData.cUsers = []
     }
@@ -23,25 +24,35 @@ export class Users extends React.Component<any, any> {
         ).then(response => {
             this.props.usersData.cUsers = response.data.items
             this.props.usersData.totalCount = response.data.totalCount
-            console.log(response.data)
+        })
+    }
+
+    onPageChanged = (page: number) => {
+        axios.get(
+            `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.usersData.pageSize}`
+        ).then(response => {
+            this.props.usersData.cUsers = response.data.items
+            this.props.setCurrentPage(page)
         })
     }
 
     render() {
         let pagesCount = Math.ceil(this.props.usersData.totalCount / this.props.usersData.pageSize)
         let pages = [...Array(pagesCount)].map((el, i) => ++i)
-        pages.length = 11
-        console.log(pages)
+        pages.length = 50
 
         return (
             <div>
                 <div>
                     {pages.map(page => {
-                        return <span key={page} className={page === this.props.usersData.currentPage ? css.currentPageNumber : ''}>
+                        return <span key={page}
+                                     onClick={ () => this.onPageChanged(page) }
+                                     className={page === this.props.usersData.currentPage ? css.currentPageNumber : ''}>
                             {page}
                         </span>
                     })}
                 </div>
+
                 {this.props.usersData.users.map( (user: UserType) => {
                     return <div key={user.id}
                                 onClick={ () => this.props.changeFollow(user.id) }

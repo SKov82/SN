@@ -12,7 +12,6 @@ export type UsersDataType = {
     totalCount: number
     currentPage: number
 }
-export type ActionType = ChangeFollowACType | ShowMoreUsersACType
 
 let initialState: UsersDataType = {
     users: [
@@ -22,7 +21,7 @@ let initialState: UsersDataType = {
         {id: 4, firstName: 'Ольга', lastName: 'Петрова', follow: false, city: 'Казань', country: 'Россия'},
     ],
     pageSize: 10,
-    totalCount: 100,
+    totalCount: 0,
     currentPage: 3
 }
 
@@ -39,12 +38,18 @@ export const usersReducer = (state: UsersDataType = initialState, action: Action
                 {id: 6, firstName: 'Олег', lastName: 'Бреус', follow: true, city: 'Минск', country: 'Беларусь'},
                 {id: 7, firstName: 'Жан', lastName: 'Вальжан', follow: false, city: 'Париж', country: 'Франция'},
             ]}
+        case 'SET-CURRENT-PAGE':
+            return {...state, currentPage: action.payload.currentPage}
         default:
             return state
     }
 }
 
+export type ActionType = ChangeFollowACType | ShowMoreUsersACType | SetCurrentPageACType
 type ChangeFollowACType = ReturnType<typeof changeFollowAC>
-export const changeFollowAC = (userID: number) => ({ type: 'CHANGE-FOLLOW', payload: {userID} } as const)
 type ShowMoreUsersACType = ReturnType<typeof showMoreUsersAC>
+type SetCurrentPageACType = ReturnType<typeof setCurrentPageAC>
+
+export const changeFollowAC = (userID: number) => ({ type: 'CHANGE-FOLLOW', payload: {userID} } as const)
 export const showMoreUsersAC = () => ({ type: 'SHOW-MORE-USERS' } as const)
+export const setCurrentPageAC = (currentPage: number) => ({ type: 'SET-CURRENT-PAGE', payload: {currentPage} } as const)
