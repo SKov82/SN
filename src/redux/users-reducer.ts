@@ -8,6 +8,9 @@ export type UserType = {
 }
 export type UsersDataType = {
     users: Array<UserType>
+    pageSize: number
+    totalCount: number
+    currentPage: number
 }
 export type ActionType = ChangeFollowACType | ShowMoreUsersACType
 
@@ -17,7 +20,10 @@ let initialState: UsersDataType = {
         {id: 2, firstName: 'Jane', lastName: 'Doe', follow: true, city: 'London', country: 'UK'},
         {id: 3, firstName: 'Иван', lastName: 'Иванов', follow: true, city: 'Москва', country: 'Россия'},
         {id: 4, firstName: 'Ольга', lastName: 'Петрова', follow: false, city: 'Казань', country: 'Россия'},
-    ]
+    ],
+    pageSize: 10,
+    totalCount: 100,
+    currentPage: 3
 }
 
 export const usersReducer = (state: UsersDataType = initialState, action: ActionType): UsersDataType => {

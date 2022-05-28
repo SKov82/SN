@@ -6,7 +6,10 @@ const startState: UsersDataType = {
         {id: 2, firstName: 'Jane', lastName: 'Doe', follow: true, city: 'London', country: 'UK'},
         {id: 3, firstName: 'Иван', lastName: 'Иванов', follow: true, city: 'Москва', country: 'Россия'},
         {id: 4, firstName: 'Ольга', lastName: 'Петрова', follow: false, city: 'Казань', country: 'Россия'},
-    ]
+    ],
+    pageSize: 5,
+    totalCount: 0,
+    currentPage: 1
 }
 
 test('change follow status', () => {

@@ -10,22 +10,38 @@ type UsersType = {
 }
 
 export class Users extends React.Component<any, any> {
-    constructor(props: any) {
+    constructor(props: UserType) {
         super(props);
         this.props.usersData.cUsers = []
     }
 
     componentDidMount() {
+        let page = this.props.usersData.currentPage
+        let count = this.props.usersData.pageSize
         axios.get(
-            'https://social-network.samuraijs.com/api/1.0/users?count=50'
+            `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${count}`
         ).then(response => {
             this.props.usersData.cUsers = response.data.items
+            this.props.usersData.totalCount = response.data.totalCount
+            console.log(response.data)
         })
     }
 
     render() {
+        let pagesCount = Math.ceil(this.props.usersData.totalCount / this.props.usersData.pageSize)
+        let pages = [...Array(pagesCount)].map((el, i) => ++i)
+        pages.length = 11
+        console.log(pages)
+
         return (
             <div>
+                <div>
+                    {pages.map(page => {
+                        return <span key={page} className={page === this.props.usersData.currentPage ? css.currentPageNumber : ''}>
+                            {page}
+                        </span>
+                    })}
+                </div>
                 {this.props.usersData.users.map( (user: UserType) => {
                     return <div key={user.id}
                                 onClick={ () => this.props.changeFollow(user.id) }
