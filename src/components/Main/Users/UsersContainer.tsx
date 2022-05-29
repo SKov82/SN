@@ -2,7 +2,7 @@ import {AppStateType} from '../../../redux/redux-store';
 import {Dispatch} from 'redux';
 import {connect} from 'react-redux';
 import {
-    changeFollowAC, setCurrentPageAC, setTotalCountAC, showUsersAC,
+    changeFollowAC, changeLoadingStatusAC, setCurrentPageAC, setTotalCountAC, showUsersAC,
     UsersDataType, UserType
 } from '../../../redux/users-reducer';
 import {Users} from './Users';
@@ -15,6 +15,7 @@ type MapDispatchToPropsType = {
     showUsers: (users: UserType[]) => void
     setCurrentPage: (currentPage: number) => void
     setTotalCount: (totalCount: number) => void
+    changeLoadingStatus: () => void
 }
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
@@ -33,6 +34,9 @@ let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
         },
         setTotalCount: (totalCount) => {
             dispatch( setTotalCountAC(totalCount) )
+        },
+        changeLoadingStatus: () => {
+            dispatch( changeLoadingStatusAC() )
         },
     }
 }

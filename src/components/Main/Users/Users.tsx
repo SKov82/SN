@@ -2,6 +2,7 @@ import React from 'react';
 import {UsersDataType, UserType} from '../../../redux/users-reducer';
 import axios from 'axios';
 import css from './Users.module.css';
+import preloader from '../../../assets/img/loading.gif'
 
 type UsersType = {
     usersData: UsersDataType
@@ -9,26 +10,31 @@ type UsersType = {
     showUsers: (users: UserType[]) => void
     setCurrentPage: (currentPage: number) => void
     setTotalCount: (totalCount: number) => void
+    changeLoadingStatus: () => void
 }
 
 export class Users extends React.Component<UsersType> {
     componentDidMount() {
         let page = this.props.usersData.currentPage
         let count = this.props.usersData.pageSize
+        this.props.changeLoadingStatus()
         axios.get(
             `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${count}`
         ).then(response => {
             this.props.showUsers(response.data.items)
+            this.props.changeLoadingStatus()
             this.props.setTotalCount(response.data.totalCount)
         })
     }
 
     onPageChanged = (page: number) => {
         this.props.setCurrentPage(page)
+        this.props.changeLoadingStatus()
         axios.get(
             `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.usersData.pageSize}`
         ).then(response => {
             this.props.showUsers(response.data.items)
+            this.props.changeLoadingStatus()
         })
     }
 
@@ -48,6 +54,8 @@ export class Users extends React.Component<UsersType> {
                         </span>
                     })}
                 </div>
+
+                {this.props.usersData.isLoading && <img className={css.loading} src={preloader} alt="loading..."/>}
 
                 {this.props.usersData.users.map((user: UserType) => {
                     return <div key={user.id}>
