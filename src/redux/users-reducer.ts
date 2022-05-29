@@ -41,19 +41,19 @@ export const usersReducer = (state: UsersDataType = initialState, action: Action
     }
 }
 
-export type ActionType = ChangeFollowACType
-    | ShowUsersACType
-    | SetCurrentPageACType
-    | SetTotalCountACType
-    | ChangeLoadingStatusACType
-type ChangeFollowACType = ReturnType<typeof changeFollowAC>
-type ShowUsersACType = ReturnType<typeof showUsersAC>
-type SetCurrentPageACType = ReturnType<typeof setCurrentPageAC>
-type SetTotalCountACType = ReturnType<typeof setTotalCountAC>
-type ChangeLoadingStatusACType = ReturnType<typeof changeLoadingStatusAC>
+export type ActionType = ChangeFollowType
+    | ShowUsersType
+    | SetCurrentPageType
+    | SetTotalCountType
+    | ChangeLoadingStatusType
+type ChangeFollowType = ReturnType<typeof changeFollow>
+type ShowUsersType = ReturnType<typeof showUsers>
+type SetCurrentPageType = ReturnType<typeof setCurrentPage>
+type SetTotalCountType = ReturnType<typeof setTotalCount>
+type ChangeLoadingStatusType = ReturnType<typeof changeLoadingStatus>
 
-export const changeFollowAC = (userID: number) => ({ type: 'CHANGE-FOLLOW', payload: {userID} } as const)
-export const showUsersAC = (users: UserType[]) => ({ type: 'SHOW-USERS', payload: {users} } as const)
-export const setCurrentPageAC = (currentPage: number) => ({ type: 'SET-CURRENT-PAGE', payload: {currentPage} } as const)
-export const setTotalCountAC = (totalCount: number) => ({ type: 'SET-TOTAL-COUNT', payload: {totalCount} } as const)
-export const changeLoadingStatusAC = () => ({ type: 'CHANGE-LOADING-STATUS' } as const)
+export const changeFollow = (userID: number) => ({ type: 'CHANGE-FOLLOW', payload: {userID} } as const)
+export const showUsers = (users: UserType[]) => ({ type: 'SHOW-USERS', payload: {users} } as const)
+export const setCurrentPage = (currentPage: number) => ({ type: 'SET-CURRENT-PAGE', payload: {currentPage} } as const)
+export const setTotalCount = (totalCount: number) => ({ type: 'SET-TOTAL-COUNT', payload: {totalCount} } as const)
+export const changeLoadingStatus = () => ({ type: 'CHANGE-LOADING-STATUS' } as const)

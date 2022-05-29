@@ -1,4 +1,4 @@
-import {changeFollowAC, UsersDataType, usersReducer} from './users-reducer';
+import {changeFollow, UsersDataType, usersReducer} from './users-reducer';
 
 const startState: UsersDataType = {
     users: [],
@@ -9,7 +9,7 @@ const startState: UsersDataType = {
 }
 
 test('change follow status', () => {
-    const endState = usersReducer(startState, changeFollowAC(2))
+    const endState = usersReducer(startState, changeFollow(2))
 
     expect(endState.users.length).toBe(startState.users.length)
     expect(endState === startState).toBeFalsy()
