@@ -43,7 +43,7 @@ export class Users extends React.Component<UsersType> {
                     {pages.map(page => {
                         return <span key={page}
                                      onClick={ () => this.onPageChanged(page) }
-                                     className={page === this.props.usersData.currentPage ? css.currentPageNumber : ''}>
+                                     className={`${css.pageNumber} ${page === this.props.usersData.currentPage ? css.currentPageNumber : ''}`}>
                             {` ${page} `}
                         </span>
                     })}

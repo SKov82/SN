@@ -5,6 +5,9 @@
     border-radius: 50%;
 }
 
+.pageNumber {
+    cursor: pointer;
+}
 .currentPageNumber {
     font-weight: bold;
 }
