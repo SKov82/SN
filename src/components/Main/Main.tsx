@@ -20,7 +20,7 @@ export function Main() {
             <Route path={'/main'}/>
             <Route path={'/news'}/>
             <Route path={'/about'}/>
-            <Route path={'/profile/:userID'} render={() => {
+            <Route path={'/profile/:userID?'} render={() => {
                 // @ts-ignore
                 return <ProfileContainer/>
             }}/>

@@ -15,7 +15,7 @@ class ProfileC extends React.Component<ProfileContainerType> {
     componentDidMount() {
         // let profile = window.location.pathname.match(/\d+$/)
         // @ts-ignore
-        let userID = this.props.match.params.userID
+        let userID = this.props.match.params.userID || 24000
         axios.get(
             // `https://social-network.samuraijs.com/api/1.0/profile/${profile ? profile[0] : 24000}`
             `https://social-network.samuraijs.com/api/1.0/profile/${userID}`
