@@ -28,7 +28,9 @@ export function Profile(props: ProfilePropsType) {
                 src={props.photos?.small ? props.photos?.small : "https://secure.gravatar.com/avatar/d65ba582994efa3515a7936eb7c337ef?s=96&d=retro"}
                 alt="avatar"/>
 
-            <div>Что-то о чем-то как-то и где-то</div>
+            <div>{props.fullName}</div>
+            <div>{props.aboutMe}</div>
+            <div>{props.lookingForAJobDescription}</div>
 
             <MyPostsContainer />
         </div>

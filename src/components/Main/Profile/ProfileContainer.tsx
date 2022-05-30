@@ -17,7 +17,6 @@ export class ProfileC extends React.Component<ProfileContainerType> {
             `https://social-network.samuraijs.com/api/1.0/profile/${profile ? profile[0] : 24000}`
         ).then(response => {
             this.props.setUserProfile(response.data)
-            console.log(response.data)
         })
     }
 
