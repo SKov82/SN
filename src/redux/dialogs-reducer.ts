@@ -1,5 +1,3 @@
-import {DispatchActionType} from './store';
-
 export const [
     UPDATE_NEW_MESSAGE, ADD_MESSAGE,
 ] = [
@@ -35,7 +33,7 @@ let initialState = {
     newMessageText: '',
 }
 
-export const dialogsReducer = (state: DialogsDataType = initialState, action: DispatchActionType): DialogsDataType => {
+export const dialogsReducer = (state: DialogsDataType = initialState, action: any): DialogsDataType => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE:
             return {...state, newMessageText: action.text || ''}
@@ -51,7 +49,7 @@ export const dialogsReducer = (state: DialogsDataType = initialState, action: Di
     }
 }
 
-export const updateNewMessageAC = (message: string): DispatchActionType => {
+export const updateNewMessageAC = (message: string): any => {
     return { type: UPDATE_NEW_MESSAGE, text: message } as const
 }
-export const addMessageAC = (): DispatchActionType => ({ type: ADD_MESSAGE }) as const
+export const addMessageAC = (): any => ({ type: ADD_MESSAGE }) as const

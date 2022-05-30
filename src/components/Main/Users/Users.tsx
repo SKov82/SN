@@ -62,7 +62,9 @@ export class Users extends React.Component<UsersType> {
                     return <div key={user.id}>
                         <div>
                             <NavLink to={'/profile/' + user.id}>
-                                <img className={css.ava} src={user.photos.small ? user.photos.small : "https://cdn.pixabay.com/photo/2017/10/24/07/12/hacker-2883630_1280.jpg"} alt="ava" />
+                                <img className={css.ava}
+                                     src={user.photos.small ? user.photos.small : "https://cdn.pixabay.com/photo/2017/10/24/07/12/hacker-2883630_1280.jpg"}
+                                     alt="avatar" />
                             </NavLink>
                             {user.name}{user.status ? ` - Статус: ${user.status}` : ''}
                         </div>

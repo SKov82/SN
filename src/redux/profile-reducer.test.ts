@@ -1,4 +1,4 @@
-import {addNewPostAC, ProfileDataType, profileReducer, updateNewPostAC} from './profile-reducer';
+import {addNewPost, ProfileDataType, profileReducer, updateNewPost} from './profile-reducer';
 
 const startState: ProfileDataType = {
     posts: [
@@ -6,10 +6,11 @@ const startState: ProfileDataType = {
         {id: 1, message: "Привет. Это мой первый пост.", likesCount: 9199},
     ],
     newPostText: 'Hello',
+    profile: null,
 }
 
 test('update new post', () => {
-    const endState = profileReducer(startState, updateNewPostAC('Hi all'))
+    const endState = profileReducer(startState, updateNewPost('Hi all'))
 
     expect(endState.newPostText).toBe('Hi all')
     expect(endState.posts.length).toBe(startState.posts.length)
@@ -18,7 +19,7 @@ test('update new post', () => {
 })
 
 test('add new post', () => {
-    const endState = profileReducer(startState, addNewPostAC())
+    const endState = profileReducer(startState, addNewPost())
 
     expect(endState.newPostText).toBe('')
     expect(endState.posts.length).toBe(startState.posts.length + 1)

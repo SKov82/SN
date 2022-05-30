@@ -1,7 +1,6 @@
 import React from 'react';
 import css from './Main.module.css';
 import {Navbar} from './Navbar';
-import {Profile} from './Profile/Profile';
 import {DialogsContainer} from './Dialogs/DialogsContainer';
 import {Route} from 'react-router-dom';
 import {UsersContainer} from './Users/UsersContainer';
@@ -21,7 +20,10 @@ export function Main() {
             <Route path={'/main'}/>
             <Route path={'/news'}/>
             <Route path={'/about'}/>
-            <Route path={'/profile'} render={() => <ProfileContainer/>}/>
+            <Route path={'/profile'} render={() => {
+                // @ts-ignore
+                return <ProfileContainer/>
+            }}/>
             <Route path={'/dialogs'} render={() => <DialogsContainer/>}/>
             <Route path={'/friends'}/>
             <Route path={'/users'} render={() => {

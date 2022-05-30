@@ -1,16 +1,5 @@
-import {ADD_POST, profileReducer, UPDATE_NEW_POST_TEXT} from './profile-reducer';
-import {ADD_MESSAGE, dialogsReducer, UPDATE_NEW_MESSAGE} from './dialogs-reducer';
-
-type PostType = {
-    id: number
-    message: string
-    likesCount: number
-}
-
-type ProfileDataType = {
-    posts: Array<PostType>
-    newPostText: string
-}
+import {ProfileDataType, profileReducer} from './profile-reducer';
+import {dialogsReducer} from './dialogs-reducer';
 
 type DialogType = {
     id: number
@@ -33,20 +22,12 @@ export type StateType = {
     dialogsData: DialogsDataType
 }
 
-export type DispatchActionType = {
-    type: typeof ADD_POST
-        | typeof UPDATE_NEW_POST_TEXT
-        | typeof UPDATE_NEW_MESSAGE
-        | typeof ADD_MESSAGE
-    text?: string
-}
-
 export type StoreType = {
     _state: StateType
     getState: () => StateType
     _renderAll: () => void
     subscribe: ( callback: () => void ) => void
-    dispatch: (action: DispatchActionType) => void
+    dispatch: (action: any) => void
 }
 
 export let store: StoreType = {
@@ -57,6 +38,7 @@ export let store: StoreType = {
                 {id: 1, message: "Привет. Это мой первый пост.", likesCount: 9199},
             ],
             newPostText: '',
+            profile: null,
         },
         dialogsData: {
             dialogs: [
@@ -82,12 +64,9 @@ export let store: StoreType = {
         this._renderAll = observer
     },
 
-    dispatch(action) {
+    dispatch(action: any) {
         this._state.profileData = profileReducer(this._state.profileData, action)
         this._state.dialogsData = dialogsReducer(this._state.dialogsData, action)
         this._renderAll()
     }
 }
-
-// @ts-ignore
-window.store = store
