@@ -3,6 +3,7 @@ import {UsersDataType, UserType} from '../../../redux/users-reducer';
 import axios from 'axios';
 import css from './Users.module.css';
 import preloader from '../../../assets/img/loading.gif'
+import { NavLink } from 'react-router-dom';
 
 type UsersType = {
     usersData: UsersDataType
@@ -60,7 +61,9 @@ export class Users extends React.Component<UsersType> {
                 {this.props.usersData.users.map((user: UserType) => {
                     return <div key={user.id}>
                         <div>
-                            <img className={css.ava} src={user.photos.small ? user.photos.small : "https://cdn.pixabay.com/photo/2017/10/24/07/12/hacker-2883630_1280.jpg"} alt="ava" />
+                            <NavLink to={'/profile/' + user.id}>
+                                <img className={css.ava} src={user.photos.small ? user.photos.small : "https://cdn.pixabay.com/photo/2017/10/24/07/12/hacker-2883630_1280.jpg"} alt="ava" />
+                            </NavLink>
                             {user.name}{user.status ? ` - Статус: ${user.status}` : ''}
                         </div>
                         <div onClick={ () => this.props.changeFollow(user.id) }>

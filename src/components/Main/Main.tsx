@@ -5,6 +5,7 @@ import {Profile} from './Profile/Profile';
 import {DialogsContainer} from './Dialogs/DialogsContainer';
 import {Route} from 'react-router-dom';
 import {UsersContainer} from './Users/UsersContainer';
+import {ProfileContainer} from './Profile/ProfileContainer';
 
 export function Main() {
     return (
@@ -20,7 +21,7 @@ export function Main() {
             <Route path={'/main'}/>
             <Route path={'/news'}/>
             <Route path={'/about'}/>
-            <Route path={'/profile'} render={() => <Profile/>}/>
+            <Route path={'/profile'} render={() => <ProfileContainer/>}/>
             <Route path={'/dialogs'} render={() => <DialogsContainer/>}/>
             <Route path={'/friends'}/>
             <Route path={'/users'} render={() => {

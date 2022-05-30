@@ -11,5 +11,5 @@ export function Profile() {
 
             <MyPostsContainer />
         </div>
-    );
+    )
 }
