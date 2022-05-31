@@ -2,7 +2,7 @@ import React from 'react';
 import classes from './Header.module.css';
 import {NavLink} from 'react-router-dom';
 
-export function Header() {
+export function Header(props: any) {
     return (
         <header className={classes.header}>
             <img className={classes.app_logo} src="https://www.pinclipart.com/picdir/big/373-3735542_phoenix-banfield-illustration-clipart.png" alt="logo"/>
@@ -14,9 +14,13 @@ export function Header() {
                 <NavLink to={'/news'} className="font-semibold" activeClassName={classes.active}>
                     Новости
                 </NavLink>
-                <NavLink to={'/login'} className="font-semibold" activeClassName={classes.active}>
-                    Войти / Зарегистрироваться
-                </NavLink>
+                {props.login
+                    ? props.login
+                    : <NavLink to={'/login'} className="font-semibold" activeClassName={classes.active}>
+                        Войти / Зарегистрироваться
+                    </NavLink>
+                }
+
             </nav>
         </header>
     );

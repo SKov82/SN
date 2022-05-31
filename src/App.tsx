@@ -5,9 +5,12 @@ import {Footer} from './components/Footer';
 import {HeaderContainer} from './components/Header/HeaderContainer';
 
 function App() {
+
     return (
         <div className="App">
-            <HeaderContainer />
+            < //@ts-ignore
+                HeaderContainer
+            />
             <Main />
             <Footer />
         </div>
