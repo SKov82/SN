@@ -27,4 +27,4 @@ class HeaderC extends React.Component<any, any> {
 let mapStateToProps = (state: AppStateType): any => ({ auth: state.auth.data })
 
 // @ts-ignore
-export const HeaderContainer = connect(mapStateToProps, setAuthData)(HeaderC)
+export const HeaderContainer = connect(mapStateToProps, {setAuthData})(HeaderC)
