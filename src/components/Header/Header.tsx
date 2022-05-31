@@ -14,8 +14,8 @@ export function Header() {
                 <NavLink to={'/news'} className="font-semibold" activeClassName={classes.active}>
                     Новости
                 </NavLink>
-                <NavLink to={'/about'} className="font-semibold" activeClassName={classes.active}>
-                    Контакты
+                <NavLink to={'/login'} className="font-semibold" activeClassName={classes.active}>
+                    Войти / Зарегистрироваться
                 </NavLink>
             </nav>
         </header>
