@@ -1,3 +1,8 @@
 import React from 'react';
+import {Header} from './Header';
 
-export default () => {};
+export class HeaderContainer extends React.Component<any, any> {
+    render() {
+        return <Header />
+    }
+}
