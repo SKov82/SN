@@ -4,6 +4,7 @@ import axios from 'axios';
 import css from './Users.module.css';
 import preloader from '../../../assets/img/loading.gif'
 import { NavLink } from 'react-router-dom';
+import {getUsers} from '../../../api/api';
 
 type UsersType = {
     usersData: UsersDataType
@@ -16,17 +17,12 @@ type UsersType = {
 
 export class Users extends React.Component<UsersType> {
     componentDidMount() {
-        let page = this.props.usersData.currentPage
-        let count = this.props.usersData.pageSize
         this.props.changeLoadingStatus()
-        axios.get(
-            `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${count}`,
-            {withCredentials: true}
-        ).then(response => {
+        getUsers(this.props.usersData.currentPage, this.props.usersData.pageSize).then(response => {
             this.props.showUsers(response.data.items)
-            this.props.changeLoadingStatus()
             this.props.setTotalCount(response.data.totalCount)
         })
+        this.props.changeLoadingStatus()
     }
 
     onPageChanged = (page: number) => {
@@ -37,8 +33,8 @@ export class Users extends React.Component<UsersType> {
             {withCredentials: true}
         ).then(response => {
             this.props.showUsers(response.data.items)
-            this.props.changeLoadingStatus()
         })
+        this.props.changeLoadingStatus()
     }
 
     render() {
