@@ -1,10 +1,9 @@
 import React from 'react';
 import {UsersDataType, UserType} from '../../../redux/users-reducer';
-import axios from 'axios';
 import css from './Users.module.css';
 import preloader from '../../../assets/img/loading.gif'
 import { NavLink } from 'react-router-dom';
-import {getUsers} from '../../../api/api';
+import {appAPI} from '../../../api/api';
 
 type UsersType = {
     usersData: UsersDataType
@@ -18,7 +17,7 @@ type UsersType = {
 export class Users extends React.Component<UsersType> {
     componentDidMount() {
         this.props.changeLoadingStatus()
-        getUsers(this.props.usersData.currentPage, this.props.usersData.pageSize).then(data => {
+        appAPI.getUsers(this.props.usersData.currentPage, this.props.usersData.pageSize).then(data => {
             this.props.changeLoadingStatus()
             this.props.showUsers(data.items)
             this.props.setTotalCount(data.totalCount)
@@ -28,7 +27,7 @@ export class Users extends React.Component<UsersType> {
     onPageChanged = (page: number) => {
         this.props.changeLoadingStatus()
         this.props.setCurrentPage(page)
-        getUsers(page, this.props.usersData.pageSize).then(data => {
+        appAPI.getUsers(page, this.props.usersData.pageSize).then(data => {
             this.props.changeLoadingStatus()
             this.props.showUsers(data.items)
         })
@@ -65,17 +64,11 @@ export class Users extends React.Component<UsersType> {
                         </div>
                         <div onClick={ () => {
                             this.props.changeLoadingStatus()
-                            axios(
-                                `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                                {
-                                    method: user.followed ? 'DELETE' : 'POST',
-                                    withCredentials: true,
-                                    headers: {'API-KEY': '97e468f6-5b68-452f-8b2e-b1ab07a6dd98'}
-                                }
-                            ).then(response => {
-                                if (!response.data.resultCode) this.props.changeFollow(user.id)
+                            appAPI.changeFollowStatus(user.id, user.followed ? 'DELETE' : 'POST')
+                            .then(resultCode => {
+                                this.props.changeLoadingStatus()
+                                if (!resultCode) this.props.changeFollow(user.id)
                             })
-                            this.props.changeLoadingStatus()
                         }}>
                             {`${user.followed ? 'Подписан' : 'Подписаться'}`}
                         </div>
