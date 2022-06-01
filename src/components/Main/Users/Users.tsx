@@ -18,23 +18,20 @@ type UsersType = {
 export class Users extends React.Component<UsersType> {
     componentDidMount() {
         this.props.changeLoadingStatus()
-        getUsers(this.props.usersData.currentPage, this.props.usersData.pageSize).then(response => {
-            this.props.showUsers(response.data.items)
-            this.props.setTotalCount(response.data.totalCount)
+        getUsers(this.props.usersData.currentPage, this.props.usersData.pageSize).then(data => {
+            this.props.changeLoadingStatus()
+            this.props.showUsers(data.items)
+            this.props.setTotalCount(data.totalCount)
         })
-        this.props.changeLoadingStatus()
     }
 
     onPageChanged = (page: number) => {
+        this.props.changeLoadingStatus()
         this.props.setCurrentPage(page)
-        this.props.changeLoadingStatus()
-        axios.get(
-            `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.usersData.pageSize}`,
-            {withCredentials: true}
-        ).then(response => {
-            this.props.showUsers(response.data.items)
+        getUsers(page, this.props.usersData.pageSize).then(data => {
+            this.props.changeLoadingStatus()
+            this.props.showUsers(data.items)
         })
-        this.props.changeLoadingStatus()
     }
 
     render() {
