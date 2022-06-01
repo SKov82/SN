@@ -9,11 +9,10 @@ class HeaderC extends React.Component<any, any> {
     componentDidMount() {
         axios.get(
             `https://social-network.samuraijs.com/api/1.0/auth/me`, {
-                withCredentials: true
+                withCredentials: true,
             }).then(response => {
-                console.log(response.data)
                 if (!response.data.resultCode) {
-                    this.props.setAuthData(response.data.data.login)
+                    this.props.setAuthData(response.data.data)
                 }
             }
         )

@@ -20,7 +20,7 @@ let initialState: AuthDataType = {
 export const authReducer = (state: AuthDataType = initialState, action: ActionType): AuthDataType => {
     switch (action.type) {
         case 'SET-AUTH-DATA':
-            return {...state, ...action.data}
+            return {...state, data: action.data}
         case 'CHANGE-LOADING-STATUS':
             return {...state, isLoading: !state.isLoading}
         default:

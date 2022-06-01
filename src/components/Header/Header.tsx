@@ -15,10 +15,11 @@ export function Header(props: any) {
                     Новости
                 </NavLink>
                 {props.login
-                    ? props.login
+                    ? <span className="font-semibold">{props.login}</span>
                     : <NavLink to={'/login'} className="font-semibold" activeClassName={classes.active}>
                         Войти / Зарегистрироваться
                     </NavLink>
+
                 }
 
             </nav>

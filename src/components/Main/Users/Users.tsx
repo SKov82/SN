@@ -20,7 +20,8 @@ export class Users extends React.Component<UsersType> {
         let count = this.props.usersData.pageSize
         this.props.changeLoadingStatus()
         axios.get(
-            `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${count}`
+            `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${count}`,
+            {withCredentials: true}
         ).then(response => {
             this.props.showUsers(response.data.items)
             this.props.changeLoadingStatus()
@@ -32,7 +33,8 @@ export class Users extends React.Component<UsersType> {
         this.props.setCurrentPage(page)
         this.props.changeLoadingStatus()
         axios.get(
-            `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.usersData.pageSize}`
+            `https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.usersData.pageSize}`,
+            {withCredentials: true}
         ).then(response => {
             this.props.showUsers(response.data.items)
             this.props.changeLoadingStatus()
@@ -68,7 +70,20 @@ export class Users extends React.Component<UsersType> {
                             </NavLink>
                             {user.name}{user.status ? ` - Статус: ${user.status}` : ''}
                         </div>
-                        <div onClick={ () => this.props.changeFollow(user.id) }>
+                        <div onClick={ () => {
+                            this.props.changeLoadingStatus()
+                            axios(
+                                `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                                {
+                                    method: user.followed ? 'DELETE' : 'POST',
+                                    withCredentials: true,
+                                    headers: {'API-KEY': '97e468f6-5b68-452f-8b2e-b1ab07a6dd98'}
+                                }
+                            ).then(response => {
+                                if (!response.data.resultCode) this.props.changeFollow(user.id)
+                            })
+                            this.props.changeLoadingStatus()
+                        }}>
                             {`${user.followed ? 'Подписан' : 'Подписаться'}`}
                         </div>
                     </div>
