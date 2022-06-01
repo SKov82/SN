@@ -12,5 +12,5 @@ export const appAPI = {
     },
     changeFollowStatus(userID: number, method: 'DELETE' | 'POST') {
         return instance(`follow/${userID}`, {method}).then(response => response.data.resultCode)
-    }
+    },
 }

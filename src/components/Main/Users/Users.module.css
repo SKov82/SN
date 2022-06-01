@@ -3,6 +3,7 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
+    margin: 15px;
 }
 
 .pageNumber {
@@ -19,4 +20,15 @@
     z-index: 999;
     width: 100px;
     height: 100px
+}
+
+.followButton {
+    border: #00d4ff 2px solid;
+    border-radius: 7px;
+    margin: 0 15px;
+    padding: 4px 0;
+    width: 140px;
+}
+.followButton:hover {
+    box-shadow: 0 0 12px lightskyblue;
 }

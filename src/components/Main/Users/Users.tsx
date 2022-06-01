@@ -60,17 +60,22 @@ export class Users extends React.Component<UsersType> {
                                      src={user.photos.small ? user.photos.small : "https://cdn.pixabay.com/photo/2017/10/24/07/12/hacker-2883630_1280.jpg"}
                                      alt="avatar" />
                             </NavLink>
+
                             {user.name}{user.status ? ` - Статус: ${user.status}` : ''}
-                        </div>
-                        <div onClick={ () => {
-                            this.props.changeLoadingStatus()
-                            appAPI.changeFollowStatus(user.id, user.followed ? 'DELETE' : 'POST')
-                            .then(resultCode => {
-                                this.props.changeLoadingStatus()
-                                if (!resultCode) this.props.changeFollow(user.id)
-                            })
-                        }}>
-                            {`${user.followed ? 'Подписан' : 'Подписаться'}`}
+
+                            <button
+                                className={css.followButton}
+                                onClick={ () => {
+                                    this.props.changeLoadingStatus()
+                                    appAPI.changeFollowStatus(user.id, user.followed ? 'DELETE' : 'POST')
+                                        .then(resultCode => {
+                                            this.props.changeLoadingStatus()
+                                            if (!resultCode) this.props.changeFollow(user.id)
+                                        })
+                                }}
+                            >
+                                {`${user.followed ? 'Подписан' : 'Подписаться'}`}
+                            </button>
                         </div>
                     </div>
                 })}
