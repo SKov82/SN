@@ -8,9 +8,6 @@ import {appAPI} from '../../../api/api';
 type UsersType = {
     usersData: UsersDataType
     changeFollow: (userID: number) => void
-    showUsers: (users: UserType[]) => void
-    setCurrentPage: (currentPage: number) => void
-    setTotalCount: (totalCount: number) => void
     changeLoadingStatus: () => void
     getUsersTC: (currentPage: number, pageSize: number) => void
 }
@@ -21,12 +18,7 @@ export class Users extends React.Component<UsersType> {
     }
 
     onPageChanged = (page: number) => {
-        this.props.changeLoadingStatus()
-        this.props.setCurrentPage(page)
-        appAPI.getUsers(page, this.props.usersData.pageSize).then(data => {
-            this.props.changeLoadingStatus()
-            this.props.showUsers(data.items)
-        })
+        this.props.getUsersTC(page, this.props.usersData.pageSize)
     }
 
     render() {

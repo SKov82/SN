@@ -68,6 +68,7 @@ export const getUsersTC = (currentPage: number, pageSize: number) => {
             dispatch(changeLoadingStatus())
             dispatch(showUsers(data.items))
             dispatch(setTotalCount(data.totalCount))
+            dispatch(setCurrentPage(currentPage))
         })
     }
 }
