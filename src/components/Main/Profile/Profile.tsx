@@ -2,7 +2,7 @@ import React from 'react';
 import css from './Profile.module.css';
 import {MyPostsContainer} from './MyPosts/MyPostsContainer';
 
-export type ProfilePropsType = {
+export type ProfileType = {
     aboutMe: null | string
     contacts: {
         facebook: null | string,
@@ -21,7 +21,7 @@ export type ProfilePropsType = {
     userId: number
 }
 
-export function Profile(props: ProfilePropsType) {
+export function Profile(props: ProfileType) {
     return (
         <div className={css.content}>
             <img

@@ -1,4 +1,4 @@
-import {appAPI} from '../api/api';
+import {usersAPI} from '../api/api';
 import {Dispatch} from 'redux';
 
 export type UserType = {
@@ -64,7 +64,7 @@ export const changeLoadingStatus = () => ({ type: 'CHANGE-LOADING-STATUS' } as c
 export const getUsers = (currentPage: number, pageSize: number) => {
     return (dispatch: Dispatch) => {
         dispatch(changeLoadingStatus())
-        appAPI.getUsers(currentPage, pageSize).then(data => {
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
             dispatch(changeLoadingStatus())
             dispatch(showUsers(data.items))
             dispatch(setTotalCount(data.totalCount))
@@ -76,7 +76,7 @@ export const getUsers = (currentPage: number, pageSize: number) => {
 export const toggleFollowStatus = (userID: number, method: 'DELETE' | 'POST') => {
     return (dispatch: Dispatch) => {
         dispatch(changeLoadingStatus())
-        appAPI.changeFollowStatus(userID, method)
+        usersAPI.changeFollowStatus(userID, method)
             .then(resultCode => {
                 dispatch(changeLoadingStatus())
                 if (!resultCode) dispatch(changeFollow(userID))

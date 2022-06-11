@@ -22,7 +22,7 @@ export class Users extends React.Component<UsersType> {
     render() {
         let pagesCount = Math.ceil(this.props.usersData.totalCount / this.props.usersData.pageSize)
         let pages = [...Array(pagesCount)].map((el, i) => ++i)
-        pages.length = 50
+        pages.length = 60
 
         return (
             <div>
