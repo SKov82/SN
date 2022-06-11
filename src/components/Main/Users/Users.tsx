@@ -3,22 +3,20 @@ import {UsersDataType, UserType} from '../../../redux/users-reducer';
 import css from './Users.module.css';
 import preloader from '../../../assets/img/loading.gif'
 import { NavLink } from 'react-router-dom';
-import {appAPI} from '../../../api/api';
 
 type UsersType = {
     usersData: UsersDataType
-    changeFollow: (userID: number) => void
-    changeLoadingStatus: () => void
-    getUsersTC: (currentPage: number, pageSize: number) => void
+    getUsers: (currentPage: number, pageSize: number) => void
+    toggleFollowStatus: (userID: number, method: 'DELETE' | 'POST') => void
 }
 
 export class Users extends React.Component<UsersType> {
     componentDidMount() {
-        this.props.getUsersTC(this.props.usersData.currentPage, this.props.usersData.pageSize)
+        this.props.getUsers(this.props.usersData.currentPage, this.props.usersData.pageSize)
     }
 
     onPageChanged = (page: number) => {
-        this.props.getUsersTC(page, this.props.usersData.pageSize)
+        this.props.getUsers(page, this.props.usersData.pageSize)
     }
 
     render() {
@@ -54,12 +52,7 @@ export class Users extends React.Component<UsersType> {
                             <button
                                 className={css.followButton}
                                 onClick={ () => {
-                                    this.props.changeLoadingStatus()
-                                    appAPI.changeFollowStatus(user.id, user.followed ? 'DELETE' : 'POST')
-                                        .then(resultCode => {
-                                            this.props.changeLoadingStatus()
-                                            if (!resultCode) this.props.changeFollow(user.id)
-                                        })
+                                    this.props.toggleFollowStatus(user.id, user.followed ? 'DELETE' : 'POST')
                                 }}
                             >
                                 {`${user.followed ? 'Подписан' : 'Подписаться'}`}

@@ -61,7 +61,7 @@ export const setCurrentPage = (currentPage: number) => ({ type: 'SET-CURRENT-PAG
 export const setTotalCount = (totalCount: number) => ({ type: 'SET-TOTAL-COUNT', payload: {totalCount} } as const)
 export const changeLoadingStatus = () => ({ type: 'CHANGE-LOADING-STATUS' } as const)
 
-export const getUsersTC = (currentPage: number, pageSize: number) => {
+export const getUsers = (currentPage: number, pageSize: number) => {
     return (dispatch: Dispatch) => {
         dispatch(changeLoadingStatus())
         appAPI.getUsers(currentPage, pageSize).then(data => {
@@ -70,5 +70,16 @@ export const getUsersTC = (currentPage: number, pageSize: number) => {
             dispatch(setTotalCount(data.totalCount))
             dispatch(setCurrentPage(currentPage))
         })
+    }
+}
+
+export const toggleFollowStatus = (userID: number, method: 'DELETE' | 'POST') => {
+    return (dispatch: Dispatch) => {
+        dispatch(changeLoadingStatus())
+        appAPI.changeFollowStatus(userID, method)
+            .then(resultCode => {
+                dispatch(changeLoadingStatus())
+                if (!resultCode) dispatch(changeFollow(userID))
+            })
     }
 }
