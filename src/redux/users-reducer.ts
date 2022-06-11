@@ -1,3 +1,6 @@
+import {appAPI} from '../api/api';
+import {Dispatch} from 'redux';
+
 export type UserType = {
     name: string
     id: number
@@ -57,3 +60,14 @@ export const showUsers = (users: UserType[]) => ({ type: 'SHOW-USERS', payload: 
 export const setCurrentPage = (currentPage: number) => ({ type: 'SET-CURRENT-PAGE', payload: {currentPage} } as const)
 export const setTotalCount = (totalCount: number) => ({ type: 'SET-TOTAL-COUNT', payload: {totalCount} } as const)
 export const changeLoadingStatus = () => ({ type: 'CHANGE-LOADING-STATUS' } as const)
+
+export const getUsersTC = (currentPage: number, pageSize: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(changeLoadingStatus())
+        appAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(changeLoadingStatus())
+            dispatch(showUsers(data.items))
+            dispatch(setTotalCount(data.totalCount))
+        })
+    }
+}

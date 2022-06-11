@@ -12,16 +12,12 @@ type UsersType = {
     setCurrentPage: (currentPage: number) => void
     setTotalCount: (totalCount: number) => void
     changeLoadingStatus: () => void
+    getUsersTC: (currentPage: number, pageSize: number) => void
 }
 
 export class Users extends React.Component<UsersType> {
     componentDidMount() {
-        this.props.changeLoadingStatus()
-        appAPI.getUsers(this.props.usersData.currentPage, this.props.usersData.pageSize).then(data => {
-            this.props.changeLoadingStatus()
-            this.props.showUsers(data.items)
-            this.props.setTotalCount(data.totalCount)
-        })
+        this.props.getUsersTC(this.props.usersData.currentPage, this.props.usersData.pageSize)
     }
 
     onPageChanged = (page: number) => {

@@ -1,7 +1,7 @@
 import {AppStateType} from '../../../redux/redux-store';
 import {connect} from 'react-redux';
 import {
-    changeFollow, changeLoadingStatus, setCurrentPage, setTotalCount, showUsers,
+    changeFollow, changeLoadingStatus, getUsersTC, setCurrentPage, setTotalCount, showUsers,
     UsersDataType
 } from '../../../redux/users-reducer';
 import {Users} from './Users';
@@ -15,6 +15,8 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 }
 
 export const UsersContainer = connect(mapStateToProps,
-    {changeFollow, showUsers, setCurrentPage, setTotalCount, changeLoadingStatus}
+    {
+        changeFollow, showUsers, setCurrentPage, setTotalCount, changeLoadingStatus, getUsersTC
+    }
 // @ts-ignore
 ) (Users)
