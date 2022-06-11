@@ -47,7 +47,7 @@ type SetUserProfileType = ReturnType<typeof setUserProfile>
 
 export const addNewPost = () => ({ type: 'ADD_POST' } as const)
 export const updateNewPost = (post: string) => ({ type: 'UPDATE_NEW_POST_TEXT', post } as const)
-export const setUserProfile = (profile: ProfileType) => ({ type: 'SET_USER_PROFILE', profile } as const)
+const setUserProfile = (profile: ProfileType) => ({ type: 'SET_USER_PROFILE', profile } as const)
 
 export const getUserProfile = (userID: number) => {
     return (dispatch: Dispatch) => {

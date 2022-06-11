@@ -56,10 +56,10 @@ type SetTotalCountType = ReturnType<typeof setTotalCount>
 type ChangeLoadingStatusType = ReturnType<typeof changeLoadingStatus>
 
 export const changeFollow = (userID: number) => ({ type: 'CHANGE-FOLLOW', payload: {userID} } as const)
-export const showUsers = (users: UserType[]) => ({ type: 'SHOW-USERS', payload: {users} } as const)
-export const setCurrentPage = (currentPage: number) => ({ type: 'SET-CURRENT-PAGE', payload: {currentPage} } as const)
-export const setTotalCount = (totalCount: number) => ({ type: 'SET-TOTAL-COUNT', payload: {totalCount} } as const)
-export const changeLoadingStatus = () => ({ type: 'CHANGE-LOADING-STATUS' } as const)
+const showUsers = (users: UserType[]) => ({ type: 'SHOW-USERS', payload: {users} } as const)
+const setCurrentPage = (currentPage: number) => ({ type: 'SET-CURRENT-PAGE', payload: {currentPage} } as const)
+const setTotalCount = (totalCount: number) => ({ type: 'SET-TOTAL-COUNT', payload: {totalCount} } as const)
+const changeLoadingStatus = () => ({ type: 'CHANGE-LOADING-STATUS' } as const)
 
 export const getUsers = (currentPage: number, pageSize: number) => {
     return (dispatch: Dispatch) => {

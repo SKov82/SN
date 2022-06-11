@@ -36,8 +36,8 @@ export type ActionType = ChangeLoadingStatusType | SetAuthDataType
 type SetAuthDataType = ReturnType<typeof setAuthData>
 type ChangeLoadingStatusType = ReturnType<typeof changeLoadingStatus>
 
-export const setAuthData = (data: StateType) => ({ type: 'SET-AUTH-DATA', data } as const)
-export const changeLoadingStatus = () => ({ type: 'CHANGE-LOADING-STATUS' } as const)
+const setAuthData = (data: StateType) => ({ type: 'SET-AUTH-DATA', data } as const)
+const changeLoadingStatus = () => ({ type: 'CHANGE-LOADING-STATUS' } as const)
 
 export const getAuthData = () => {
     return (dispatch: Dispatch) => {
