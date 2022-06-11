@@ -23,3 +23,10 @@ export const profileAPI = {
     },
 }
 // End Profile API
+// Start Auth API
+export const authAPI = {
+    getAuthData() {
+        return instance.get(`auth/me`).then(response => response.data)
+    },
+}
+// End Auth API

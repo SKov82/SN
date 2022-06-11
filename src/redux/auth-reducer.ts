@@ -1,4 +1,7 @@
-type StateType = {
+import {Dispatch} from 'redux';
+import {authAPI} from '../api/api';
+
+export type StateType = {
     id: null | number
     login: null | string
     email: null | string
@@ -35,3 +38,11 @@ type ChangeLoadingStatusType = ReturnType<typeof changeLoadingStatus>
 
 export const setAuthData = (data: StateType) => ({ type: 'SET-AUTH-DATA', data } as const)
 export const changeLoadingStatus = () => ({ type: 'CHANGE-LOADING-STATUS' } as const)
+
+export const getAuthData = () => {
+    return (dispatch: Dispatch) => {
+        authAPI.getAuthData().then(data => {
+            if (!data.resultCode) dispatch(setAuthData(data.data))
+        })
+    }
+}
