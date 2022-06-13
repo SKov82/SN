@@ -25,7 +25,10 @@ export function Main() {
                 // @ts-ignore
                 return <ProfileContainer/>
             }}/>
-            <Route path={'/dialogs'} render={() => <DialogsContainer />}/>
+            <Route path={'/dialogs'} render={() => {
+                // @ts-ignore
+                return <DialogsContainer />
+            }}/>
             <Route path={'/friends'}/>
             <Route path={'/users'} render={() => {
                 // @ts-ignore

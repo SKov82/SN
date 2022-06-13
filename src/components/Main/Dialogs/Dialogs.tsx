@@ -1,6 +1,6 @@
 import React from 'react';
 import css from './Dialogs.module.css';
-import {NavLink, Redirect} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import {Messages} from './Messages';
 import {DialogsDataType, DialogType} from '../../../redux/dialogs-reducer';
 
@@ -16,15 +16,12 @@ function Dialog({id, name}: DialogType) {
 }
 
 type DialogsType = {
-    isAuth: boolean
     dialogsData: DialogsDataType
     updateMessage: (text: string) => void
     addMessage: () => void
 }
 
-export function Dialogs({isAuth, dialogsData, updateMessage, addMessage}: DialogsType) {
-    if (!isAuth) return <Redirect to={'/login'} />
-
+export function Dialogs({dialogsData, updateMessage, addMessage}: DialogsType) {
     let dialogsElements = dialogsData.dialogs.map((el: DialogType) => {
         return <Dialog key={el.id}
                        id={el.id}
