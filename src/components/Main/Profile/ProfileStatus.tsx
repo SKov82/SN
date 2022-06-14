@@ -6,12 +6,15 @@ export const ProfileStatus = (props: any) => {
     const editModeHandler = () => setEditMode(!editMode)
 
     return <div>
-        Статус:
+        {`Статус: `}
         { editMode
             ? <span onKeyDown={ (e) => {if (e.key === 'Enter') editModeHandler()} }
                    onBlur={editModeHandler}
               >
-                <input value={props.status} />
+                <input autoFocus={true}
+                       maxLength={300}
+                    value={props.status}
+                />
               </span>
             : <span onDoubleClick={editModeHandler}>
                 {props.status}

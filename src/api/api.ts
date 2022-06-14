@@ -16,13 +16,21 @@ export const usersAPI = {
     },
 }
 // End Users API
+
 // Start Profile API
 export const profileAPI = {
     getUserProfile(userID: number) {
         return instance.get(`profile/${userID}`).then(response => response.data)
     },
+    getUserStatus(userID: number) {
+        return instance.get(`profile/status/${userID}`).then(response => response.data)
+    },
+    updateUserStatus(status: string) {
+        return instance.put(`profile/status`, {status}).then(response => response.data)
+    },
 }
 // End Profile API
+
 // Start Auth API
 export const authAPI = {
     getAuthData() {
