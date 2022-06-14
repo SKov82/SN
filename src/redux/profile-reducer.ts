@@ -39,25 +39,21 @@ export const profileReducer = (state: ProfileDataType = initialState, action: Ac
             return {...state, profile: action.profile}
         case 'SET_USER_STATUS':
             return {...state, status: action.status}
-        case 'CHANGE_USER_STATUS':
-            return {...state, status: action.newStatus}
         default:
             return state
     }
 }
 
-type ActionType = AddNewPostType | UpdateNewPostType | SetUserProfileType | SetUserStatusType | ChangeUserStatusType
+type ActionType = AddNewPostType | UpdateNewPostType | SetUserProfileType | SetUserStatusType
 type AddNewPostType = ReturnType<typeof addNewPost>
 type UpdateNewPostType = ReturnType<typeof updateNewPost>
 type SetUserProfileType = ReturnType<typeof setUserProfile>
 type SetUserStatusType = ReturnType<typeof setUserStatus>
-type ChangeUserStatusType = ReturnType<typeof changeUserStatus>
 
 export const addNewPost = () => ({ type: 'ADD_POST' } as const)
 export const updateNewPost = (post: string) => ({ type: 'UPDATE_NEW_POST_TEXT', post } as const)
 const setUserProfile = (profile: ProfileType) => ({ type: 'SET_USER_PROFILE', profile } as const)
 const setUserStatus = (status: string | null) => ({ type: 'SET_USER_STATUS', status } as const)
-const changeUserStatus = (newStatus: string) => ({ type: 'CHANGE_USER_STATUS', newStatus } as const)
 
 export const getUserProfile = (userID: number) => {
     return (dispatch: Dispatch) => {
@@ -73,10 +69,11 @@ export const getUserStatus = (userID: number) => {
         })
     }
 }
-export const updateUserStatus = (newStatus: string) => {
+export const updateUserStatus = (newStatus: string | null) => {
     return (dispatch: Dispatch) => {
         profileAPI.updateUserStatus(newStatus).then(data => {
-            dispatch(changeUserStatus(data))
+            console.log(data)
+            if (!data.resultCode) dispatch(setUserStatus(data))
         })
     }
 }

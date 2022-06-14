@@ -8,7 +8,6 @@ import {WithAuthRedirect} from '../../../hoc/withAuthRedirect';
 
 type ProfileContainerType = {
     profileData: ProfileType
-    status: string | null
     isAuth: boolean
     getUserProfile: (userID: number) => void
     getUserStatus: (userID: number) => void
@@ -24,19 +23,18 @@ class ProfileC extends React.Component<ProfileContainerType> {
 
     render () {
         return (
-            <Profile {...this.props.profileData} status={this.props.status} />
+            <Profile {...this.props.profileData} />
         )
     }
 }
 
 type MapStateToPropsType = {
     profileData: null | ProfileType
-    status: string | null
     isAuth: boolean
 }
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
-    return { profileData: state.profileData.profile, status: state.profileData.status, isAuth: state.auth.isAuth }
+    return { profileData: state.profileData.profile, isAuth: state.auth.isAuth }
 }
 
 // @ts-ignore
