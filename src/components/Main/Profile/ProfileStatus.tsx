@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 
-export const ProfileStatus = (props: any) => {
+export const ProfileStatus = ({status}: any) => {
 
     const [editMode, setEditMode] = useState<boolean>(false)
     const editModeHandler = () => setEditMode(!editMode)
@@ -13,11 +13,11 @@ export const ProfileStatus = (props: any) => {
               >
                 <input autoFocus={true}
                        maxLength={300}
-                    value={props.status}
+                    value={status}
                 />
               </span>
             : <span onDoubleClick={editModeHandler}>
-                {props.status}
+                {status}
               </span>
         }
     </div>

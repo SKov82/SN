@@ -7,6 +7,7 @@ const startState: ProfileDataType = {
     ],
     newPostText: 'Hello',
     profile: null,
+    status: null,
 }
 
 test('update new post', () => {

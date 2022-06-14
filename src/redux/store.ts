@@ -39,6 +39,7 @@ export let store: StoreType = {
             ],
             newPostText: '',
             profile: null,
+            status: null,
         },
         dialogsData: {
             dialogs: [

@@ -20,6 +20,7 @@ export type ProfileType = {
     lookingForAJobDescription: null | string
     photos: {small: null | string, large: null | string}
     userId: number
+    status: string | null
 }
 
 export function Profile(props: ProfileType) {
@@ -33,7 +34,7 @@ export function Profile(props: ProfileType) {
             <div>{props.aboutMe}</div>
             <div>{props.lookingForAJobDescription}</div>
 
-            <ProfileStatus status={'Hi there'}/>
+            <ProfileStatus status={props.status}/>
             <MyPostsContainer />
         </div>
     )
