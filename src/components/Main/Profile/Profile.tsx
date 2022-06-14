@@ -1,6 +1,7 @@
 import React from 'react';
 import css from './Profile.module.css';
 import {MyPostsContainer} from './MyPosts/MyPostsContainer';
+import {ProfileStatus} from './ProfileStatus';
 
 export type ProfileType = {
     aboutMe: null | string
@@ -32,6 +33,7 @@ export function Profile(props: ProfileType) {
             <div>{props.aboutMe}</div>
             <div>{props.lookingForAJobDescription}</div>
 
+            <ProfileStatus status={'Hi there'}/>
             <MyPostsContainer />
         </div>
     )
