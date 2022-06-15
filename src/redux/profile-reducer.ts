@@ -69,10 +69,9 @@ export const getUserStatus = (userID: number) => {
         })
     }
 }
-export const updateUserStatus = (newStatus: string | null) => {
+export const updateUserStatus = (newStatus: string) => {
     return (dispatch: Dispatch) => {
         profileAPI.updateUserStatus(newStatus).then(data => {
-            console.log(data)
             if (!data.resultCode) dispatch(setUserStatus(data))
         })
     }

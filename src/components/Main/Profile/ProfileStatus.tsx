@@ -1,28 +1,42 @@
-import React, {ChangeEvent, useState} from 'react';
-import {useSelector} from 'react-redux';
+import React, {ChangeEvent, KeyboardEvent, useEffect, useRef, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import {AppStateType} from '../../../redux/redux-store';
-import {updateUserStatus} from '../../../redux/profile-reducer';
+import {getUserStatus, updateUserStatus} from '../../../redux/profile-reducer';
 
-export const ProfileStatus = () => {
-    const state = useSelector<AppStateType, string | null>(state => state.profileData.status)
+export const ProfileStatus = (props: {userID: number}) => {
     const [editMode, setEditMode] = useState<boolean>(false)
     const editModeHandler = () => setEditMode(!editMode)
-    const [status, setStatus] = useState<string | null>(state)
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        e.currentTarget.value && setStatus(e.currentTarget.value)
-    }
+
+    const dispatch = useDispatch()
+    const [status, setStatus] = useState<string | null>(
+        useSelector<AppStateType, string | null>(state => state.profileData.status)
+    )
+
+    // const mounted = useRef(null);
+    // useEffect(() => {
+    //     if (!mounted.current) {
+    //         // do componentDidMount logic
+    //         dispatch(getUserStatus(props.userID))
+    //     } else {
+    //         // do componentDidUpdate logic
+    //         setStatus(status)
+    //     }
+    // });
 
     return <div onDoubleClick={editModeHandler}>
         {`Статус: `}
         { editMode
             ? <span onBlur={editModeHandler} >
-                <input onChange={ (e) => onChangeHandler(e) }
-                       onKeyDown={ (e) => {
-                           if (e.key === 'Enter') updateUserStatus(status)
+                <input value={status || ''}
+                       onChange={ (e: ChangeEvent<HTMLInputElement>) => setStatus(e.currentTarget.value) }
+                       onKeyPress={ (e: KeyboardEvent<HTMLInputElement>) => {
+                            if (e.key === 'Enter') {
+                                editModeHandler()
+                                dispatch(updateUserStatus(status || ''))
+                            }
                        }}
-                       autoFocus={true}
+                       autoFocus
                        maxLength={300}
-                       value={status || ''}
                 />
               </span>
             : <span> {status} </span>

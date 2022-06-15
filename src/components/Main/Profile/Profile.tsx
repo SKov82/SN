@@ -33,7 +33,7 @@ export function Profile(props: ProfileType) {
             <div>{props.aboutMe}</div>
             <div>{props.lookingForAJobDescription}</div>
 
-            <ProfileStatus />
+            <ProfileStatus userID={props.userId}/>
             <MyPostsContainer />
         </div>
     )
