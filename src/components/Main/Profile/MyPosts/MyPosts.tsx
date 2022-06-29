@@ -3,6 +3,7 @@ import css from './MyPosts.module.css';
 import {Post} from './Post/Post';
 import {PostType, ProfileDataType} from '../../../../redux/profile-reducer';
 import {Field, reduxForm} from 'redux-form';
+import {maxLength, requiredField} from '../../../../validators/validators';
 
 type MyPostsType = {
     profileData: ProfileDataType
@@ -25,7 +26,9 @@ export function MyPosts({profileData, addPost}: MyPostsType) {
     return (
         <div>
             <div className={css.post_title}>Мои посты</div>
+
             <AddPostFormRedux onSubmit={addPostHandler} />
+
             {postsElements}
         </div>
     );
@@ -34,7 +37,11 @@ export function MyPosts({profileData, addPost}: MyPostsType) {
 const AddPostForm = (props: any) => {
     return (
         <form className={css.new_post} onSubmit={props.handleSubmit}>
-            <Field component={'textarea'} name={'newPost'} rows={3} />
+            <Field component={'textarea'}
+                   name={'newPost'}
+                   rows={3}
+                   validate={[requiredField, maxLength]}
+            />
             <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
                 Запостить
             </button>

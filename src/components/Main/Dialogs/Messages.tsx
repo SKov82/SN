@@ -2,11 +2,16 @@ import css from './Messages.module.css';
 import React from 'react';
 import {MessageType} from '../../../redux/dialogs-reducer';
 import {Field, reduxForm} from 'redux-form';
+import {requiredField} from '../../../validators/validators';
 
 const AddMessage = (props: any) => {
     return (
         <form className={css.new_message} onSubmit={props.handleSubmit}>
-            <Field component={'textarea'} name={'newMessage'} />
+            <Field component={'textarea'}
+                   name={'newMessage'}
+                   rows={3}
+                   validate={[requiredField]}
+            />
             <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
                 Отправить
             </button>
