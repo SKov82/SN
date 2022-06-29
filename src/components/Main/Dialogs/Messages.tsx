@@ -1,5 +1,5 @@
 import css from './Messages.module.css';
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import {MessageType} from '../../../redux/dialogs-reducer';
 import {Field, reduxForm} from 'redux-form';
 
