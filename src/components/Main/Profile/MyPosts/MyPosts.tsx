@@ -2,14 +2,14 @@ import React from 'react';
 import css from './MyPosts.module.css';
 import {Post} from './Post/Post';
 import {PostType, ProfileDataType} from '../../../../redux/profile-reducer';
+import {Field, reduxForm} from 'redux-form';
 
 type MyPostsType = {
     profileData: ProfileDataType
-    updatePost: (text: string) => void
-    addPost: () => void
+    addPost: (newPost: string) => void
 }
 
-export function MyPosts({profileData, updatePost, addPost}: MyPostsType) {
+export function MyPosts({profileData, addPost}: MyPostsType) {
     let postsElements = profileData.posts.map((el: PostType) => {
         return <Post key={el.id}
                      id={el.id}
@@ -18,41 +18,27 @@ export function MyPosts({profileData, updatePost, addPost}: MyPostsType) {
         />
     })
 
-    let newPostElement = React.createRef<HTMLTextAreaElement>()
-
-    const newPostHandler = () => {
-        if (newPostElement.current && newPostElement.current.value.trim()) {
-            addPost()
-        }
-    }
-    const onChangeNewPostHandler = () => {
-        if (newPostElement.current && newPostElement.current.value !== '\n') {
-            updatePost(newPostElement.current.value)
-        }
+    const addPostHandler = (formData: any) => {
+        addPost(formData.newPost)
     }
 
     return (
         <div>
             <div className={css.post_title}>Мои посты</div>
-            
-            <div className={css.new_post}>
-                <textarea ref={newPostElement}
-                          value={profileData.newPostText}
-                          onChange={onChangeNewPostHandler}
-                          onKeyDown={ (e) => {if (e.key === 'Enter') newPostHandler()} }
-                          name="new_post"
-                          id="new_post"
-                          rows={3}
-                />
-
-                <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                        onClick={newPostHandler}
-                >
-                    Запостить
-                </button>
-            </div>
-
+            <AddPostFormRedux onSubmit={addPostHandler} />
             {postsElements}
         </div>
     );
 }
+
+const AddPostForm = (props: any) => {
+    return (
+        <form className={css.new_post} onSubmit={props.handleSubmit}>
+            <Field component={'textarea'} name={'newPost'} rows={3} />
+            <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+                Запостить
+            </button>
+        </form>
+    )
+}
+const AddPostFormRedux = reduxForm({form: 'newPostForm'}) (AddPostForm)

@@ -36,7 +36,6 @@ export let store: StoreType = {
                 {id: 2, message: "Всем привет! Начал изучать React. А что учите вы?", likesCount: 12},
                 {id: 1, message: "Привет. Это мой первый пост.", likesCount: 9199},
             ],
-            newPostText: '',
             profile: null,
             status: null,
         },
