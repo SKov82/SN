@@ -1,6 +1,18 @@
 import css from './Messages.module.css';
 import React, {ChangeEvent} from 'react';
 import {MessageType} from '../../../redux/dialogs-reducer';
+import {Field, reduxForm} from 'redux-form';
+
+const AddMessage = (props: any) => {
+    return <form className={css.new_message} onSubmit={props.handleSubmit}>
+        <Field component={'textarea'} name={'newMessage'} />
+        <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            Отправить
+        </button>
+    </form>
+}
+
+const AddMessageForm = reduxForm({form: 'newMessageForm'}) (AddMessage)
 
 function Message({text}: MessageType) {
     return (
@@ -12,17 +24,12 @@ function Message({text}: MessageType) {
 
 type MessagesType = {
     messages: Array<MessageType>
-    newMessageText: string
-    updateMessage: (text: string) => void
-    addMessage: () => void
+    addMessage: (newMessage: string) => void
 }
 
-export function Messages({messages, newMessageText, updateMessage, addMessage}: MessagesType) {
-    const addMessageHandler = () => {
-        if (newMessageText && newMessageText.trim()) addMessage()
-    }
-    const onChangeMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        if (e.target && e.target.value !== '\n') updateMessage(e.target.value)
+export function Messages({messages, addMessage}: MessagesType) {
+    const addMessageHandler = (formData: any) => {
+        addMessage(formData.newMessage)
     }
 
     return <>
@@ -33,20 +40,6 @@ export function Messages({messages, newMessageText, updateMessage, addMessage}: 
             />
         })}
 
-        <div className={css.new_message}>
-            <textarea value={newMessageText}
-                      onChange={ (e) => {onChangeMessageHandler(e)} }
-                      onKeyDown={ (e) => {if (e.key === 'Enter') addMessageHandler()} }
-                      name="new_message"
-                      id="new_message"
-                      rows={3}
-            />
-
-            <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
-                    onClick={ addMessageHandler }
-            >
-                Отправить
-            </button>
-        </div>
+        <AddMessageForm onSubmit={addMessageHandler} />
     </>
 }

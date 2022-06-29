@@ -1,5 +1,5 @@
 import {Dialogs} from './Dialogs';
-import {addMessageAC, DialogsDataType, updateNewMessageAC} from '../../../redux/dialogs-reducer';
+import {addMessageAC, DialogsDataType} from '../../../redux/dialogs-reducer';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../../redux/redux-store';
 import {Dispatch} from 'redux';
@@ -10,8 +10,7 @@ type MapStateToPropsType = {
     isAuth: boolean
 }
 type MapDispatchToPropsType = {
-    updateMessage: (text: string) => void
-    addMessage: () => void
+    addMessage: (newMessage: string) => void
 }
 
 let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
@@ -22,11 +21,8 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 }
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
-        updateMessage: (text: string) => {
-            dispatch( updateNewMessageAC(text) )
-        },
-        addMessage: () => {
-            dispatch( addMessageAC() )
+        addMessage: (newMessage: string) => {
+            dispatch( addMessageAC(newMessage) )
         }
     }
 }

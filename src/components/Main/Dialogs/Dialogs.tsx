@@ -17,11 +17,10 @@ function Dialog({id, name}: DialogType) {
 
 type DialogsType = {
     dialogsData: DialogsDataType
-    updateMessage: (text: string) => void
-    addMessage: () => void
+    addMessage: (newMessage: string) => void
 }
 
-export function Dialogs({dialogsData, updateMessage, addMessage}: DialogsType) {
+export function Dialogs({dialogsData, addMessage}: DialogsType) {
     let dialogsElements = dialogsData.dialogs.map((el: DialogType) => {
         return <Dialog key={el.id}
                        id={el.id}
@@ -43,8 +42,6 @@ export function Dialogs({dialogsData, updateMessage, addMessage}: DialogsType) {
 
             <div className={css.messages}>
                 <Messages messages={dialogsData.messages}
-                          newMessageText={dialogsData.newMessageText}
-                          updateMessage={updateMessage}
                           addMessage={addMessage}
                 />
             </div>

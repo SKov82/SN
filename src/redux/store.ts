@@ -14,7 +14,6 @@ type MessageType = {
 type DialogsDataType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
-    newMessageText: string
 }
 
 export type StateType = {
@@ -53,7 +52,6 @@ export let store: StoreType = {
                 {id: 2, text: 'Ты дома?'},
                 {id: 3, text: 'Привет. Да, только пришел'},
             ],
-            newMessageText: '',
         },
     },
     getState() {
