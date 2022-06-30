@@ -36,7 +36,6 @@ export function MyPosts({profileData, addPost}: MyPostsType) {
 }
 
 const maxLength = maxLengthCreator(70)
-
 const AddPostForm = (props: any) => {
     return (
         <form className={css.new_post} onSubmit={props.handleSubmit}>
