@@ -3,11 +3,12 @@ import React from 'react';
 import {MessageType} from '../../../redux/dialogs-reducer';
 import {Field, reduxForm} from 'redux-form';
 import {requiredField} from '../../../validators/validators';
+import {TextArea} from '../../FormControls/FormController';
 
 const AddMessage = (props: any) => {
     return (
         <form className={css.new_message} onSubmit={props.handleSubmit}>
-            <Field component={'textarea'}
+            <Field component={TextArea}
                    name={'newMessage'}
                    rows={3}
                    validate={[requiredField]}
