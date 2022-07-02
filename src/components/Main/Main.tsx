@@ -6,15 +6,18 @@ import {Route} from 'react-router-dom';
 import {UsersContainer} from './Users/UsersContainer';
 import {ProfileContainer} from './Profile/ProfileContainer';
 import {Login} from '../Login';
+import {useSelector} from 'react-redux';
+import {AppStateType} from '../../redux/redux-store';
 
 export function Main() {
+    const userName = useSelector<AppStateType, null | string>(state => state.auth.data.login)
     return (
         <div className={css.container}>
             <Navbar/>
 
             <div className={css.bg}>
                 <h1 className="text-3xl font-bold text-center">
-                    Привет, User
+                    {userName ? `Привет, ${userName}` : ''}
                 </h1>
             </div>
 

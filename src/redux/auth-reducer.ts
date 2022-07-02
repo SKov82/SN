@@ -69,6 +69,7 @@ export const login = (email: string, password: string, rememberMe: boolean = fal
 export const logout = () => {
     return (dispatch: Dispatch) => {
         authAPI.logout().then(data => {
+            dispatch(setAuthData( {id: null, login: null, email: null} ))
             dispatch(toggleIsAuth(false))
         })
     }

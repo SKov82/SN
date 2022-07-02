@@ -2,6 +2,10 @@ import React from 'react';
 import {Field, reduxForm} from 'redux-form';
 import {maxLengthCreator, minLengthCreator, requiredField} from '../validators/validators';
 import {Input} from './FormControls/FormController';
+import {useDispatch, useSelector} from 'react-redux';
+import {AuthDataType, login} from '../redux/auth-reducer';
+import {Redirect} from 'react-router-dom';
+import {AppStateType} from '../redux/redux-store';
 
 const minLoginLength = minLengthCreator(4)
 const maxLoginLength = maxLengthCreator(32)
@@ -41,9 +45,11 @@ const LoginForm = (props: any) => {
 const LoginC = reduxForm({form: 'login'}) (LoginForm)
 
 export const Login = () => {
-    const onSubmit = (formData: any) => {
-        console.log(formData)
-    }
+    const dispatch = useDispatch()
+    const auth = useSelector<AppStateType, AuthDataType>(state => state.auth)
+    const onSubmit = (formData: any) => dispatch(login(formData.login, formData.password, formData?.rememberMe))
+
+    if (auth.isAuth) return <Redirect to={`/profile/${auth.data.id}`} />
 
     return <div>
         <strong>Авторизуйтесь</strong>
