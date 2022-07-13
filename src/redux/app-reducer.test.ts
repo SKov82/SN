@@ -1,10 +1,12 @@
-import {appReducer, InitStateType} from './app-reducer';
+import {appReducer, InitStateType, setInit} from './app-reducer';
 
-const startState: InitStateType = {}
+const startState: InitStateType = {
+    isInit: false
+}
 
 test('', () => {
-    const endState = appReducer(startState, {type: ''})
+    const endState = appReducer(startState, setInit())
 
-    expect(endState).toBe(startState)
+    expect(endState.isInit).toBeTruthy()
 
 })
