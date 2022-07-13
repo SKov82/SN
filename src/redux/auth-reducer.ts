@@ -1,5 +1,6 @@
 import {Dispatch} from 'redux';
 import {authAPI} from '../api/api';
+import {stopSubmit} from 'redux-form';
 
 export type StateType = {
     id: null | number
@@ -61,6 +62,8 @@ export const login = (email: string, password: string, rememberMe: boolean = fal
         authAPI.login(email, password, rememberMe).then(data => {
             if (!data.resultCode) {
                 dispatch(getAuthData())
+            } else {
+                dispatch(stopSubmit('login', {_error: data.messages[0]}))
             }
         })
     }

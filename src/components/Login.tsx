@@ -6,6 +6,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {AuthDataType, login} from '../redux/auth-reducer';
 import {Redirect} from 'react-router-dom';
 import {AppStateType} from '../redux/redux-store';
+import style from '../components/FormControls/FormController.module.css'
 
 const minLoginLength = minLengthCreator(4)
 const maxLoginLength = maxLengthCreator(32)
@@ -34,6 +35,9 @@ const LoginForm = (props: any) => {
                        type="checkbox"
                        component={'input'}
                 /> Запомнить меня
+            </div>
+            <div className={style.formAuthError}>
+                {props.error}
             </div>
             <div>
                 <button>Войти</button>

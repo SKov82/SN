@@ -9,3 +9,7 @@ textarea.error {
 span.error {
     color: red;
 }
+
+div.formAuthError {
+    color: red;
+}
