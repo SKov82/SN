@@ -48,7 +48,7 @@ const changeLoadingStatus = () => ({ type: 'CHANGE-LOADING-STATUS' } as const)
 
 export const getAuthData = (): any => {
     return (dispatch: Dispatch) => {
-        authAPI.getAuthData().then(data => {
+        return authAPI.getAuthData().then(data => {
             if (!data.resultCode) {
                 dispatch(setAuthData(data.data))
                 dispatch(toggleIsAuth(true))

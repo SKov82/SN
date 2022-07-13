@@ -4,11 +4,14 @@ import {Main} from './components/Main/Main';
 import {Footer} from './components/Footer';
 import {HeaderContainer} from './components/Header/HeaderContainer';
 import {connect} from 'react-redux';
-import {getAuthData} from './redux/auth-reducer';
+import {getInit} from './redux/app-reducer';
 
-class App extends React.Component<any> {
+type AppType = {
+    getInit: () => void
+}
+class App extends React.Component<AppType> {
     componentDidMount() {
-        this.props.getAuthData()
+        this.props.getInit()
     }
 
     render() {
@@ -22,4 +25,4 @@ class App extends React.Component<any> {
     }
 }
 // @ts-ignore
-export default connect(null, {getAuthData})(App)
+export default connect(null, {getInit})(App)

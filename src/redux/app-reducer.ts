@@ -1,4 +1,5 @@
 import {Dispatch} from 'redux';
+import {getAuthData} from './auth-reducer';
 
 export type InitStateType = {
     isInit: boolean
@@ -19,7 +20,8 @@ export type ActionType = ReturnType<typeof setInit>
 export const setInit = () => ({type: 'SET_INIT'} as const)
 
 export const getInit = () => {
-    return (dispacth: Dispatch) => {
-
+    return (dispatch: Dispatch) => {
+        dispatch(getAuthData())
+            .then(dispatch(setInit()))
     }
 }
