@@ -1,7 +1,7 @@
-import React, {ChangeEvent, KeyboardEvent, useEffect, useRef, useState} from 'react';
+import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {AppStateType} from '../../../redux/redux-store';
-import {getUserStatus, updateUserStatus} from '../../../redux/profile-reducer';
+import {updateUserStatus} from '../../../redux/profile-reducer';
 
 export const ProfileStatus = (props: {userID: number, status: string | null}) => {
     const [editMode, setEditMode] = useState<boolean>(false)
@@ -11,17 +11,6 @@ export const ProfileStatus = (props: {userID: number, status: string | null}) =>
     const [status, setStatus] = useState<string | null>(
         useSelector<AppStateType, string | null>(state => state.profileData.status)
     )
-
-    // const mounted = useRef(null);
-    // useEffect(() => {
-    //     if (!mounted.current) {
-    //         // do componentDidMount logic
-    //         dispatch(getUserStatus(props.userID))
-    //     } else {
-    //         // do componentDidUpdate logic
-    //         setStatus(status)
-    //     }
-    // });
 
     return <div onDoubleClick={editModeHandler}>
         {`Статус: `}
