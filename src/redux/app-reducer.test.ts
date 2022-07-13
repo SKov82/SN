@@ -4,7 +4,7 @@ const startState: InitStateType = {
     isInit: false
 }
 
-test('', () => {
+test('set init to true', () => {
     const endState = appReducer(startState, setInit())
 
     expect(endState.isInit).toBeTruthy()
