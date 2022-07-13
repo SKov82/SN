@@ -10,7 +10,9 @@ let renderAll = () => {
     ReactDOM.render((
         <BrowserRouter>
             <Provider store={store}>
-                <App />
+                < // @ts-ignore
+                    App
+                />
             </Provider>
         </BrowserRouter>), document.getElementById('root')
     );
