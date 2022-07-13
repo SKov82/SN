@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {AppStateType} from '../../../redux/redux-store';
 import {getUserStatus, updateUserStatus} from '../../../redux/profile-reducer';
 
-export const ProfileStatus = (props: {userID: number}) => {
+export const ProfileStatus = (props: {userID: number, status: string | null}) => {
     const [editMode, setEditMode] = useState<boolean>(false)
     const editModeHandler = () => setEditMode(!editMode)
 
@@ -27,7 +27,7 @@ export const ProfileStatus = (props: {userID: number}) => {
         {`Статус: `}
         { editMode
             ? <span onBlur={editModeHandler} >
-                <input value={status || ''}
+                <input value={status || props.status || ''}
                        onChange={ (e: ChangeEvent<HTMLInputElement>) => setStatus(e.currentTarget.value) }
                        onKeyPress={ (e: KeyboardEvent<HTMLInputElement>) => {
                             if (e.key === 'Enter') {
@@ -39,7 +39,7 @@ export const ProfileStatus = (props: {userID: number}) => {
                        maxLength={300}
                 />
               </span>
-            : <span> {status} </span>
+            : <span> {status || props.status} </span>
         }
     </div>
 }
