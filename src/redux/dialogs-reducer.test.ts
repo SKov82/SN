@@ -17,7 +17,7 @@ test('add new message', () => {
     expect(endState.dialogs.length).toBe(startState.dialogs.length)
     expect(endState.messages.length).toBe(startState.messages.length + 1)
     expect(endState.messages[0]).toBe(startState.messages[0])
-    expect(endState.messages[2].text).toBe('Hey')
+    expect(endState.messages[2].text).toBe('newMessage')
     expect(endState.dialogs === startState.dialogs).toBeTruthy()
     expect(endState.messages === startState.messages).toBeFalsy()
     expect(endState === startState).toBeFalsy()
