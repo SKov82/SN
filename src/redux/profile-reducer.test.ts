@@ -1,4 +1,4 @@
-import {addNewPost, ProfileDataType, profileReducer} from './profile-reducer';
+import {addNewPost, ProfileDataType, profileReducer, setUserProfile, setUserStatus} from './profile-reducer';
 
 const startState: ProfileDataType = {
     posts: [
@@ -13,8 +13,45 @@ test('add new post', () => {
     const endState = profileReducer(startState, addNewPost('newPost'))
 
     expect(endState.posts.length).toBe(startState.posts.length + 1)
-    expect(endState.posts[0].message).toBe('Hello')
+    expect(endState.posts[0].message).toBe('newPost')
     expect(endState.posts[0].likesCount).toEqual(0)
     expect(endState.posts === startState.posts).toBeFalsy()
+    expect(endState === startState).toBeFalsy()
+})
+
+test('set user profile', () => {
+    const endState = profileReducer(startState, setUserProfile({
+        aboutMe: 'about me',
+        contacts: {
+            facebook: 'facebook',
+            website: 'website',
+            vk: 'vk',
+            twitter: 'twitter',
+            instagram: 'instagram',
+            youtube: 'youtube',
+            github: 'github',
+            mainLink: 'mainLink',
+        },
+        fullName: 'name',
+        lookingForAJob: true,
+        lookingForAJobDescription: 'it',
+        photos: {small: 'photo', large: 'big photo'},
+        userId: 23880,
+        status: 'status'
+    }))
+
+    expect(endState.posts).toBe(startState.posts)
+    expect(endState.profile?.userId).toEqual(23880)
+    expect(endState.profile?.contacts).toBeInstanceOf(Object)
+    expect(endState.profile === startState.profile).toBeFalsy()
+    expect(endState === startState).toBeFalsy()
+})
+
+test('set user status', () => {
+    const endState = profileReducer(startState, setUserStatus('newStatus'))
+
+    expect(endState.status).toBe('newStatus')
+    expect(endState.profile).toBeNull()
+    expect(endState.posts === startState.posts).toBeTruthy()
     expect(endState === startState).toBeFalsy()
 })
