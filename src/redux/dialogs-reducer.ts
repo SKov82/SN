@@ -33,13 +33,13 @@ let initialState = {
 
 export const dialogsReducer = (state: DialogsDataType = initialState, action: ActionType): DialogsDataType => {
     switch (action.type) {
-        case 'ADD-MESSAGE':
+        case 'dialogs/ADD-MESSAGE':
             return {...state,
                 messages: [
                     ...state.messages, { id: state.messages.length + 1, text: action.newMessage }
                 ]
             }
-        case 'REMOVE-MESSAGE':
+        case 'dialogs/REMOVE-MESSAGE':
             return {...state,
                 messages: state.messages.filter(m => m.id !== action.id)
             }
@@ -49,5 +49,5 @@ export const dialogsReducer = (state: DialogsDataType = initialState, action: Ac
 }
 type ActionType = ReturnType<typeof addMessageAC> | ReturnType<typeof removeMessage>
 
-export const addMessageAC = (newMessage: string) => ({ type: 'ADD-MESSAGE', newMessage } as const)
-export const removeMessage = (id: number) => ({ type: 'REMOVE-MESSAGE', id } as const)
+export const addMessageAC = (newMessage: string) => ({ type: 'dialogs/ADD-MESSAGE', newMessage } as const)
+export const removeMessage = (id: number) => ({ type: 'dialogs/REMOVE-MESSAGE', id } as const)

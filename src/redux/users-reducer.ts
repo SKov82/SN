@@ -27,17 +27,17 @@ let initialState: UsersDataType = {
 
 export const usersReducer = (state: UsersDataType = initialState, action: ActionType): UsersDataType => {
     switch (action.type) {
-        case 'CHANGE-FOLLOW':
+        case 'users/CHANGE-FOLLOW':
             return {...state, users: state.users.map(
                 user => user.id === action.payload.userID ? {...user, followed: !user.followed} : user
             )}
-        case 'SHOW-USERS':
+        case 'users/SHOW-USERS':
             return {...state, users: action.payload.users}
-        case 'SET-CURRENT-PAGE':
+        case 'users/SET-CURRENT-PAGE':
             return {...state, currentPage: action.payload.currentPage}
-        case 'SET-TOTAL-COUNT':
+        case 'users/SET-TOTAL-COUNT':
             return {...state, totalCount: action.payload.totalCount}
-        case 'CHANGE-LOADING-STATUS':
+        case 'users/CHANGE-LOADING-STATUS':
             return {...state, isLoading: !state.isLoading}
         default:
             return state
@@ -55,31 +55,26 @@ type SetCurrentPageType = ReturnType<typeof setCurrentPage>
 type SetTotalCountType = ReturnType<typeof setTotalCount>
 type ChangeLoadingStatusType = ReturnType<typeof changeLoadingStatus>
 
-export const changeFollow = (userID: number) => ({ type: 'CHANGE-FOLLOW', payload: {userID} } as const)
-export const showUsers = (users: UserType[]) => ({ type: 'SHOW-USERS', payload: {users} } as const)
-export const setCurrentPage = (currentPage: number) => ({ type: 'SET-CURRENT-PAGE', payload: {currentPage} } as const)
-export const setTotalCount = (totalCount: number) => ({ type: 'SET-TOTAL-COUNT', payload: {totalCount} } as const)
-export const changeLoadingStatus = () => ({ type: 'CHANGE-LOADING-STATUS' } as const)
+export const changeFollow = (userID: number) => ({ type: 'users/CHANGE-FOLLOW', payload: {userID} } as const)
+export const showUsers = (users: UserType[]) => ({ type: 'users/SHOW-USERS', payload: {users} } as const)
+export const setCurrentPage = (currentPage: number) => ({ type: 'users/SET-CURRENT-PAGE', payload: {currentPage} } as const)
+export const setTotalCount = (totalCount: number) => ({ type: 'users/SET-TOTAL-COUNT', payload: {totalCount} } as const)
+export const changeLoadingStatus = () => ({ type: 'users/CHANGE-LOADING-STATUS' } as const)
 
-export const getUsers = (currentPage: number, pageSize: number) => {
-    return (dispatch: Dispatch) => {
+export const getUsers = (currentPage: number, pageSize: number) => async (dispatch: Dispatch) => {
+    dispatch(changeLoadingStatus())
+    let data = await usersAPI.getUsers(currentPage, pageSize)
+    if (!data.error) {
         dispatch(changeLoadingStatus())
-        usersAPI.getUsers(currentPage, pageSize).then(data => {
-            dispatch(changeLoadingStatus())
-            dispatch(showUsers(data.items))
-            dispatch(setTotalCount(data.totalCount))
-            dispatch(setCurrentPage(currentPage))
-        })
+        dispatch(showUsers(data.items))
+        dispatch(setTotalCount(data.totalCount))
+        dispatch(setCurrentPage(currentPage))
     }
 }
 
-export const toggleFollowStatus = (userID: number, method: 'DELETE' | 'POST') => {
-    return (dispatch: Dispatch) => {
-        dispatch(changeLoadingStatus())
-        usersAPI.changeFollowStatus(userID, method)
-            .then(resultCode => {
-                dispatch(changeLoadingStatus())
-                if (!resultCode) dispatch(changeFollow(userID))
-            })
-    }
+export const toggleFollowStatus = (userID: number, method: 'DELETE' | 'POST') => async (dispatch: Dispatch) => {
+    dispatch(changeLoadingStatus())
+    let resultCode = await usersAPI.changeFollowStatus(userID, method)
+    dispatch(changeLoadingStatus())
+    if (!resultCode) dispatch(changeFollow(userID))
 }

@@ -25,11 +25,11 @@ let initialState: AuthDataType = {
 
 export const authReducer = (state: AuthDataType = initialState, action: ActionType): AuthDataType => {
     switch (action.type) {
-        case 'SET-AUTH-DATA':
+        case 'auth/SET-AUTH-DATA':
             return {...state, data: action.data}
-        case 'TOGGLE_IS_AUTH':
+        case 'auth/TOGGLE_IS_AUTH':
             return {...state, isAuth: action.status}
-        case 'CHANGE-LOADING-STATUS':
+        case 'auth/CHANGE-LOADING-STATUS':
             return {...state, isLoading: !state.isLoading}
         default:
             return state
@@ -42,9 +42,9 @@ type SetAuthDataType = ReturnType<typeof setAuthData>
 type ToggleIsAuthType = ReturnType<typeof toggleIsAuth>
 type ChangeLoadingStatusType = ReturnType<typeof changeLoadingStatus>
 
-export const setAuthData = (data: StateType) => ({ type: 'SET-AUTH-DATA', data } as const)
-export const toggleIsAuth = (status: boolean) => ({ type: 'TOGGLE_IS_AUTH', status } as const)
-export const changeLoadingStatus = () => ({ type: 'CHANGE-LOADING-STATUS' } as const)
+export const setAuthData = (data: StateType) => ({ type: 'auth/SET-AUTH-DATA', data } as const)
+export const toggleIsAuth = (status: boolean) => ({ type: 'auth/TOGGLE_IS_AUTH', status } as const)
+export const changeLoadingStatus = () => ({ type: 'auth/CHANGE-LOADING-STATUS' } as const)
 
 export const getAuthData = (): any => {
     return (dispatch: Dispatch) => {
@@ -58,22 +58,18 @@ export const getAuthData = (): any => {
 }
 
 export const login = (email: string, password: string, rememberMe: boolean = false) => {
-    return (dispatch: Dispatch) => {
-        authAPI.login(email, password, rememberMe).then(data => {
-            if (!data.resultCode) {
-                dispatch(getAuthData())
-            } else {
-                dispatch(stopSubmit('login', {_error: data.messages[0]}))
-            }
-        })
+    return async (dispatch: Dispatch) => {
+        let data = await authAPI.login(email, password, rememberMe)
+        !data.resultCode
+            ? dispatch(getAuthData())
+            : dispatch(stopSubmit('login', {_error: data.messages[0]}))
     }
 }
 
-export const logout = () => {
-    return (dispatch: Dispatch) => {
-        authAPI.logout().then(() => {
-            dispatch(setAuthData( {id: null, login: null, email: null} ))
-            dispatch(toggleIsAuth(false))
-        })
+export const logout = () => async (dispatch: Dispatch) => {
+    let data = await authAPI.logout()
+    if (!data.resultCode) {
+        dispatch(setAuthData( {id: null, login: null, email: null} ))
+        dispatch(toggleIsAuth(false))
     }
 }
