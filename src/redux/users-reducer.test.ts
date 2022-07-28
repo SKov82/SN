@@ -1,9 +1,34 @@
-import {changeFollow, UsersDataType, usersReducer} from './users-reducer';
+import {
+    changeFollow,
+    changeLoadingStatus,
+    setCurrentPage,
+    setTotalCount,
+    showUsers,
+    UsersDataType,
+    usersReducer
+} from './users-reducer';
 
 const startState: UsersDataType = {
-    users: [],
+    users: [
+        {
+            name: 'Bob',
+            id: 1,
+            uniqueUrlName: null,
+            photos: {small: null, large: null},
+            status: null,
+            followed: false,
+        },
+        {
+            name: 'Tom',
+            id: 2,
+            uniqueUrlName: null,
+            photos: {small: null, large: null},
+            status: 'status',
+            followed: true,
+        },
+    ],
     pageSize: 5,
-    totalCount: 0,
+    totalCount: 2,
     currentPage: 1,
     isLoading: false
 }
@@ -14,17 +39,55 @@ test('change follow status', () => {
     expect(endState.users.length).toBe(startState.users.length)
     expect(endState === startState).toBeFalsy()
     expect(endState.users === startState.users).toBeFalsy()
-    expect(endState.users[0] === startState.users[0]).toBeTruthy()
-    expect(endState.users[3] === startState.users[3]).toBeTruthy()
-    expect(endState.users[1] === startState.users[1]).toBeFalsy()
+    expect(endState.users[0].followed === startState.users[0].followed).toBeTruthy()
+    expect(endState.users[1].followed === startState.users[1].followed).toBeFalsy()
     expect(endState.users[1].followed).toBe(!startState.users[1].followed)
 })
-//
-// test('show more users', () => {
-//     const endState = usersReducer(startState, showMoreUsersAC())
-//
-//     expect(endState.users.length).toBe(startState.users.length + 3)
-//     expect(endState === startState).toBeFalsy()
-//     expect(endState.users === startState.users).toBeFalsy()
-//     expect(endState.users[0] === startState.users[0]).toBeTruthy()
-// })
+
+test('show users', () => {
+    const endState = usersReducer(startState, showUsers([{
+        name: 'Ann',
+        id: 1,
+        uniqueUrlName: null,
+        photos: {small: null, large: null},
+        status: null,
+        followed: false,
+    }]))
+
+    expect(endState.users.length).toEqual(1)
+    expect(endState === startState).toBeFalsy()
+    expect(endState.currentPage).toEqual(1)
+    expect(endState.isLoading).toBeFalsy()
+    expect(endState.users[0].name).toBe('Ann')
+})
+
+test('set current page', () => {
+    const endState = usersReducer(startState, setCurrentPage(3))
+
+    expect(endState === startState).toBeFalsy()
+    expect(endState.currentPage).toEqual(3)
+    expect(endState.totalCount).toBe(startState.totalCount)
+    expect(endState.isLoading).toBeFalsy()
+    expect(endState.users.length).toBe(startState.users.length)
+    expect(endState.users === startState.users).toBeTruthy()
+})
+
+test('set total count', () => {
+    const endState = usersReducer(startState, setTotalCount(11))
+
+    expect(endState === startState).toBeFalsy()
+    expect(endState.currentPage).toEqual(startState.currentPage)
+    expect(endState.totalCount).toBe(11)
+    expect(endState.isLoading).toBeFalsy()
+    expect(endState.users.length).toBe(startState.users.length)
+})
+
+test('change loading status', () => {
+    const endState = usersReducer(startState, changeLoadingStatus())
+
+    expect(endState === startState).toBeFalsy()
+    expect(endState.currentPage).toEqual(startState.currentPage)
+    expect(endState.totalCount).toBe(startState.totalCount)
+    expect(endState.isLoading).toBe(!startState.isLoading)
+    expect(endState.users.length).toBe(startState.users.length)
+})
