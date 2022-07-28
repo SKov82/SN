@@ -42,9 +42,9 @@ type SetAuthDataType = ReturnType<typeof setAuthData>
 type ToggleIsAuthType = ReturnType<typeof toggleIsAuth>
 type ChangeLoadingStatusType = ReturnType<typeof changeLoadingStatus>
 
-const setAuthData = (data: StateType) => ({ type: 'SET-AUTH-DATA', data } as const)
-const toggleIsAuth = (status: boolean) => ({ type: 'TOGGLE_IS_AUTH', status } as const)
-const changeLoadingStatus = () => ({ type: 'CHANGE-LOADING-STATUS' } as const)
+export const setAuthData = (data: StateType) => ({ type: 'SET-AUTH-DATA', data } as const)
+export const toggleIsAuth = (status: boolean) => ({ type: 'TOGGLE_IS_AUTH', status } as const)
+export const changeLoadingStatus = () => ({ type: 'CHANGE-LOADING-STATUS' } as const)
 
 export const getAuthData = (): any => {
     return (dispatch: Dispatch) => {
@@ -71,7 +71,7 @@ export const login = (email: string, password: string, rememberMe: boolean = fal
 
 export const logout = () => {
     return (dispatch: Dispatch) => {
-        authAPI.logout().then(data => {
+        authAPI.logout().then(() => {
             dispatch(setAuthData( {id: null, login: null, email: null} ))
             dispatch(toggleIsAuth(false))
         })
