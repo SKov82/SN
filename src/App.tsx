@@ -25,7 +25,7 @@ class App extends React.Component<AppType> {
                     HeaderContainer
                 />
                 <Main/>
-                <Footer/>
+                {/*<Footer/>*/}
             </div>
         } else {
             return <img className={css.loading} src={preloader} alt="loading..."/>
