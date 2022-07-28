@@ -1,4 +1,4 @@
-import {addMessageAC, DialogsDataType, dialogsReducer} from './dialogs-reducer';
+import {addMessageAC, DialogsDataType, dialogsReducer, removeMessage} from './dialogs-reducer';
 
 const startState: DialogsDataType = {
     dialogs: [
@@ -18,6 +18,17 @@ test('add new message', () => {
     expect(endState.messages.length).toBe(startState.messages.length + 1)
     expect(endState.messages[0]).toBe(startState.messages[0])
     expect(endState.messages[2].text).toBe('newMessage')
+    expect(endState.dialogs === startState.dialogs).toBeTruthy()
+    expect(endState.messages === startState.messages).toBeFalsy()
+    expect(endState === startState).toBeFalsy()
+})
+
+test('remove message', () => {
+    const endState = dialogsReducer(startState, removeMessage(2))
+
+    expect(endState.messages.length).toBe(startState.messages.length - 1)
+    expect(endState.messages[0].id).toBe(1)
+    expect(endState.messages[0].text).toBe('Привет. Ты дома?')
     expect(endState.dialogs === startState.dialogs).toBeTruthy()
     expect(endState.messages === startState.messages).toBeFalsy()
     expect(endState === startState).toBeFalsy()
