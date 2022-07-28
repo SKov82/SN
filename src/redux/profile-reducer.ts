@@ -30,6 +30,10 @@ export const profileReducer = (state: ProfileDataType = initialState, action: Ac
                     { id: state.posts.length + 1, message: action.newPost, likesCount: 0 }, ...state.posts
                 ]
             }
+        case 'REMOVE_POST':
+            return {...state,
+                posts: state.posts.filter(p => p.id !== action.id)
+            }
         case 'SET_USER_PROFILE':
             return {...state, profile: action.profile}
         case 'SET_USER_STATUS':
@@ -39,12 +43,13 @@ export const profileReducer = (state: ProfileDataType = initialState, action: Ac
     }
 }
 
-type ActionType = AddNewPostType | SetUserProfileType | SetUserStatusType
-type AddNewPostType = ReturnType<typeof addNewPost>
-type SetUserProfileType = ReturnType<typeof setUserProfile>
-type SetUserStatusType = ReturnType<typeof setUserStatus>
+type ActionType = ReturnType<typeof addNewPost>
+    | ReturnType<typeof removePost>
+    | ReturnType<typeof setUserProfile>
+    | ReturnType<typeof setUserStatus>
 
 export const addNewPost = (newPost: string) => ({ type: 'ADD_POST', newPost } as const)
+export const removePost = (id: number) => ({ type: 'REMOVE_POST', id } as const)
 export const setUserProfile = (profile: ProfileType) => ({ type: 'SET_USER_PROFILE', profile } as const)
 export const setUserStatus = (status: string | null) => ({ type: 'SET_USER_STATUS', status } as const)
 

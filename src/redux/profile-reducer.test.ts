@@ -1,4 +1,11 @@
-import {addNewPost, ProfileDataType, profileReducer, setUserProfile, setUserStatus} from './profile-reducer';
+import {
+    addNewPost,
+    ProfileDataType,
+    profileReducer,
+    removePost,
+    setUserProfile,
+    setUserStatus
+} from './profile-reducer';
 
 const startState: ProfileDataType = {
     posts: [
@@ -54,4 +61,14 @@ test('set user status', () => {
     expect(endState.profile).toBeNull()
     expect(endState.posts === startState.posts).toBeTruthy()
     expect(endState === startState).toBeFalsy()
+})
+
+test('remove post', () => {
+    const endState = profileReducer(startState, removePost(2))
+
+    expect(endState === startState).toBeFalsy()
+    expect(endState.profile === startState.profile).toBeTruthy()
+    expect(endState.status === startState.status).toBeTruthy()
+    expect(endState.posts.length).toBe(startState.posts.length - 1)
+    expect(endState.posts[0].id).toBe(1)
 })
