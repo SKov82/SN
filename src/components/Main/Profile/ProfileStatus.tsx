@@ -1,16 +1,16 @@
 import React, {ChangeEvent, KeyboardEvent, useEffect, useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {AppStateType} from '../../../redux/redux-store';
+import {useDispatch} from 'react-redux';
 import {updateUserStatus} from '../../../redux/profile-reducer';
 
 export const ProfileStatus = (props: {userID: number, status: string | null}) => {
     const dispatch = useDispatch()
-    // const status = useSelector<AppStateType, string | null>(state => state.profileData.status)
+
     const [status, setStatus] = useState<string | null>(props.status)
     const [editMode, setEditMode] = useState<boolean>(false)
-    const editModeHandler = () => setEditMode(!editMode)
 
     useEffect(() => setStatus(props.status), [props.status])
+
+    const editModeHandler = () => setEditMode(!editMode)
 
     return <div onDoubleClick={editModeHandler}>
         {`Статус: `}
@@ -28,7 +28,7 @@ export const ProfileStatus = (props: {userID: number, status: string | null}) =>
                        maxLength={300}
                 />
               </span>
-            : <span> {status || props.status} </span>
+            : <span>{status || props.status}</span>
         }
     </div>
 }
