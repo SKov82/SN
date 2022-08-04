@@ -1,6 +1,6 @@
 import {AppStateType} from '../../../redux/redux-store';
 import {connect} from 'react-redux';
-import { getUsers, toggleFollowStatus, UsersDataType } from '../../../redux/users-reducer';
+import {getUsers, setPageSize, toggleFollowStatus, UsersDataType} from '../../../redux/users-reducer';
 import {Users} from './Users';
 
 type MapStateToPropsType = {
@@ -11,6 +11,8 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return { usersData: state.usersData }
 }
 
-export const UsersContainer = connect(mapStateToProps, { getUsers, toggleFollowStatus }
+export const UsersContainer = connect(mapStateToProps, {
+    getUsers, toggleFollowStatus, setPageSize
+}
 // @ts-ignore
 ) (Users)

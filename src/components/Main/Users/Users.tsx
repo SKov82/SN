@@ -8,6 +8,7 @@ import {User} from './User';
 type UsersType = {
     usersData: UsersDataType
     getUsers: (currentPage: number, pageSize: number) => void
+    setPageSize: (pageSize: number) => void
     toggleFollowStatus: (userID: number, method: 'DELETE' | 'POST') => void
 }
 
@@ -23,6 +24,7 @@ export class Users extends React.Component<UsersType> {
                 pageSize={this.props.usersData.pageSize}
                 totalCount={this.props.usersData.totalCount}
                 getUsers={this.props.getUsers}
+                setPageSize={this.props.setPageSize}
             />
 
             {this.props.usersData.isLoading && <img className={css.loading} src={preloader} alt="loading..."/>}

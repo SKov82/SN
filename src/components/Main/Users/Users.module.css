@@ -32,3 +32,18 @@
 .followButton:hover {
     box-shadow: 0 0 12px lightskyblue;
 }
+
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    align-items: center;
+}
+
+.left {
+    margin-left: 30px;
+}
+
+.right {
+    margin-right: 30px;
+}

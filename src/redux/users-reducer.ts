@@ -35,6 +35,8 @@ export const usersReducer = (state: UsersDataType = initialState, action: Action
             return {...state, users: action.payload.users}
         case 'users/SET-CURRENT-PAGE':
             return {...state, currentPage: action.payload.currentPage}
+        case 'users/SET-PAGE-SIZE':
+            return {...state, pageSize: action.payload.pageSize}
         case 'users/SET-TOTAL-COUNT':
             return {...state, totalCount: action.payload.totalCount}
         case 'users/CHANGE-LOADING-STATUS':
@@ -47,17 +49,20 @@ export const usersReducer = (state: UsersDataType = initialState, action: Action
 export type ActionType = ChangeFollowType
     | ShowUsersType
     | SetCurrentPageType
+    | SetPageSizeType
     | SetTotalCountType
     | ChangeLoadingStatusType
 type ChangeFollowType = ReturnType<typeof changeFollow>
 type ShowUsersType = ReturnType<typeof showUsers>
 type SetCurrentPageType = ReturnType<typeof setCurrentPage>
+type SetPageSizeType = ReturnType<typeof setPageSize>
 type SetTotalCountType = ReturnType<typeof setTotalCount>
 type ChangeLoadingStatusType = ReturnType<typeof changeLoadingStatus>
 
 export const changeFollow = (userID: number) => ({ type: 'users/CHANGE-FOLLOW', payload: {userID} } as const)
 export const showUsers = (users: UserType[]) => ({ type: 'users/SHOW-USERS', payload: {users} } as const)
 export const setCurrentPage = (currentPage: number) => ({ type: 'users/SET-CURRENT-PAGE', payload: {currentPage} } as const)
+export const setPageSize = (pageSize: number) => ({ type: 'users/SET-PAGE-SIZE', payload: {pageSize} } as const)
 export const setTotalCount = (totalCount: number) => ({ type: 'users/SET-TOTAL-COUNT', payload: {totalCount} } as const)
 export const changeLoadingStatus = () => ({ type: 'users/CHANGE-LOADING-STATUS' } as const)
 
