@@ -1,13 +1,13 @@
-import {addMessageAC, DialogsDataType, dialogsReducer, removeMessage} from './dialogs-reducer';
+import { addMessageAC, DialogsDataType, dialogsReducer, removeMessage } from './dialogs-reducer'
 
 const startState: DialogsDataType = {
     dialogs: [
-        {id: 1, name: 'Ирина'},
-        {id: 2, name: 'Юля'},
+        { id: 1, name: 'Ирина' },
+        { id: 2, name: 'Юля' },
     ],
     messages: [
-        {id: 1, text: 'Привет. Ты дома?'},
-        {id: 2, text: 'Привет. Да, только пришел'},
+        { id: 1, text: 'Привет. Ты дома?' },
+        { id: 2, text: 'Привет. Да, только пришел' },
     ],
 }
 

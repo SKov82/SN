@@ -1,14 +1,14 @@
-import React from 'react';
-import TestRenderer, {act} from 'react-test-renderer';
-import {store} from '../../../redux/redux-store';
-import {Provider} from 'react-redux';
-import {ProfileStatus} from './ProfileStatus';
+import React from 'react'
+import TestRenderer, { act } from 'react-test-renderer'
+import { store } from '../../../redux/redux-store'
+import { Provider } from 'react-redux'
+import { ProfileStatus } from './ProfileStatus'
 
 test('render ProfileStatus component', () => {
     const testRenderer = TestRenderer.create(
         <Provider store={store}>
             <ProfileStatus userID={23880} status={'OK'} />
-        </Provider>
+        </Provider>,
     )
     const testInstance = testRenderer.root
 

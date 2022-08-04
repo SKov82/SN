@@ -1,6 +1,6 @@
-import {Dispatch} from 'redux';
-import {authAPI} from '../api/api';
-import {stopSubmit} from 'redux-form';
+import { Dispatch } from 'redux'
+import { authAPI } from '../api/api'
+import { stopSubmit } from 'redux-form'
 
 export type StateType = {
     id: null | number
@@ -26,11 +26,11 @@ let initialState: AuthDataType = {
 export const authReducer = (state: AuthDataType = initialState, action: ActionType): AuthDataType => {
     switch (action.type) {
         case 'auth/SET-AUTH-DATA':
-            return {...state, data: action.data}
+            return { ...state, data: action.data }
         case 'auth/TOGGLE_IS_AUTH':
-            return {...state, isAuth: action.status}
+            return { ...state, isAuth: action.status }
         case 'auth/CHANGE-LOADING-STATUS':
-            return {...state, isLoading: !state.isLoading}
+            return { ...state, isLoading: !state.isLoading }
         default:
             return state
     }
@@ -60,16 +60,14 @@ export const getAuthData = (): any => {
 export const login = (email: string, password: string, rememberMe: boolean = false) => {
     return async (dispatch: Dispatch) => {
         let data = await authAPI.login(email, password, rememberMe)
-        !data.resultCode
-            ? dispatch(getAuthData())
-            : dispatch(stopSubmit('login', {_error: data.messages[0]}))
+        !data.resultCode ? dispatch(getAuthData()) : dispatch(stopSubmit('login', { _error: data.messages[0] }))
     }
 }
 
 export const logout = () => async (dispatch: Dispatch) => {
     let data = await authAPI.logout()
     if (!data.resultCode) {
-        dispatch(setAuthData( {id: null, login: null, email: null} ))
+        dispatch(setAuthData({ id: null, login: null, email: null }))
         dispatch(toggleIsAuth(false))
     }
 }

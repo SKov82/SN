@@ -1,10 +1,10 @@
-import React from 'react';
-import {Profile, ProfileType} from './Profile';
-import {connect} from 'react-redux';
-import {getUserProfile, getUserStatus} from '../../../redux/profile-reducer';
-import {AppStateType} from '../../../redux/redux-store';
-import {withRouter} from 'react-router-dom';
-import {WithAuthRedirect} from '../../../hoc/withAuthRedirect';
+import React from 'react'
+import { Profile, ProfileType } from './Profile'
+import { connect } from 'react-redux'
+import { getUserProfile, getUserStatus } from '../../../redux/profile-reducer'
+import { AppStateType } from '../../../redux/redux-store'
+import { withRouter } from 'react-router-dom'
+import { WithAuthRedirect } from '../../../hoc/withAuthRedirect'
 
 type ProfileContainerType = {
     profileData: ProfileType
@@ -23,10 +23,8 @@ class ProfileC extends React.Component<ProfileContainerType> {
         this.props.getUserStatus(userID)
     }
 
-    render () {
-        return (
-            <Profile {...this.props.profileData} status={this.props.status} />
-        )
+    render() {
+        return <Profile {...this.props.profileData} status={this.props.status} />
     }
 }
 
@@ -48,5 +46,4 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 
 // @ts-ignore
 let UrlDataContainer = withRouter(WithAuthRedirect(ProfileC))
-export const ProfileContainer = connect(mapStateToProps,
-    {getUserProfile, getUserStatus}) (UrlDataContainer)
+export const ProfileContainer = connect(mapStateToProps, { getUserProfile, getUserStatus })(UrlDataContainer)

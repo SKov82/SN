@@ -5,10 +5,11 @@
     position: relative;
 }
 
-.content::after{
-    content: "";
-    background: url("https://w-dog.ru/wallpapers/2/16/423668644260651/krasivye-vid-planet-v-kosmose.jpg") 0 0/cover no-repeat fixed;
-    opacity: .35;
+.content::after {
+    content: '';
+    background: url('https://w-dog.ru/wallpapers/2/16/423668644260651/krasivye-vid-planet-v-kosmose.jpg') 0 0 / cover
+        no-repeat fixed;
+    opacity: 0.35;
     top: 0;
     left: 0;
     bottom: 0;

@@ -5,8 +5,8 @@ import {
     setTotalCount,
     showUsers,
     UsersDataType,
-    usersReducer
-} from './users-reducer';
+    usersReducer,
+} from './users-reducer'
 
 const startState: UsersDataType = {
     users: [
@@ -14,7 +14,7 @@ const startState: UsersDataType = {
             name: 'Bob',
             id: 1,
             uniqueUrlName: null,
-            photos: {small: null, large: null},
+            photos: { small: null, large: null },
             status: null,
             followed: false,
         },
@@ -22,7 +22,7 @@ const startState: UsersDataType = {
             name: 'Tom',
             id: 2,
             uniqueUrlName: null,
-            photos: {small: null, large: null},
+            photos: { small: null, large: null },
             status: 'status',
             followed: true,
         },
@@ -30,7 +30,7 @@ const startState: UsersDataType = {
     pageSize: 5,
     totalCount: 2,
     currentPage: 1,
-    isLoading: false
+    isLoading: false,
 }
 
 test('change follow status', () => {
@@ -45,14 +45,19 @@ test('change follow status', () => {
 })
 
 test('show users', () => {
-    const endState = usersReducer(startState, showUsers([{
-        name: 'Ann',
-        id: 1,
-        uniqueUrlName: null,
-        photos: {small: null, large: null},
-        status: null,
-        followed: false,
-    }]))
+    const endState = usersReducer(
+        startState,
+        showUsers([
+            {
+                name: 'Ann',
+                id: 1,
+                uniqueUrlName: null,
+                photos: { small: null, large: null },
+                status: null,
+                followed: false,
+            },
+        ]),
+    )
 
     expect(endState.users.length).toEqual(1)
     expect(endState === startState).toBeFalsy()

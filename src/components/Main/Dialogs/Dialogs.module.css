@@ -4,14 +4,15 @@
     width: 100%;
     height: 100%;
     position: relative;
-    grid-template: "chats messages" / 1fr 3fr;
+    grid-template: 'chats messages' / 1fr 3fr;
     grid-gap: 20px;
 }
 
-.content::after{
-    content: "";
-    background: url("https://images.nrc.nl/-eUPNG6ZBVRsMk0wRloqo5pms0Q=/1920x/filters:no_upscale()/s3/static.nrc.nl/spoetnik/files/2015/02/brieven.jpg") 0 0/cover no-repeat fixed;
-    opacity: .35;
+.content::after {
+    content: '';
+    background: url('https://images.nrc.nl/-eUPNG6ZBVRsMk0wRloqo5pms0Q=/1920x/filters:no_upscale()/s3/static.nrc.nl/spoetnik/files/2015/02/brieven.jpg')
+        0 0 / cover no-repeat fixed;
+    opacity: 0.35;
     top: 0;
     left: 0;
     bottom: 0;
@@ -35,11 +36,10 @@
     color: lightskyblue;
     font-weight: 700;
     position: relative;
-
 }
 .active::after {
-    content: "";
-    background: url("https://www.downloadclipart.net/large/66-eyes-file-clipart.png") 0 0/cover no-repeat no-repeat;
+    content: '';
+    background: url('https://www.downloadclipart.net/large/66-eyes-file-clipart.png') 0 0 / cover no-repeat no-repeat;
     width: 20px;
     height: 20px;
     position: absolute;

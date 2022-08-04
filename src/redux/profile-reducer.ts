@@ -1,6 +1,6 @@
-import {Dispatch} from 'redux';
-import {profileAPI} from '../api/api';
-import {ProfileType} from '../components/Main/Profile/Profile';
+import { Dispatch } from 'redux'
+import { profileAPI } from '../api/api'
+import { ProfileType } from '../components/Main/Profile/Profile'
 
 export type PostType = {
     id: number
@@ -15,8 +15,8 @@ export type ProfileDataType = {
 
 let initialState: ProfileDataType = {
     posts: [
-        {id: 2, message: "Всем привет! Начал изучать React. А что учите вы?", likesCount: 12},
-        {id: 1, message: "Привет. Это мой первый пост.", likesCount: 9199},
+        { id: 2, message: 'Всем привет! Начал изучать React. А что учите вы?', likesCount: 12 },
+        { id: 1, message: 'Привет. Это мой первый пост.', likesCount: 9199 },
     ],
     profile: null,
     status: null,
@@ -25,25 +25,23 @@ let initialState: ProfileDataType = {
 export const profileReducer = (state: ProfileDataType = initialState, action: ActionType): ProfileDataType => {
     switch (action.type) {
         case 'profile/ADD_POST':
-            return {...state,
-                posts: [
-                    { id: state.posts.length + 1, message: action.newPost, likesCount: 0 }, ...state.posts
-                ]
+            return {
+                ...state,
+                posts: [{ id: state.posts.length + 1, message: action.newPost, likesCount: 0 }, ...state.posts],
             }
         case 'profile/REMOVE_POST':
-            return {...state,
-                posts: state.posts.filter(p => p.id !== action.id)
-            }
+            return { ...state, posts: state.posts.filter(p => p.id !== action.id) }
         case 'profile/SET_USER_PROFILE':
-            return {...state, profile: action.profile}
+            return { ...state, profile: action.profile }
         case 'profile/SET_USER_STATUS':
-            return {...state, status: action.status}
+            return { ...state, status: action.status }
         default:
             return state
     }
 }
 
-type ActionType = ReturnType<typeof addNewPost>
+type ActionType =
+    | ReturnType<typeof addNewPost>
     | ReturnType<typeof removePost>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setUserStatus>

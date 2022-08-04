@@ -6,7 +6,7 @@
     grid-template-columns: 2fr 10fr;
     grid-gap: 20px;
     grid-template-areas:
-        "h h"
-        "c c"
-        "f f";
+        'h h'
+        'c c'
+        'f f';
 }

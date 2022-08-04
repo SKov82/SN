@@ -1,8 +1,8 @@
-import {MyPosts} from './MyPosts';
-import {addNewPost, ProfileDataType} from '../../../../redux/profile-reducer';
-import {connect} from 'react-redux';
-import {AppStateType} from '../../../../redux/redux-store';
-import {Dispatch} from 'redux';
+import { MyPosts } from './MyPosts'
+import { addNewPost, ProfileDataType } from '../../../../redux/profile-reducer'
+import { connect } from 'react-redux'
+import { AppStateType } from '../../../../redux/redux-store'
+import { Dispatch } from 'redux'
 
 type MapStateToPropsType = {
     profileData: ProfileDataType
@@ -17,8 +17,8 @@ let mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 let mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
         addPost: (newPost: string) => {
-            dispatch( addNewPost(newPost) )
-        }
+            dispatch(addNewPost(newPost))
+        },
     }
 }
-export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps) (MyPosts)
+export const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)

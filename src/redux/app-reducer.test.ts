@@ -1,7 +1,7 @@
-import {appReducer, InitStateType, setInit} from './app-reducer';
+import { appReducer, InitStateType, setInit } from './app-reducer'
 
 const startState: InitStateType = {
-    isInit: false
+    isInit: false,
 }
 
 test('set init to true', () => {

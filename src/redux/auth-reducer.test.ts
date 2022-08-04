@@ -1,4 +1,4 @@
-import {AuthDataType, authReducer, changeLoadingStatus, setAuthData, toggleIsAuth} from './auth-reducer';
+import { AuthDataType, authReducer, changeLoadingStatus, setAuthData, toggleIsAuth } from './auth-reducer'
 
 let startState: AuthDataType = {
     data: {
@@ -11,11 +11,14 @@ let startState: AuthDataType = {
 }
 
 test('set auth data', () => {
-    const endState = authReducer(startState, setAuthData({
-        id: 1,
-        login: 'login',
-        email: 'email@mail.ru',
-    }))
+    const endState = authReducer(
+        startState,
+        setAuthData({
+            id: 1,
+            login: 'login',
+            email: 'email@mail.ru',
+        }),
+    )
 
     expect(endState === startState).toBeFalsy()
     expect(endState.isLoading === startState.isLoading).toBeTruthy()
