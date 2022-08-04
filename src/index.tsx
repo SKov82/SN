@@ -8,7 +8,8 @@ import { Provider } from 'react-redux';
 
 let renderAll = () => {
     ReactDOM.render((
-        <BrowserRouter basename={'/' + window.location.pathname.split('/')[1]}>
+        // basename={'/' + window.location.pathname.split('/')[1]}
+        <BrowserRouter>
             <Provider store={store}>
                 < // @ts-ignore
                     App
