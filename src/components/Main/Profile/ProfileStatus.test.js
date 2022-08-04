@@ -13,7 +13,6 @@ it('render ProfileStatus component', () => {
     )
     const testInstance = testRenderer.root
 
-    // console.log(testRenderer.toJSON())
     expect(testRenderer.toJSON().children[1].children[0]).toBe('OK')
     expect(testInstance.findByType(ProfileStatus).props.userID).toBe(23880)
     expect(testInstance.findByType(ProfileStatus).props.status).toBe('OK')
